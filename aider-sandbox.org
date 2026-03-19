@@ -1,0 +1,557 @@
+* TODO 
+** установить аидер в виртуальную среду обоснование
+- убитидся что всё работает
+- поднят самомнение
+- иметь быстрое решение
+- опробывать идею
+- просто быстро попробывать как работает
+- тоже метод работы
+  который имет право на существование
+- это просто!
+- там и безтого полно сложностей
+- дополнительные сушности нужны когда идея оказалась нужная
+- имакс решение для момента когда ты постоянно с этим работаешь
+  когда хочешь сделать всё эфекстивнее
+  когда хочешь сделать поверх удобный инструмент
+  требуюший интеграции в имакс
+  когда хочешь превратить в постоянно используемый инструмент, всегда под рукой
+** установить аидер в виртуалку
+*** DONE сделать орг фаил
+**** DONE возможно в роам
+как минимум там дофига информации
+сделать пока в несортированом
+- некто и неговорить что всё нужно сортировать и связывать
+инфа с сайта как управлять
+как устанваливать
+инструкция как установить в имакс
+**** DONE сделать сылку на него некро теке
+**** DONE сделать под него десктоп
+для него и проекта
+**** открывать сайт
+*** DONE выбрать папку
+*** сделать гит
+*** выложить гит
+*** сделать виртуалку
+https://docs.python.org/3/library/venv.html
+python -m pip install -U --upgrade-strategy only-if-needed aider-chat
+
+In some environments you may get “aider command not found”
+errors. You can try python -m aider or [[https://aider.chat/docs/troubleshooting/aider-not-found.html][see here for more info]].
+
+*** запустить
+*** установить
+https://aider.chat/docs/install.html
+*** API Keys 
+https://aider.chat/docs/config/api-keys.html
+Aider lets you specify API keys in a few ways:
+
+,* On the command line
+,* As environment variables
+,* In a .env file
+,* In your .aider.conf.yml config file
+*** models
+Aider works best with Claude 3.5 Sonnet, DeepSeek R1 & Chat V3,
+OpenAI o1, o3-mini & GPT-4o. Aider can [[https://aider.chat/docs/llms.html][connect to almost any LLM,
+including local models]].
+
+# o3-mini
+$ aider --model o3-mini --api-key openai=<key>
+
+# Claude 3.7 Sonnet
+$ aider --model sonnet --api-key anthropic=<key>
+
+Or you can run aider --model XXX to launch aider with another
+model. During your chat you can switch models with the in-chat
+/model command.
+
+*** какие ещё  облачные ЛЛМ
+**** 
+предлогают бесплатный апи ключь для рабты. с ежидневным ограничение, или какимто другим возобнавляемым лимитом?
+например как это делает Gemeni or GROQ.
+ключевая особеность это долженбыть обезательно
+- АПИ ключь а не веб интерфес
+- и возобновляемый или полность бесплатный, а не разовый кредит. размеры лимита не принципиальны.
+**** 
+а точно deepseek имее бесплатный лимиты?
+я не нашол некаких упоминаний
+а сделаный ключь вернул
+
+curl https://api.deepseek.com/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer sk-****...***" \
+  -d '{
+        "model": "deepseek-chat",
+        "messages": [
+          {"role": "system", "content": "You are a helpful assistant."},
+          {"role": "user", "content": "Hello!"}
+        ],
+        "stream": false
+      }'
+
+{"error":{"message":"Insufficient Balance","type":"unknown_error","param":null,"code":"invalid_request_error"}}%  
+
+*** подключить гемение
+*** подключить грок
+** Copy/paste to web chat
+[[https://aider.chat/docs/usage/copypaste.html][Copy/paste to web chat]]
+https://aider.chat/docs/usage/copypaste.html
+[[https://github.com/Aider-AI/aider#copypaste-to-web-chat][SVG Image]]
+Work with any LLM via its web chat interface. Aider streamlines
+copy/pasting code context and edits back and forth with a browser.
+** Enable Playwright 
+
+Aider supports adding web pages to the chat with the /web <url>
+command. When you add a url to the chat, aider fetches the page
+and scrapes its content.
+
+By default, aider uses the httpx library to scrape web pages, but
+this only works on a subset of web pages. Some sites explicitly block
+requests from tools like httpx. Others rely heavily on javascript to
+render the page content, which isn’t possible using only httpx.
+
+Aider works best with all web pages if you install Playwright’s
+chromium browser and its dependencies:
+
+playwright install --with-deps chromium
+
+See the [[https://playwright.dev/python/docs/browsers#install-system-dependencies][Playwright for Python documentation]] for additional
+information.
+
+** Using tree-sitter to make the map 
+
+Under the hood, aider uses tree sitter to build the map. It
+specifically uses the py-tree-sitter-languages python module, which
+provides simple, pip-installable binary wheels for most popular
+programming languages.
+
+Tree-sitter parses source code into an Abstract Syntax Tree (AST)
+based on the syntax of the programming language. Using the AST,
+we can identify where functions, classes, variables, types and other
+definitions occur in the source code. We can also identify where else
+in the code these things are used or referenced.
+
+Aider uses all of these definitions and references to determine which
+are the most important identifiers in the repository, and to produce
+the repo map that shows just those key lines from the codebase.
+** сделать более одного проекта
+** сделать возможность перключения между гроком и джемени
+** сделать запуск из мд файла
+** проверить возможность формирования мд файлов
+** сделать простенький ральф луп
+** рсширять ральф луп
+** подключить к моему активному проекту
+*** например сделать бранч
+и поигратся с проекстом
+** подключить и понять как онможет понять проект
+*** тоесть он способен разобратся и описать проект в мд
+** установаить в имакс еля чере орг файл
+*** попробываь через страйт также через орг фаил
+*** попробываь через ВС? также через орг фаил
+понять что там за вторая вешь
+*** запустить убедится что всё работает
+*** 
+** установить опенклав
+** установаить в имакс аидер.ел на постояннку
+** установаить в имакс страй ! на постояннку
+
+* progects
+** emacsZZT
+** SofuYn site
+** TS site
+** My site
+** game of life battel
+** game of life MP
+*** игра стекляных бус
+** clojur TTS
+** Ralph Loops
+** mcp server
+** G3 Ralph Loops
+** muli char rpg file driven
+*** сложная системя эмоций и аналази
+** Python слой ротирует провайдеры
+Хочешь, я соберу тебе прям готовый Clojure/Python слой, который:
+
+сам ротирует провайдеры
+
+обходит лимиты
+
+и выглядит как единый API
+
+Скажи слово… я тебе сделаю красиво 💋
+* project comands
+:PROPERTIES:
+:header-args: :tangle no
+:END:
+** dir
+cd /home/buyn/Dev/aider-sandbox/
+** diff dirs recersiv
+*** comands
+(ranger "/home/buyn/Dev/ClojureScript/tutorials/learn-reagent-course-files/increments/")
+cd /home/buyn/Dev/ClojureScript/tutorials/learn-reagent-course-files/increments/
+diff -r 16-update-gig 17-refactor-gigs
+/home/buyn/Dev/ClojureScript/tutorials/learn-reagent-course-files/increments/15-save-gig
+
+02-app-setup           09-remove-from-order   14-gig-editor     19-ajax-transformations  24-firebase-auth     complete
+05-displaying-gigs     10-order-total         15-save-gig       20-firebase-setup        25-sign-in-sign-out  
+06-list-comprehension  11-format-price        16-update-gig     21-firebase-database     26-security-rules    
+07-add-to-order        12-refactor-functions  17-refactor-gigs  22-subscribe             28-performance-url   
+08-for-over-orders     13-checkout-modal      18-ajax-requests  23-sold-out              29-tips-and-tricks   
+
+/home/buyn/Dev/ClojureScript/tutorials/learn-reagent-course-files/increments/12-refactor-functions
+/home/buyn/Dev/ClojureScript/tutorials/learn-reagent-course-files/increments/13-checkout-modal
+diff -r dir1 dir2
+*** block
+**** 01
+#+begin_src eshell :dir /home/buyn/Dev/ClojureScript/tutorials/learn-reagent-course-files/increments/
+diff -r 16-update-gig 17-refactor-gigs
+#+end_src
+
+#+RESULTS:
+#+begin_example
+diff -r 16-update-gig/src/giggin/components/gig_editor.cljs 17-refactor-gigs/src/giggin/components/gig_editor.cljs
+13,14c13,14
+<   [modal values insert-gig]
+<   [:div.modal (when @modal {:class "active"})
+---
+>   [modal values upsert-gig toggle-modal]
+>   [:div.modal (when (:active @modal) {:class "active"})
+43c43
+<       {:on-click #(reset! modal false)}
+---
+>       {:on-click #(toggle-modal {:active false :gig {}})}
+46c46
+<       {:on-click #(insert-gig @values)}
+---
+>       {:on-click #(upsert-gig @values)}
+diff -r 16-update-gig/src/giggin/components/gigs.cljs 17-refactor-gigs/src/giggin/components/gigs.cljs
+10,11c10,11
+<   (let [modal (r/atom false)
+<         values (r/atom {:id (str "gig-" (random-uuid)) :title "" :desc "" :price 0 :img "" :sold-out false})
+---
+>   (let [modal (r/atom {:active false})
+>         values (r/atom {:id nil :title "" :desc "" :price 0 :img "" :sold-out false})
+13,14c13,18
+<         insert-gig (fn [{:keys [id title desc price img sold-out]}]
+<                      (swap! state/gigs assoc id {:id id
+---
+>         toggle-modal (fn
+>                        [{:keys [active gig]}]
+>                        (swap! modal assoc :active active)
+>                        (reset! values gig))
+>         upsert-gig (fn [{:keys [id title desc price img sold-out]}]
+>                      (swap! state/gigs assoc id {:id (or id (str "gig-" (random-uuid)))
+20c24
+<                      (reset! modal false))]
+---
+>                      (toggle-modal {:active false :gig {}}))]
+26c30
+<          {:on-click #(reset! modal true)}
+---
+>          {:on-click #(toggle-modal {:active true :gig {}})}
+30,31c34,35
+<         [gig-editor modal values insert-gig]
+<         (for [{:keys [id img title price desc]} (vals @state/gigs)]
+---
+>         [gig-editor modal values upsert-gig toggle-modal]
+>         (for [{:keys [id img title price desc] :as gig} (vals @state/gigs)]
+33c37,40
+<            [:img.gig__artwork {:src img :alt title}]
+---
+>            [:img.gig__artwork.gig__edit {:src img
+>                                          :alt title
+>                                          :on-click #(toggle-modal {:active true
+>                                                                    :gig gig})}]
+#+end_example
+
+
+**** 02
+#+begin_src eshell
+cd /home/buyn/Dev/ClojureScript/tutorials/learn-reagent-course-files/increments/
+diff -r 16-update-gig 17-refactor-gigs
+#+end_src
+
+#+RESULTS:
+#+begin_example
+diff -r 16-update-gig/src/giggin/components/gig_editor.cljs 17-refactor-gigs/src/giggin/components/gig_editor.cljs
+13,14c13,14
+<   [modal values insert-gig]
+<   [:div.modal (when @modal {:class "active"})
+---
+>   [modal values upsert-gig toggle-modal]
+>   [:div.modal (when (:active @modal) {:class "active"})
+43c43
+<       {:on-click #(reset! modal false)}
+---
+>       {:on-click #(toggle-modal {:active false :gig {}})}
+46c46
+<       {:on-click #(insert-gig @values)}
+---
+>       {:on-click #(upsert-gig @values)}
+diff -r 16-update-gig/src/giggin/components/gigs.cljs 17-refactor-gigs/src/giggin/components/gigs.cljs
+10,11c10,11
+<   (let [modal (r/atom false)
+<         values (r/atom {:id (str "gig-" (random-uuid)) :title "" :desc "" :price 0 :img "" :sold-out false})
+---
+>   (let [modal (r/atom {:active false})
+>         values (r/atom {:id nil :title "" :desc "" :price 0 :img "" :sold-out false})
+13,14c13,18
+<         insert-gig (fn [{:keys [id title desc price img sold-out]}]
+<                      (swap! state/gigs assoc id {:id id
+---
+>         toggle-modal (fn
+>                        [{:keys [active gig]}]
+>                        (swap! modal assoc :active active)
+>                        (reset! values gig))
+>         upsert-gig (fn [{:keys [id title desc price img sold-out]}]
+>                      (swap! state/gigs assoc id {:id (or id (str "gig-" (random-uuid)))
+20c24
+<                      (reset! modal false))]
+---
+>                      (toggle-modal {:active false :gig {}}))]
+26c30
+<          {:on-click #(reset! modal true)}
+---
+>          {:on-click #(toggle-modal {:active true :gig {}})}
+30,31c34,35
+<         [gig-editor modal values insert-gig]
+<         (for [{:keys [id img title price desc]} (vals @state/gigs)]
+---
+>         [gig-editor modal values upsert-gig toggle-modal]
+>         (for [{:keys [id img title price desc] :as gig} (vals @state/gigs)]
+33c37,40
+<            [:img.gig__artwork {:src img :alt title}]
+---
+>            [:img.gig__artwork.gig__edit {:src img
+>                                          :alt title
+>                                          :on-click #(toggle-modal {:active true
+>                                                                    :gig gig})}]
+#+end_example
+** compile
+(compile "npx shadow-cljs compile test && node out/node-tests.js")
+#+NAME: compile-block
+#+begin_src emacs-lisp :results output silent :tangle no
+(setq org-src-preserve-indentation t)
+(untabify (point-min) (point-max))
+(save-buffer)
+;; (universal-argument)
+;; (universal-argument)
+(org-babel-tangle)
+(evil-close-fold)
+(evil-close-fold)
+(let ((curent-buffer (buffer-name)))
+  (unless (get-buffer "*compilation*")
+    (compile "npx shadow-cljs compile test && node out/node-tests.js"))
+  (select-frame-by-name "*compilation*")
+  (recompile)
+  (select-frame-by-name curent-buffer))
+
+;; (find-file-other-frame "reagent-test/src/learn_cljs/reagent_test.cljs")
+;; (find-file-other-frame "~/INI/hydra-cfg.el")
+;; (load "~/INI/hydra-cfg.el")
+;; (load "~/ELs/BuYn/reader.el")
+ #+end_src
+** поиск по проекту
+*** 
+**** dropbox in org
+#+begin_src sh  
+grep --include=\*.cljs -rnw ./ -e ":todos-by-status"
+#+end_src       
+
+#+RESULTS:
+| ./src/keechma_todomvc/components/todo_list.cljs:18:-                     | `:todos-by-status` | returns           | `todos`         | with  | a   | `status`         |                    |
+| ./src/keechma_todomvc/components/todo_list.cljs:26:                      | (doall             | (map              | todo-item       | (sub> | ctx | :todos-by-status | route-status)))])) |
+| ./src/keechma_todomvc/components/todo_list.cljs:31:                      | :subscription-deps | [:todos-by-status |                 |       |     |                  |                    |
+| ./src/keechma_todomvc/subscriptions.cljs:48:(def                         | subscriptions      | {:todos-by-status | todos-by-status |       |     |                  |                    |
+| ./resources/public/js/dev/keechma_todomvc/components/todo_list.cljs:18:- | `:todos-by-status` | returns           | `todos`         | with  | a   | `status`         |                    |
+| ./resources/public/js/dev/keechma_todomvc/components/todo_list.cljs:26:  | (doall             | (map              | todo-item       | (sub> | ctx | :todos-by-status | route-status)))])) |
+| ./resources/public/js/dev/keechma_todomvc/components/todo_list.cljs:31:  | :subscription-deps | [:todos-by-status |                 |       |     |                  |                    |
+| ./resources/public/js/dev/keechma_todomvc/subscriptions.cljs:48:(def     | subscriptions      | {:todos-by-status | todos-by-status |       |     |                  |                    |
+
+
+**** dropbox in org
+#+begin_src sh  
+grep --include=\*.cljs -rnw ./ -e "reagent.core"
+#+end_src       
+
+#+RESULTS:
+| ./src/keechma_todomvc/components/new_todo.cljs:5:                          | [reagent.core    | :as             | reagent])) |         |        |           |
+| ./target/public/cljs-out/dev/reagent/core.cljs:1:(ns                       | reagent.core     |                 |            |         |        |           |
+| ./target/public/cljs-out/dev/reagent/core.cljs:2:                          | (:require-macros | [reagent.core]) |            |         |        |           |
+| ./target/public/cljs-out/dev/keechma_todomvc/components/new_todo.cljs:5:   | [reagent.core    | :as             | reagent])) |         |        |           |
+| ./target/public/cljs-out/dev/keechma_todomvc/components/todo_edit.cljs:5:  | [reagent.core    | :as             | reagent])) |         |        |           |
+| ./target/public/cljs-out/dev/keechma/app_state/react_native_router.cljs:3: | [reagent.core    | :as             | r]         |         |        |           |
+| ./target/public/cljs-out/dev/keechma/app_state.cljs:2:                     | (:require        | [reagent.core   | :as        | reagent | :refer | [cursor]] |
+
+** files other
+find "$PWD" -type f >>filepath.txt
+
+(find-file-other-frame "./README.md")
+(find-file-other-frame "./figwheel_server.log")
+** eshell
+*** run eshell in project root
+clojure -M:fig:build
+:cljs/quit
+:cljs/restart
+
+clj -M:dev
+clojure -m cljs.main --compile my-cljs-project.core --repl
+
+
+clojure -P
+clojure -M:fig:clean
+clojure -M:fig:build
+
+#+begin_src elisp :results output silent :dir ~/Dev/aider-sandbox/
+(evil-previous-line)
+(org-cycle)
+(delete-other-windows)
+(let (buffer-name-to-close (buffer-name))
+        (evil-window-split)
+        (eshell)
+        (evil-quit)
+        (switch-to-buffer-other-frame buffer-name-to-close))
+#+end_src
+
+      ;; (execute-kbd-macro "A \C-m")
+*** run eshell in org root
+clj -M:dev
+clojure -m cljs.main --compile my-cljs-project.core --repl
+#+begin_src elisp :results output silent
+(evil-previous-line)
+(org-cycle)
+(delete-other-windows)
+(let (buffer-name-to-close (buffer-name))
+        (evil-window-split)
+        (eshell)
+        (evil-quit)
+        (switch-to-buffer-other-frame buffer-name-to-close))
+#+end_src
+
+      ;; (execute-kbd-macro "A \C-m")
+*** run repl
+clj -M:dev
+clojure -m cljs.main --compile my-cljs-project.core --repl
+
+clojure -M:fig:build
+:cljs/quit
+:cljs/restart
+#+begin_src eshell
+clj -m cljs.main --compile my-cljs-project.core --repl
+
+
+#+end_src
+
+#+RESULTS:
+*** repl commands
+:cljs/quit
+*** repl test
+(js/alert "Am I connected?")
+** tree
+*** I
+#+begin_src eshell :tangle no :dir /home/buyn/Dev/ClojureScript/grom.org
+tree -I "node_modules|.venv|__pycache__|public/js"
+
+ #+end_src
+
+ #+RESULTS:
+ #+begin_example
+ .
+ ├── grom.org
+ ├── package.json
+ ├── package-lock.json
+ ├── public
+ │   ├── css
+ │   │   └── style.css
+ │   └── index.html
+ ├── README.md
+ ├── README.md~1
+ ├── resources
+ │   └── public
+ ├── shadow-cljs.edn
+ └── src
+     └── ueava
+         └── core.cljs
+
+ 7 directories, 9 files
+ #+end_example
+
+** console
+*** run console in org root
+clj -M:dev
+clojure -m cljs.main --compile my-cljs-project.core --repl
+#+begin_src elisp :results output silent
+(buyn-shell-start "konsole")
+(evil-previous-line)
+(org-cycle)
+(delete-other-windows)
+#+end_src
+
+*** run console with command
+#+begin_src elisp :results output silent
+(buyn-shell-start "konsole -e /bin/bash --rcfile <(clj -M:dev)")
+(evil-previous-line)
+(org-cycle)
+(delete-other-windows)
+#+end_src
+
+** auto-tangle-block:
+#+NAME: auto-tangle-block
+#+begin_src emacs-lisp :results output silent :tangle no
+(setq org-src-preserve-indentation t)
+(untabify (point-min) (point-max))
+(save-buffer)
+;; (universal-argument)
+;; (universal-argument)
+(org-babel-tangle)
+(evil-close-fold)
+(evil-close-fold)
+(let ((curent-buffer (buffer-name)))
+  (unless (get-buffer "*compilation*")
+    (compile "npx shadow-cljs compile test && node out/node-tests.js"))
+  (select-frame-by-name "*compilation*")
+  (recompile)
+  (select-frame-by-name curent-buffer))
+
+;; (find-file-other-frame "reagent-test/src/learn_cljs/reagent_test.cljs")
+;; (find-file-other-frame "~/INI/hydra-cfg.el")
+;; (load "~/INI/hydra-cfg.el")
+;; (load "~/ELs/BuYn/reader.el")
+ #+end_src
+
+**** test
+
+#+begin_src elisp
+(let ((origin-buffer (buffer-name)))
+      (if (and my/org-saved-buffer (buffer-live-p my/org-saved-buffer))
+          (progn
+            ;; Переключаемся в сохранённый буфер
+            ;; (switch-to-buffer my/org-saved-buffer)
+            (select-frame-by-name my/org-saved-buffer)
+            (message "Executing in saved buffer: %s" (buffer-name))
+            (org-babel-goto-named-src-block "auto-tangle-block")
+            (org-babel-execute-src-block)
+            ;; Возвращаемся
+            ;; (switch-to-buffer origin-buffer))
+            (select-frame-by-name origin-buffer))
+        ;; Если нет – выполняем тут же
+          (progn (org-babel-goto-named-src-block "auto-tangle-block")
+                 (org-babel-execute-src-block))))
+#+end_src
+
+#+RESULTS:
+
+** desktop
+(desktop-save "~/.emacs.d/emaks-sesions/aider-sandbox/")
+(desktop-read "~/.emacs.d/emaks-sesions/aider-sandbox/")
+
+
+
+* aider.el
+* 2026-03-18
+** aider-sandbox.org
+(find-file-other-frame "~/Dev/aider-sandbox/aider-sandbox.org")
+** Necroteuch.org:
+#+begin_src emacs-lisp :tangle no
+(find-file-other-frame "~/Dropbox/orgs/capture/Necroteuch.org")
+#+end_src
+
