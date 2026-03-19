@@ -6,9 +6,8 @@
 - [x] Project structure set up (`src/`, `tests/` directories).
 
 ## In Progress
-- None
+- Implementing Snake class (`src/snake.py`) with movement, growth, wrap-around, and collision detection.
+- Writing unit tests for `snake.py`.
 
 ## Next Steps
-- Implement Snake class (`src/snake.py`) with movement, growth, wrap-around, and collision detection.
-- Write unit tests for `snake.py`.
 - Implement remaining modules: `food.py`, `renderer.py`, `input_handler.py`, `game.py`.
