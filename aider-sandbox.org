@@ -1024,13 +1024,6 @@ python -m unittest
 ** установить опенклав
 ** установаить в имакс аидер.ел на постояннку
 ** установаить в имакс страй ! на постояннку
-* files
-** snake
-*** files
-(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/python_code_style.md")
-(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/progress.md")
-(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/run.md")
-(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/technical_specification.md")
 * progects
 ** сделать первый проект snak
 *** files
