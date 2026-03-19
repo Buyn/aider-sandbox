@@ -1,5 +1,6 @@
 import sys
 import os
+import unittest
 
 # Add src directory to path to import food and config
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
@@ -7,50 +8,56 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 from food import Food
 from config import GRID_WIDTH, GRID_HEIGHT
 
-def test_initialization_with_position():
-    pos = (5, 10)
-    food = Food(pos)
-    assert food.get_position() == pos
+class TestFood(unittest.TestCase):
+    def test_initialization_with_position(self):
+        pos = (5, 10)
+        food = Food(pos)
+        self.assertEqual(food.get_position(), pos)
 
-def test_initialization_without_position():
-    food = Food()
-    assert food.get_position() is None
+    def test_initialization_without_position(self):
+        food = Food()
+        self.assertIsNone(food.get_position())
 
-def test_spawn_single_occupancy():
-    food = Food()
-    occupied = {(1, 2)}
-    food.spawn(occupied)
-    pos = food.get_position()
-    assert pos is not None
-    assert 0 <= pos[0] < GRID_WIDTH
-    assert 0 <= pos[1] < GRID_HEIGHT
-    assert pos not in occupied
-
-def test_spawn_multiple_occupancy():
-    food = Food()
-    occupied = {(1, 2), (3, 4), (5, 6)}
-    food.spawn(occupied)
-    pos = food.get_position()
-    assert pos is not None
-    assert 0 <= pos[0] < GRID_WIDTH
-    assert 0 <= pos[1] < GRID_HEIGHT
-    assert pos not in occupied
-
-def test_spawn_no_space():
-    food = Food()
-    occupied = {(x, y) for x in range(GRID_WIDTH) for y in range(GRID_HEIGHT)}
-    try:
-        food.spawn(occupied)
-        assert False, "Expected ValueError"
-    except ValueError as e:
-        assert "No free positions" in str(e)
-
-def test_spawn_randomness():
-    food = Food()
-    occupied = set()
-    positions = set()
-    for _ in range(20):
+    def test_spawn_single_occupancy(self):
+        food = Food()
+        occupied = {(1, 2)}
         food.spawn(occupied)
         pos = food.get_position()
-        positions.add(pos)
-    assert len(positions) >= 2, f"Only got {len(positions)} distinct positions: {positions}"
+        self.assertIsNotNone(pos)
+        self.assertGreaterEqual(pos[0], 0)
+        self.assertLess(pos[0], GRID_WIDTH)
+        self.assertGreaterEqual(pos[1], 0)
+        self.assertLess(pos[1], GRID_HEIGHT)
+        self.assertNotIn(pos, occupied)
+
+    def test_spawn_multiple_occupancy(self):
+        food = Food()
+        occupied = {(1, 2), (3, 4), (5, 6)}
+        food.spawn(occupied)
+        pos = food.get_position()
+        self.assertIsNotNone(pos)
+        self.assertGreaterEqual(pos[0], 0)
+        self.assertLess(pos[0], GRID_WIDTH)
+        self.assertGreaterEqual(pos[1], 0)
+        self.assertLess(pos[1], GRID_HEIGHT)
+        self.assertNotIn(pos, occupied)
+
+    def test_spawn_no_space(self):
+        food = Food()
+        occupied = {(x, y) for x in range(GRID_WIDTH) for y in range(GRID_HEIGHT)}
+        with self.assertRaises(ValueError) as context:
+            food.spawn(occupied)
+        self.assertIn("No free positions", str(context.exception))
+
+    def test_spawn_randomness(self):
+        food = Food()
+        occupied = set()
+        positions = set()
+        for _ in range(20):
+            food.spawn(occupied)
+            pos = food.get_position()
+            positions.add(pos)
+        self.assertGreaterEqual(len(positions), 2, f"Only got {len(positions)} distinct positions: {positions}")
+
+if __name__ == "__main__":
+    unittest.main()
