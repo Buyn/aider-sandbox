@@ -1,0 +1,3 @@
+
+### 4. Running Tests
+We'll use `pytest`. Ensure it is installed (`pip install pytest`). Run tests with:
