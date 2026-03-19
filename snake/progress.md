@@ -10,11 +10,10 @@
 - [x] Unit tests for `food.py` (`tests/test_food.py`) written and passing.
 
 ## In Progress
-- (none)
+- [ ] `renderer.py` with ANSI color output.
+- [ ] Unit tests for `renderer.py`.
 
 ## Next Steps
-- Implement `renderer.py` with ANSI color output.
-- Write unit tests for `renderer.py`.
 - Implement `input_handler.py` to capture keys.
 - Write unit tests for `input_handler.py`.
 - Implement `game.py` with main loop and state management.
