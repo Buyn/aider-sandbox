@@ -15,7 +15,7 @@
   когда хочешь сделать поверх удобный инструмент
   требуюший интеграции в имакс
   когда хочешь превратить в постоянно используемый инструмент, всегда под рукой
-** установить аидер в виртуалку
+** DONE установить аидер в виртуалку
 *** DONE сделать орг фаил
 **** DONE возможно в роам
 как минимум там дофига информации
@@ -79,14 +79,14 @@ Or you can run aider --model XXX to launch aider with another
 model. During your chat you can switch models with the in-chat
 /model command.
 
-*** какие ещё  облачные ЛЛМ
-**** 
+** какие ещё облачные ЛЛМ
+*** 
 предлогают бесплатный апи ключь для рабты. с ежидневным ограничение, или какимто другим возобнавляемым лимитом?
 например как это делает Gemeni or GROQ.
 ключевая особеность это долженбыть обезательно
 - АПИ ключь а не веб интерфес
 - и возобновляемый или полность бесплатный, а не разовый кредит. размеры лимита не принципиальны.
-**** 
+*** 
 а точно deepseek имее бесплатный лимиты?
 я не нашол некаких упоминаний
 а сделаный ключь вернул
@@ -105,8 +105,12 @@ curl https://api.deepseek.com/chat/completions \
 
 {"error":{"message":"Insufficient Balance","type":"unknown_error","param":null,"code":"invalid_request_error"}}%  
 
-*** подключить гемение
-*** подключить грок
+** подключить гемение
+*** добвыить ключ в энвор фаил
+*** отметить название модели
+** подключить грок
+*** добвыить ключ в энвор фаил
+*** отметить название модели
 ** DONE помоги разобратся с aider
 *** хочу к нему подключить опенроутер.
 он при инстале меня спросил и подключился кнему
@@ -676,10 +680,6 @@ aider --config /path/to/your/config.yml
 понять что там за вторая вешь
 *** запустить убедится что всё работает
 *** 
-** установить опенклав
-** установаить в имакс аидер.ел на постояннку
-** установаить в имакс страй ! на постояннку
-
 ** написать ральф цикл
 тестирование должно запускатся послекаждой итерации
 это способ показать прогрес
@@ -693,7 +693,16 @@ python -m unittest
 поскольку выводы архитектора могут быт полезны для кодера
 файлы добавленые в контекст теже - небут поиска снова нужных файлов
 
-
+** установить опенклав
+** установаить в имакс аидер.ел на постояннку
+** установаить в имакс страй ! на постояннку
+* files
+** snake
+*** files
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/python_code_style.md")
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/progress.md")
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/run.md")
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/technical_specification.md")
 * progects
 ** emacsZZT
 ** SofuYn site
@@ -723,7 +732,26 @@ python -m unittest
 :header-args: :tangle no
 :END:
 ** dir
-cd /home/buyn/Dev/aider-sandbox/
+cd ~/Dev/aider-sandbox/
+** console
+*** run console in org root
+clj -M:dev
+clojure -m cljs.main --compile my-cljs-project.core --repl
+#+begin_src elisp :results output silent
+(buyn-shell-start "konsole")
+(evil-previous-line)
+(org-cycle)
+(delete-other-windows)
+#+end_src
+
+*** run console with command
+#+begin_src elisp :results output silent
+(buyn-shell-start "konsole -e /bin/bash --rcfile <(clj -M:dev)")
+(evil-previous-line)
+(org-cycle)
+(delete-other-windows)
+#+end_src
+
 ** Virtual Environments
 *** Creating Virtual Environments
 python -m venv aider-env
@@ -1021,25 +1049,6 @@ tree -I "node_modules|.venv|__pycache__|public/js"
  7 directories, 9 files
  #+end_example
 
-** console
-*** run console in org root
-clj -M:dev
-clojure -m cljs.main --compile my-cljs-project.core --repl
-#+begin_src elisp :results output silent
-(buyn-shell-start "konsole")
-(evil-previous-line)
-(org-cycle)
-(delete-other-windows)
-#+end_src
-
-*** run console with command
-#+begin_src elisp :results output silent
-(buyn-shell-start "konsole -e /bin/bash --rcfile <(clj -M:dev)")
-(evil-previous-line)
-(org-cycle)
-(delete-other-windows)
-#+end_src
-
 ** auto-tangle-block:
 #+NAME: auto-tangle-block
 #+begin_src emacs-lisp :results output silent :tangle no
@@ -1089,7 +1098,6 @@ clojure -m cljs.main --compile my-cljs-project.core --repl
 ** desktop
 (desktop-save "~/.emacs.d/emaks-sesions/aider-sandbox/")
 (desktop-read "~/.emacs.d/emaks-sesions/aider-sandbox/")
-
 
 
 * aider.el
