@@ -1,3 +1,5 @@
 .aider*
 /sn.ake/src/__pycache__/
 /sn.ake/tests/__pycache__/
+*.pyc
+*.pyc

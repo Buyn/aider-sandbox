@@ -1,5 +1,8 @@
 # Project Progress
 
+## Completed and reviewed
+
+
 ## Completed
 - [x] Configuration module (`src/config.py`) implemented with all required constants.
 - [x] Unit tests for config.py (`tests/test_config.py`) written and passing.

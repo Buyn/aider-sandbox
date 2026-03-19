@@ -654,23 +654,35 @@ project specification. But the file snake/run.md is for you the Main source of t
 
 ** coder shell run
 *** sh
+run_coder.sh
 aider --model openrouter/stepfun/step-3.5-flash:free \
     --read snake/technical_specification.md \
     --read snake/run.md \
     --read snake/python_code_style.md \
+    --read snake/last_unittest_run.log \
     --file "snake/progress.md" \
     --message "You are a programmer, file snake/run.md describes the task facing you for this session.
   If something is not clear, you can refer to the file snake/technical_specification.md with a description of the general
 project specification. But the file snake/run.md is for you the Main source of truth, everything that is stated in other files and contradicts snake/run.md can be ignored.
   Use testing to make sure that all implemented features work. That mean, in the process, write tests for the features being implemented. change and edit the file snake/progress.md to mark what has already been implemented. Or make a note to yourself of what is important to pay attention to in future sessions." \
     --notifications\
+    --weak-model groq/llama-3.1-8b-instant \
     --exit 
 
     --yes-always \
 
     --notifications-command "" \
 
+python -m unittest discover -s snake/tests
+python -m unittest discover -s snake/tests >> snake/last_unittest_run.log
+python -m unittest discover -s snake/tests 2>&1 | tee -a snake/last_unittest_run.log
+
+python -m unittest discover -s snake/tests >> snake/last_unittest_run.log 2>&1
     
+python -m unittest discover -s snake/tests 2>&1 | tee -a snake/last_unittest_run.log
+python -m unittest discover -s snake/tests
+
+python -m unittest discover -s snake/tests >> snake/last_unittest_run.log 2>&1 | tee -a snake/last_unittest_run.log
 *** doc
   --message-file MESSAGE_FILE, -f MESSAGE_FILE
                         Specify a file containing the message to send the LLM, process
@@ -713,6 +725,29 @@ project specification. But the file snake/run.md is for you the Main source of t
 
   --vim                 Use VI editing mode in the terminal (default: False) [env var:
                         AIDER_VIM]
+
+*** test
+**** 
+python -m unittest
+
+python -m unittest >> last_unittest_run.log
+
+python -m unittest discover -s tests -p "test_*.py"
+
+python -m unittest discover -s tests
+python -m unittest discover -s snake/tests
+python -m unittest discover -s snake/tests >> snake/last_unittest_run.log
+/home/buyn/Dev/aider-sandbox/snake/tests
+**** есл я запускаю
+тесты командой python -m unittest
+из паки с тестами
+как мне запустить этой командой тесты
+из корневой паки не заходя в папку с тестами
+**** как мне сделать чтоб выполнеия теста
+записалось в фаил
+команда python -m unittest discover -s snake/tests >> snake/last_unittest_run.log
+выполнив тесты и выведя результат на экран, создаёт пустоий фаил snake/last_unittest_run.log
+как сделать чтоб в snake/last_unittest_run.log оказался результат выполения тестов.
 *** два пути
 **** можно удобно всё разделить по файла
 тоесть мд промта
@@ -722,6 +757,120 @@ project specification. But the file snake/run.md is for you the Main source of t
 **** можно всё отправить в одну страку запуска
 это удобно для первого запуска команды
 легко реадактировать без лишних сушностей
+
+** arhitect shell run
+*** sh
+arhitect_run.sh
+aider --model openrouter/stepfun/step-3.5-flash:free \
+    --read snake/last_unittest_run.log \
+    --file snake/technical_specification.md \
+    --file snake/run.md \
+    --file snake/python_code_style.md \
+    --file "snake/progress.md" \
+    --message " You are a code reviewer and a project architect. Your task is to formulate a task for the programmer. And tracking the progress of the project. You don't write code. The programmer is experienced enough to figure out how to write it correctly. Your job is to check that the programmer has done everything correctly and check the feature as implemented . And give the programmer the right task.
+  Based on the file snake/technical_specification.md, highlight the next action step. This could be the implementation of a feature or the correction of a discovered bug or non-compliance with the specification file. change the file snake/technical_specification.md based on the implemented features so that it remains relevant to the state of the project.
+  Based on this, create a task for the programmer in the file snake/run.md. Where the most logical action/feature that you
+consider logical to implement next should be stated. This should be the simplest next action/feature written in accordance with all requirements and specifications. This file will be used by the programmer. Your task is to set a specific task for the program that it will have to implement. Keep in mind that the programmer will have access to both snake/technical_specification.md and
+snake/progress.md. But the file snake/run.md will be the main file for him; he will only use the rest if he doesn’t understand
+something.
+  Use testing to make sure that all implemented features work. That mean, in the process, write tests for the features being implemented. change and edit the file snake/progress.md to mark what has already been implemented. Or make a note to yourself of what is important to pay attention to in future sessions. " \
+    --notifications\
+    --weak-model groq/llama-3.1-8b-instant \
+    --exit 
+
+    --yes-always \
+
+    --notifications-command "" \
+
+    
+*** doc
+  --message-file MESSAGE_FILE, -f MESSAGE_FILE
+                        Specify a file containing the message to send the LLM, process
+                        reply, then exit (disables chat mode) [env var: AIDER_MESSAGE_FILE]
+
+  --read FILE           specify a read-only file (can be used multiple times) [env var:
+                        AIDER_READ]
+  --file FILE           specify a file to edit (can be used multiple times) [env var:
+                        AIDER_FILE]
+
+  --yes-always          Always say yes to every confirmation [env var: AIDER_YES_ALWAYS]
+
+
+  --exit                Do all startup activities then exit before accepting user input
+                        (debug) [env var: AIDER_EXIT]
+*** run arhitector
+aider --model openrouter/stepfun/step-3.5-flash:free snake/technical_specification.md snake/run.md snake/progress.md snake/python_code_style.md
+  You are a code reviewer and a project architect. Your task is to formulate a task for the programmer. And tracking the progress of the project. You don't write code. The programmer is experienced enough to figure out how to write it correctly. Your job is to check that the programmer has done everything correctly and check the feature as implemented . And give the programmer the right task.
+  Based on the file snake/technical_specification.md, highlight the next action step. This could be the implementation of a feature or the correction of a discovered bug or non-compliance with the specification file. change the file snake/technical_specification.md based on the implemented features so that it remains relevant to the state of the project.
+  Based on this, create a task for the programmer in the file snake/run.md. Where the most logical action/feature that you
+consider logical to implement next should be stated. This should be the simplest next action/feature written in accordance with all requirements and specifications. This file will be used by the programmer. Your task is to set a specific task for the program that it will have to implement. Keep in mind that the programmer will have access to both snake/technical_specification.md and
+snake/progress.md. But the file snake/run.md will be the main file for him; he will only use the rest if he doesn’t understand
+something.
+  Use testing to make sure that all implemented features work. That mean, in the process, write tests for the features being implemented. change and edit the file snake/progress.md to mark what has already been implemented. Or make a note to yourself of what is important to pay attention to in future sessions.
+
+*** сетингс
+  --multiline, --no-multiline
+                        Enable/disable multi-line input mode with Meta-Enter to submit
+                        (default: False) [env var: AIDER_MULTILINE]
+
+  --notifications, --no-notifications
+                        Enable/disable terminal bell notifications when LLM responses are
+                        ready (default: False) [env var: AIDER_NOTIFICATIONS]
+
+  --notifications-command COMMAND
+                        Specify a command to run for notifications instead of the terminal
+                        bell. If not specified, a default command for your OS may be used.
+                        [env var: AIDER_NOTIFICATIONS_COMMAND]
+
+  --editor EDITOR       Specify which editor to use for the /editor command [env var:
+                        AIDER_EDITOR]
+
+  --vim                 Use VI editing mode in the terminal (default: False) [env var:
+                        AIDER_VIM]
+*** два пути
+**** можно удобно всё разделить по файла
+тоесть мд промта
+информентал со списками файлов для чтения и редактирования
+ямл для всех сетингов для запуска
+таким образом запус будет всего из 3 команд
+**** можно всё отправить в одну страку запуска
+это удобно для первого запуска команды
+легко реадактировать без лишних сушностей
+
+** едит команд
+посмотреть как она работает
+и как можно заюзать вместе имаксом
+** arhitect
+/arhitect
+довай добавим во все тесты testing framework unittest
+и сделаем чтоб все тестовые файлы заканчивались 
+  "
+  if __name__ == "__main__":
+      unittest.main()
+  "
+чтоб все тесты в папке тестов можно было запустить одной командой
+python -m unittest
+
+aider --model openrouter/stepfun/step-3.5-flash:free \
+    --file snake/technical_specification.md \
+    --file snake/run.md \
+    --file snake/python_code_style.md \
+    --file "snake/progress.md" \
+    --notifications\
+    --weak-model groq/llama-3.1-8b-instant \
+
+** DONE сделать слабую модель
+для комитов и самари
+пологаю идеально подайдёт грок
+
+  --weak-model WEAK_MODEL
+                        Specify the model to use for commit messages and chat history
+                        summarization (default depends on --model) [env var:
+                        AIDER_WEAK_MODEL]
+
+  --weak-model groq/llama-3.1-8b-instant \
+ 
+
 ** make auto script
 *** scripting
 **** doc
@@ -826,11 +975,14 @@ the repo map that shows just those key lines from the codebase.
 ** сделать возможность перключения между гроком и джемени
 пологаю это просто делается между сесиями.
 особенно если раделить кодера и архитектора
-** сделать слабую модель
-для комитов и самари
-пологаю идеально подайдёт грок
 ** DONE сделать запуск из мд файла
 ** DONE проверить возможность формирования мд файлов
+** может понадобится ещё один фаил
+или более
+програмист и архитектор пишут в прогрес
+но только архитектор пишет в ревюед анд комплит.
+также возможно стоит дать фаил заметок.
+который описать как фаил которые могут чить и редактировать оба как и фаил прогреса. и что он может быть полезен для севместной работы взаима передачи собщений между участникаим и создания важных замечаний на будущее.
 ** через конфиг задаём модель и роль
 для разных запусков
 таким образом
@@ -888,6 +1040,61 @@ python -m unittest
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/run.md")
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/technical_specification.md")
 **** sh
+***** run_coder.sh
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_coder.sh")
+
+aider --model openrouter/stepfun/step-3.5-flash:free \
+    --read snake/technical_specification.md \
+    --read snake/run.md \
+    --read snake/python_code_style.md \
+    --read snake/last_unittest_run.log \
+    --file "snake/progress.md" \
+    --message "You are a programmer, file snake/run.md describes the task facing you for this session.
+  If something is not clear, you can refer to the file snake/technical_specification.md with a description of the general
+project specification. But the file snake/run.md is for you the Main source of truth, everything that is stated in other files and contradicts snake/run.md can be ignored.
+  Use testing to make sure that all implemented features work. That mean, in the process, write tests for the features being implemented. change and edit the file snake/progress.md to mark what has already been implemented. Or make a note to yourself of what is important to pay attention to in future sessions." \
+    --notifications\
+    --weak-model groq/llama-3.1-8b-instant \
+    --exit 
+
+    --yes-always \
+
+    --notifications-command "" \
+
+python -m unittest discover -s snake/tests
+python -m unittest discover -s snake/tests >> snake/last_unittest_run.log
+python -m unittest discover -s snake/tests 2>&1 | tee -a snake/last_unittest_run.log
+
+python -m unittest discover -s snake/tests >> snake/last_unittest_run.log 2>&1
+    
+python -m unittest discover -s snake/tests 2>&1 | tee -a snake/last_unittest_run.log
+python -m unittest discover -s snake/tests
+***** run_arhitect.sh
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_arhitect.sh")
+
+run_arhitect.sh
+aider --model openrouter/stepfun/step-3.5-flash:free \
+    --read snake/last_unittest_run.log \
+    --file snake/technical_specification.md \
+    --file snake/run.md \
+    --file snake/python_code_style.md \
+    --file "snake/progress.md" \
+    --message " You are a code reviewer and a project architect. Your task is to formulate a task for the programmer. And tracking the progress of the project. You don't write code. The programmer is experienced enough to figure out how to write it correctly. Your job is to check that the programmer has done everything correctly and check the feature as implemented . And give the programmer the right task.
+  Based on the file snake/technical_specification.md, highlight the next action step. This could be the implementation of a feature or the correction of a discovered bug or non-compliance with the specification file. change the file snake/technical_specification.md based on the implemented features so that it remains relevant to the state of the project.
+  Based on this, create a task for the programmer in the file snake/run.md. Where the most logical action/feature that you
+consider logical to implement next should be stated. This should be the simplest next action/feature written in accordance with all requirements and specifications. This file will be used by the programmer. Your task is to set a specific task for the program that it will have to implement. Keep in mind that the programmer will have access to both snake/technical_specification.md and
+snake/progress.md. But the file snake/run.md will be the main file for him; he will only use the rest if he doesn’t understand
+something.
+  Use testing to make sure that all implemented features work. That mean, in the process, write tests for the features being implemented. change and edit the file snake/progress.md to mark what has already been implemented. Or make a note to yourself of what is important to pay attention to in future sessions. " \
+    --notifications\
+    --weak-model groq/llama-3.1-8b-instant \
+    --exit 
+
+    --yes-always \
+
+    --notifications-command "" \
+
+    
 **** role promts
 *** 
 ** emacsZZT

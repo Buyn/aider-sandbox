@@ -1,0 +1,61 @@
+.............E........
+======================================================================
+ERROR: test_render_output (test_renderer.TestRenderer.test_render_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/buyn/Dev/aider-sandbox/snake/tests/test_renderer.py", line 28, in test_render_output
+    mock_stdout.flush.assert_called_once()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'builtin_function_or_method' object has no attribute 'assert_called_once'
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.012s
+
+FAILED (errors=1)
+..........................EE................
+======================================================================
+ERROR: test_render_output (test_renderer.TestRenderer.test_render_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/buyn/Dev/aider-sandbox/snake/tests/test_renderer.py", line 28, in test_render_output
+    mock_stdout.flush.assert_called_once()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'builtin_function_or_method' object has no attribute 'assert_called_once'
+
+----------------------------------------------------------------------
+
+======================================================================
+ERROR: test_render_output (test_renderer.TestRenderer.test_render_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/buyn/Dev/aider-sandbox/snake/tests/test_renderer.py", line 28, in test_render_output
+    mock_stdout.flush.assert_called_once()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'builtin_function_or_method' object has no attribute 'assert_called_once'
+
+Ran 22 tests in 0.012s
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.012s
+
+FAILED (errors=1)
+FAILED (errors=1)
+.............E........
+======================================================================
+ERROR: test_render_output (test_renderer.TestRenderer.test_render_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/buyn/Dev/aider-sandbox/snake/tests/test_renderer.py", line 28, in test_render_output
+    mock_stdout.flush.assert_called_once()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'builtin_function_or_method' object has no attribute 'assert_called_once'
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.012s
+
+FAILED (errors=1)
+......................
+----------------------------------------------------------------------
+Ran 22 tests in 0.012s
+
+OK
