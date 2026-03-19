@@ -8,14 +8,14 @@
 - [x] Unit tests for `snake.py` (`tests/test_snake.py`) written and passing.
 - [x] Food class (`src/food.py`) implemented with random spawning avoiding snake body.
 - [x] Unit tests for `food.py` (`tests/test_food.py`) written and passing.
+- [x] Renderer class (`src/renderer.py`) implemented with ANSI color output.
+- [x] Unit tests for `renderer.py` (`tests/test_renderer.py`) written and passing.
 
 ## In Progress
-- [ ] `renderer.py` with ANSI color output.
-- [ ] Unit tests for `renderer.py`.
+- [ ] `input_handler.py` to capture keys.
+- [ ] Unit tests for `input_handler.py`.
 
 ## Next Steps
-- Implement `input_handler.py` to capture keys.
-- Write unit tests for `input_handler.py`.
 - Implement `game.py` with main loop and state management.
 - Write unit tests for `game.py`.
 - Create a main entry point (e.g., `main.py` or `__main__.py`).
