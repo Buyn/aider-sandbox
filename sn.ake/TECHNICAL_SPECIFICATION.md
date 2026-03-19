@@ -39,6 +39,7 @@ The project will be organized into the following modules:
 - `renderer.py`: Handles all terminal output, including drawing the snake, food, and handling colors.
 - `input_handler.py`: Captures keyboard input in a non-blocking manner, supporting the required key sets.
 - `game.py`: Main game loop, orchestrating the game state, input, rendering, and timing.
+- and test files
 
 ### 3.2 Configuration
 All configurable parameters will be stored in `config.py` as constants or a configuration class/object. This includes:
@@ -84,6 +85,7 @@ The main loop will:
 - Linux environment
 - Recommended: `curses` (built-in) for input and terminal control.
 - Alternatively: `readchar` (pip install readchar) for simpler key reading.
+- testig framework
 
 ## 5. Platform
 - Linux only. The code may use terminal-specific features (e.g., `curses` with ncurses) that are not portable to Windows without adjustments.
