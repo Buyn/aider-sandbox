@@ -569,18 +569,35 @@ I have several questions to clarify the technical specification before creating 
 *** 
 
 aider --model openrouter/stepfun/step-3.5-flash:free ./sn.ake/TECHNICAL_SPECIFICATION.md
-  наоснове файла ./sn.ake/TECHNICAL_SPECIFICATION.md выдели следуший шаг действи. Это может быть реализация фичи или испровления обнаруженого бага или несоответсвия файлу спецификации.
-  на основе этого сформируй фаил задчу ./sn.ake/run.md. где должно быть изложенно следуше наиболее логичное действи\фича которое ты посчитаешь логичным реализовать следушим. Это должно быть наиболее простое следуюшее действие\фича расписаное в соответсвии со всеми требованиями и спецификациями. Этот фаил будет использовать программист. Твоя задача поставить перед програмисом конкрктную задачу которую он должен будет реализовать. Учитывай что програмист будет иметь доступ и к ./sn.ake/TECHNICAL_SPECIFICATION.md и к ./sn.ake/progress.md. Но фаил ./sn.ake/run.md для него будет основным к остальным он будет обрашатся только если что то не будет понимать.
+  Ты код ревюре и архитектор проекта.
+  твоя задаса формирование задачи для програмиста. И отслеживание прогреса проект.
+  наоснове файла ./sn.ake/TECHNICAL_SPECIFICATION.md выдели следуший шаг действи. Это может быть реализация фичи или испровления обнаруженого бага или несоответсвия файлу спецификации. изменяй фаил ./sn.ake/TECHNICAL_SPECIFICATION.md на осове реализованых фичь чтоб он оставался актуальным состоянию проекта.
+  на основе этого сформируй задчу для програмиста в фаил  ./sn.ake/run.md. где должно быть изложенно следуше наиболее логичное действи\фича которое ты посчитаешь логичным реализовать следушим. Это должно быть наиболее простое следуюшее действие\фича расписаное в соответсвии со всеми требованиями и спецификациями. Этот фаил будет использовать программист. Твоя задача поставить перед програмисом конкрктную задачу которую он должен будет реализовать. Учитывай что програмист будет иметь доступ и к ./sn.ake/TECHNICAL_SPECIFICATION.md и к ./sn.ake/progress.md. Но фаил ./sn.ake/run.md для него будет основным к остальным он будет обрашатся только если что то не будет понимать.
   используй тестирования чтоб убедится что все реализованые фичи работаю. то есть в процесе пиши тесты для реализуемых фичь.
-изменй фаил и редактируй фаил ./sn.ake/progress.md чтоб отметь что уже реализовано. Или сделать себе заметку на что важно обратить внимание в дальнйших сесиях.
+изменяй фаил и редактируй фаил ./sn.ake/progress.md чтоб отметь что уже реализовано. Или сделать себе заметку на что важно обратить внимание в дальнйших сесиях.
 
 *** run
-/sn.ake/TECHNICAL_SPECIFICATION.md 
-возми фаил /sn.ake/TECHNICAL_SPECIFICATION.md 
+aider --model openrouter/stepfun/step-3.5-flash:free ./sn.ake/TECHNICAL_SPECIFICATION.md ./sn.ake/run.md
+  Ты програмист фаил ./sn.ake/run.md описывает стояшую перд тобой задачу на эту сесию.
+  Если чтото не понятно можешь обратится к файлу ./sn.ake/TECHNICAL_SPECIFICATION.md с описание общей специкации проекта. Но фаил ./sn.ake/run.md для тебя Главный источник истины, всё что изложено в других файлая и протеворечит ./sn.ake/run.md можешь игнорировать.
+  используй тестирования чтоб убедится что все реализованые фичи работаю. то есть в процесе пиши тесты для реализуемых фичь.
+изменяй фаил и редактируй фаил ./sn.ake/progress.md чтоб отметь что уже реализовано. Или сделать себе заметку на что важно обратить внимание в дальнйших сесиях.
+
+./sn.ake/TECHNICAL_SPECIFICATION.md 
+возми фаил ./sn.ake/TECHNICAL_SPECIFICATION.md 
 для реализаци проекта
 выбери
 
 реализовывай за раз только одну фичу
+
+*** run coder
+aider --model openrouter/stepfun/step-3.5-flash:free ./sn.ake/TECHNICAL_SPECIFICATION.md ./sn.ake/run.md
+  You are a programmer, file ./snake/run.md describes the task facing you for this session.
+  If something is not clear, you can refer to the file ./sn.ake/TECHNICAL_SPECIFICATION.md with a description of the general
+project specification. But the file ./sn.ake/run.md is for you the Main source of truth, everything that is stated in other files and contradicts ./sn.ake/run.md can be ignored.
+  Use testing to make sure that all implemented features work. That mean, in the process, write tests for the features being implemented. change and edit the file ./sn.ake/progress.md to mark what has already been implemented. Or make a note to yourself of what is important to pay attention to in future sessions.
+
+
 
 ** Copy/paste to web chat
 [[https://aider.chat/docs/usage/copypaste.html][Copy/paste to web chat]]
