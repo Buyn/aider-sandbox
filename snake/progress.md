@@ -14,9 +14,13 @@
 - [x] Renderer class (`src/renderer.py`) implemented with ANSI color output.
 - [x] Unit tests for `renderer.py` (`tests/test_renderer.py`) written and passing.
 
+**Note:** The 22 unit tests for config, snake, food, and renderer modules pass. Input handler tests are not yet passing due to missing pause/restart support.
+
 ## In Progress
-- [ ] `input_handler.py` to capture keys.
-- [ ] Unit tests for `input_handler.py`.
+- [ ] `input_handler.py` to capture keys (directional keys work; pause/restart pending).
+- [ ] Unit tests for `input_handler.py` (some tests failing due to missing action mappings).
+
+**Note:** The current implementation of `input_handler.py` lacks support for pause (space) and restart ('r') actions, causing related tests to fail. This must be addressed to complete the input handler.
 
 ## Next Steps
 - Implement `game.py` with main loop and state management.

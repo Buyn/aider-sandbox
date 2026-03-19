@@ -23,7 +23,11 @@ DIRECTION_DOWN = (0, 1)
 DIRECTION_LEFT = (-1, 0)
 DIRECTION_RIGHT = (1, 0)
 
-# Key mappings: map key codes to direction vectors.
+# Action constants
+ACTION_PAUSE = 'PAUSE'
+ACTION_RESTART = 'RESTART'
+
+# Key mappings: map key codes to direction vectors or actions.
 # We include both character keys and curses key constants.
 import curses
 
@@ -43,4 +47,7 @@ KEY_MAPPING = {
     's': DIRECTION_DOWN,
     'd': DIRECTION_RIGHT,
     'f': DIRECTION_LEFT,
+    # Special actions
+    ' ': ACTION_PAUSE,
+    'r': ACTION_RESTART,
 }
