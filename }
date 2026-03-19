@@ -1,4 +1,0 @@
-
-### 3. Tests for config.py
-Create `tests/test_config.py` to verify all constants and mappings. Example:
-
