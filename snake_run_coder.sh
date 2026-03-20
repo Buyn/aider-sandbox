@@ -8,7 +8,10 @@ aider --model openrouter/nvidia/nemotron-3-super-120b-a12b:free \
     --read snake/last_unittest_run.log \
     --file "snake/progress.md" \
     --message-file snake/coder_role.md \
-    --notifications\
+    --notifications \
+    --auto-lint \
+    --test-cmd "python -m unittest discover -s snake/tests" \
+    --auto-test \
     --exit 
 
     # --weak-model openrouter/mistralai/mistral-small-3.1-24b-instruct:free \
@@ -18,5 +21,7 @@ aider --model openrouter/nvidia/nemotron-3-super-120b-a12b:free \
 
 python -m unittest discover -s snake/tests 2>&1 | tee snake/last_unittest_run.log
 notify-send "aider Coder session ended" "Coder session is Done"
+echo "Coder session is Done" >> snake/last_unittest_run.log
 python -m unittest discover -s snake/tests
 echo "Coder session is Done"
+

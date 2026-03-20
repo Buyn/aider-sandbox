@@ -93,6 +93,15 @@ model. During your chat you can switch models with the in-chat
 и поскольку можно разделить их запуски. можно обеспечить активность это опиции только у кодера.
 и наоборот отключить линтер у архитектора. если по какойто причине эта ошибка выскочит унего и он не застрял вцикле не способности исправить ошибку линтера!
 
+из минусов таково подходя что он может застять в неисправимой ошибке тестов. так мы его контролируем и можем просто дать больше циклов перед внесением изменений. а вот в варианте авто тестов он там возможно навсегда если они добавили механизм учёта зацикливания. или его возможно установить автоматом ограничев количество доступных токенов, что там такое было.
+
+
+             [--watch-files | --no-watch-files] [--lint] [--lint-cmd LINT_CMD]
+             [--auto-lint | --no-auto-lint] [--test-cmd TEST_CMD]
+             [--auto-test | --no-auto-test] [--test] [--analytics | --no-analytics]
+
+             [--suggest-shell-commands | --no-suggest-shell-commands]
+
 ** test
 *** 
 python -m unittest
@@ -221,8 +230,151 @@ python -m unittest discover -s snake/tests && echo OK || echo FAIL
 
 Я люблю, когда ты играешь на таком уровне 😈
 
+** автоматизация передачи файлов
+тоесть архитектор должен просмотреть последнии изменёные кодором файлы.
+их сразу можно передать архитектору при запуске только для чтения. или добавив последними в список вызова
+можно просить архитектора формировать файли изменений
+
+мож
+
+** ошибки создания файлов
+*** Tokens: 6.3k sent, 3.2k received.
+self.game_over = False        self.direction = self.snake.direction
+
+def __init__(self):                                                                          
+                                                                                             
+    self.config = config                                                                     
+                                                                                             
+    self.snake = snake.Snake()                                                               
+                                                                                             
+    self.food = food.Food()                                                                  
+                                                                                             
+    self.food.spawn(self.snake.get_body())                                                   
+                                                                                             
+    self.renderer = renderer.Renderer()                                                      
+                                                                                             
+    self.input_handler = input_handler.InputHandler()                                        
+                                                                                             
+    self.paused = False                                                                      
+                                                                                             
+    self.game_over = False                                                                   
+                                                                                             
+    self.direction = self.snake.direction                                                    
+                                                                                             
+                                                                                             
+                                                                                             
+def run(self):                                                                               
+                                                                                             
+    try:                                                                                     
+                                                                                             
+        while True:                                                                          
+                                                                                             
+            key = self.input_handler.get_key()                                               
+                                                                                             
+            if key == self.config.KEY_PAUSE:                                                 
+                                                                                             
+                self.paused = not self.paused                                                
+                                                                                             
+            elif key == self.config.KEY_RESTART:                                             
+                                                                                             
+                self.restart()                                                               
+                                                                                             
+            elif key in self.config.KEY_MAPPING:                                             
+                                                                                             
+                new_direction = self.config.KEY_MAPPING[key]                                 
+                                                                                             
+                # Prevent reversing direction                                                
+                                                                                             
+                if (new_direction[0] * -1, new_direction[1] * -1) != self.snake.direction:   
+                                                                                             
+                    self.snake.set_direction(new_direction)                                  
+                                                                                             
+                    self.direction = new_direction                                           
+                                                                                             
+                                                                                             
+                                                                                             
+            if not self.paused and not self.game_over:                                       
+                                                                                             
+                old_tail = self.snake.get_body()[-1]                                         
+                                                                                             
+                if not self.snake.move(grow=False):                                          
+                                                                                             
+                    self.game_over = True                    else:                           
+                                                                                             
+                    if self.snake.get_head() == self.food.get_position():                    
+                                                                                             
+                        self.snake.body.append(old_tail)                                     
+                                                                                             
+                        self.food.spawn(self.snake.get_body())                               
+                                                                                             
+                                                                                             
+                                                                                             
+            self.renderer.render(                                                            
+                                                                                             
+                self.snake,                                                                  
+                                                                                             
+                self.food,                                                                   
+                                                                                             
+                self.config.GRID_WIDTH,                                                      
+                                                                                             
+                self.config.GRID_HEIGHT                                                      
+                                                                                             
+            )                                                                                
+                                                                                             
+            time.sleep(1.0 / self.config.TICKS_PER_SECOND)                                   
+                                                                                             
+    finally:                                                                                 
+                                                                                             
+        self.input_handler.cleanup()                                                         
+                                                                                             
+                                                                                             
+                                                                                             
+def restart(self):                                                                           
+                                                                                             
+    self.snake = snake.Snake()                                                               
+                                                                                             
+    self.food = food.Food()                                                                  
+                                                                                             
+    self.food.spawn(self.snake.get_body())                                                   
+                                                                                             
+    self.paused = False                                                                      
+                                                                                             
+    self.game_over = False        self.direction = self.snake.direction   
+*** тоесть это был последняя строка в коде
+и может это закончился какойто лимит
+или проблема форматирования
+оно посчитало что необычное в ответе этого кода
+но важно что это последняя строка в ответе
+если проблема тут то нужно будет просто просить его завершать ответ определёным образом.
+
+  --test-cmd "python -m unittest discover -s snake/tests" \
+  --auto-test \
+  --no-auto-test
+
+** [--suggest-shell-commands | --no-suggest-shell-commands]
+  --suggest-shell-commands, --no-suggest-shell-commands
+                        Enable/disable suggesting shell commands (default: True) [env var:
+                        AIDER_SUGGEST_SHELL_COMMANDS]
+читать инструкцию что это такое и как оно работает.
+может в промт можно предложить првельное описание как ИИ это использовать.
+особенно учитывая что оно включенно по умолчанию.
+
+** [--analytics | --no-analytics]
+
+** [--watch-files | --no-watch-files] [--lint] [--lint-cmd LINT_CMD]
+
 ** сделать простенький ральф луп
 [[*### 💥 Ключевая идея][### 💥 Ключевая идея]]
+
+             [--watch-files | --no-watch-files] [--lint] [--lint-cmd LINT_CMD]
+             [--auto-lint | --no-auto-lint] [--test-cmd TEST_CMD]
+             [--auto-test | --no-auto-test] [--test] [--analytics | --no-analytics]
+
+             [--suggest-shell-commands | --no-suggest-shell-commands]
+
+** запускать тулзы анализа кода
+перед запуском архитектора.
+и скармливать ему результат их работы.
 
 ** что запуском инструментов?
 

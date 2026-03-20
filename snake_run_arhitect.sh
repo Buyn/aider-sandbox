@@ -8,7 +8,9 @@ aider --model openrouter/stepfun/step-3.5-flash:free \
     --file snake/python_code_style.md \
     --file "snake/progress.md" \
     --message-file snake/arhitect_role.md \
-    --notifications\
+    --notifications \
+    --no-auto-lint \
+    --no-auto-test \
     --exit 
 
     # --weak-model groq/llama-3.1-8b-instant \
@@ -16,5 +18,6 @@ aider --model openrouter/stepfun/step-3.5-flash:free \
     # --notifications-command "" \
 python -m unittest discover -s snake/tests 2>&1 | tee snake/last_unittest_run.log
 notify-send "aider Architect session ended" "Architect session is Done"
+echo "Architect session is Done" >> snake/last_unittest_run.log
 python -m unittest discover -s snake/tests
 echo "Architect session is Done"
