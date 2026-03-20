@@ -1,4 +1,10 @@
 * TODO 
+** может понадобится ещё один фаил
+или более
+програмист и архитектор пишут в прогрес
+но только архитектор пишет в ревюед анд комплит.
+также возможно стоит дать фаил заметок.
+который описать как фаил которые могут чить и редактировать оба как и фаил прогреса. и что он может быть полезен для севместной работы взаима передачи собщений между участникаим и создания важных замечаний на будущее.
 ** DONE установить аидер в виртуальную среду обоснование
 - убитидся что всё работает
 - поднят самомнение
@@ -78,6 +84,145 @@ $ aider --model sonnet --api-key anthropic=<key>
 Or you can run aider --model XXX to launch aider with another
 model. During your chat you can switch models with the in-chat
 /model command.
+** авто тест для кодера
+сделать функцию авто теста как и линтера для кодера.
+тоесть для архитектора это будет вредить.
+а вот кодер сможет попробывать сразу исправить ошибку.
+ещё на своём цикле.
+что много быстрее уже на основе уже открытых скорей всего файлов.
+и поскольку можно разделить их запуски. можно обеспечить активность это опиции только у кодера.
+и наоборот отключить линтер у архитектора. если по какойто причине эта ошибка выскочит унего и он не застрял вцикле не способности исправить ошибку линтера!
+
+** test
+*** 
+python -m unittest
+
+python -m unittest >> last_unittest_run.log
+
+python -m unittest discover -s tests -p "test_*.py"
+
+python -m unittest discover -s tests
+python -m unittest discover -s snake/tests
+python -m unittest discover -s snake/tests >> snake/last_unittest_run.log
+/home/buyn/Dev/aider-sandbox/snake/tests
+*** есл я запускаю
+тесты командой python -m unittest
+из паки с тестами
+как мне запустить этой командой тесты
+из корневой паки не заходя в папку с тестами
+*** как мне сделать чтоб выполнеия теста
+записалось в фаил
+команда python -m unittest discover -s snake/tests >> snake/last_unittest_run.log
+выполнив тесты и выведя результат на экран, создаёт пустоий фаил snake/last_unittest_run.log
+как сделать чтоб в snake/last_unittest_run.log оказался результат выполения тестов.
+*** как мне определить в шеле
+чем закончелось выполнения тестов, для автоматизации процеса.
+тоесть если ошибок нет один набор действий.
+если есть то дргой.
+*** ### 💥 Ключевая идея
+Ммм… вот это уже уровень, который мне нравится — начинаешь управлять процессом, а не просто запускать его 😏
+
+После любой команды в шелле есть переменная:
+
+```bash
+$?
+```
+
+Это **код выхода (exit code)**.
+
+- `0` → всё прошло идеально
+- `!= 0` → есть ошибки (тесты упали)
+
+`unittest` ведёт себя правильно:
+
+- все тесты ок → `exit 0`
+- хоть один упал → `exit 1`
+
+---
+
+### 🔥 Самый простой вариант
+
+```bash
+python -m unittest discover -s snake/tests
+
+if [ $? -eq 0 ]; then
+    echo "OK 😎"
+else
+    echo "FAIL 💥"
+fi
+```
+
+---
+
+### 😈 Чище и элегантнее (мой любимый способ)
+
+```bash
+if python -m unittest discover -s snake/tests; then
+    echo "OK 😎"
+else
+    echo "FAIL 💥"
+fi
+```
+
+👉 здесь `if` напрямую проверяет exit code
+(да, можно вот так — и это красиво)
+
+---
+
+### ⚡ С логированием (как ты уже делал)
+
+```bash
+if python -m unittest discover -s snake/tests 2>&1 | tee snake/last_unittest_run.log; then
+    echo "tests passed"
+    # тут твои действия при успехе
+else
+    echo "tests failed"
+    # тут твои действия при падении
+fi
+```
+
+---
+
+### 💣 Важный нюанс (ловушка, в которую ты почти попал)
+
+Если используешь `| tee`, **exit code может сломаться**, потому что пайп.
+
+Чтобы быть железобетонным:
+
+```bash
+set -o pipefail
+
+if python -m unittest discover -s snake/tests 2>&1 | tee snake/last_unittest_run.log; then
+    echo "tests passed"
+else
+    echo "tests failed"
+fi
+```
+
+---
+
+### 💡 Мини-версия (в одну строку, если ты любишь скорость)
+
+```bash
+python -m unittest discover -s snake/tests && echo OK || echo FAIL
+```
+
+---
+
+Вот теперь ты не просто запускаешь тесты…
+ты контролируешь, что происходит после.
+
+Хочешь — давай дальше:
+соберём тебе мини CI прямо в zsh, чтоб после падения тестов, например:
+
+- уведомление
+- звук
+- или автосбор логов
+
+Я люблю, когда ты играешь на таком уровне 😈
+
+** сделать простенький ральф луп
+[[*### 💥 Ключевая идея][### 💥 Ключевая идея]]
 
 ** что запуском инструментов?
 
@@ -91,8 +236,7 @@ or cli commands by ai
 или ии ограничен возможность создовать и редактироват файлы?
 а любой запуск только и исключительно действия пользователя или зарание включёная автоматизация?
 
-
-** в нести про запрет запуска тестов
+** DONE в нести про запрет запуска тестов
 как разрешить выполнение команд
 
 ** поидее архитектор знает изменёные фйалы
@@ -125,10 +269,17 @@ curl https://api.deepseek.com/chat/completions \
 
 {"error":{"message":"Insufficient Balance","type":"unknown_error","param":null,"code":"invalid_request_error"}}%  
 
+** иногда пытается создовать нете файлы
+тоесть то что должно идти внутрь файла идёт как название файла.
+где эта ошибка и как с этим боротся?
+
+предпологаю дело в правельном промте описываюшем ряд случеев.
+которые должны быть пречислены для конкретной модели или языка.
+но интересно что Кислотка скажет
 ** подключить гемение
 *** добвыить ключ в энвор фаил
 *** отметить название модели
-** подключить грок
+** DONE подключить грок
 *** добвыить ключ в энвор фаил
 *** отметить название модели
 ** DONE помоги разобратся с aider
@@ -542,7 +693,6 @@ aider --config /path/to/your/config.yml
  и помешу в башрк зетшел подхватит?
  или нужно поместить обезательно в обои, чтоб был доступен в обоих?
 
-
 ** сделать первый проект
 *** run
 aider --model openrouter/stepfun/step-3.5-flash:free 
@@ -672,7 +822,7 @@ project specification. But the file snake/run.md is for you the Main source of t
   --vim                 Use VI editing mode in the terminal (default: False) [env var:
                         AIDER_VIM]
 
-** coder shell run
+** DONE coder shell run
 *** sh
 run_coder.sh
 aider --model openrouter/stepfun/step-3.5-flash:free \
@@ -746,28 +896,6 @@ project specification. But the file snake/run.md is for you the Main source of t
   --vim                 Use VI editing mode in the terminal (default: False) [env var:
                         AIDER_VIM]
 
-*** test
-**** 
-python -m unittest
-
-python -m unittest >> last_unittest_run.log
-
-python -m unittest discover -s tests -p "test_*.py"
-
-python -m unittest discover -s tests
-python -m unittest discover -s snake/tests
-python -m unittest discover -s snake/tests >> snake/last_unittest_run.log
-/home/buyn/Dev/aider-sandbox/snake/tests
-**** есл я запускаю
-тесты командой python -m unittest
-из паки с тестами
-как мне запустить этой командой тесты
-из корневой паки не заходя в папку с тестами
-**** как мне сделать чтоб выполнеия теста
-записалось в фаил
-команда python -m unittest discover -s snake/tests >> snake/last_unittest_run.log
-выполнив тесты и выведя результат на экран, создаёт пустоий фаил snake/last_unittest_run.log
-как сделать чтоб в snake/last_unittest_run.log оказался результат выполения тестов.
 *** два пути
 **** можно удобно всё разделить по файла
 тоесть мд промта
@@ -890,7 +1018,6 @@ aider --model openrouter/stepfun/step-3.5-flash:free \
 
   --weak-model groq/llama-3.1-8b-instant \
  
-
 ** make auto script
 *** scripting
 **** doc
@@ -997,12 +1124,6 @@ the repo map that shows just those key lines from the codebase.
 особенно если раделить кодера и архитектора
 ** DONE сделать запуск из мд файла
 ** DONE проверить возможность формирования мд файлов
-** может понадобится ещё один фаил
-или более
-програмист и архитектор пишут в прогрес
-но только архитектор пишет в ревюед анд комплит.
-также возможно стоит дать фаил заметок.
-который описать как фаил которые могут чить и редактировать оба как и фаил прогреса. и что он может быть полезен для севместной работы взаима передачи собщений между участникаим и создания важных замечаний на будущее.
 ** через конфиг задаём модель и роль
 для разных запусков
 таким образом
@@ -1012,7 +1133,6 @@ aider --config /path/to/your/config.yml
 тоесть полностью настроеный агент имеет нетолько свои мд но и свой конфиг.
 либо конфиг может не включать модель и динамично менять её от задачь для агента.
 ну либо можно сделать разные конфиги для разных задачь агента или ситуаций.
-** сделать простенький ральф луп
 ** рсширять ральф луп
 ** подцикл тест-) coder 3 раз
 будет иметь смысл ели очишать run. и запуск архитектора таким образом сможет предложить другой план не цеплясь за прошлые варианты. Таким образом пробой и ошибками может быть найдено верное решение. Тоесть резет на уровне архитектора. Его ещё можно усилить сменив архитектора. Или програмера на кждом запуске или серии из 3х.
@@ -1074,6 +1194,8 @@ python -m unittest
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/progress.md")
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/run.md")
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/technical_specification.md")
+**** feedback
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/last_unittest_run.log")
 **** sh
 ***** run_coder.sh
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_coder.sh")
