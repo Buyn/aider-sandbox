@@ -1,7 +1,7 @@
 # Project Progress
 
 ## Current Focus
-Implementing `game.py` with main loop and state management. See `run.md` for detailed task.
+Fixing `game.py` to pass unit tests. See `run.md` for detailed task.
 
 ## Completed and reviewed (implementations)
 - [x] Configuration module (`src/config.py`) implemented with all required constants.
@@ -16,13 +16,23 @@ Implementing `game.py` with main loop and state management. See `run.md` for det
 - [x] Unit tests for food.py (`tests/test_food.py`) written and passing.
 - [x] Unit tests for renderer.py (`tests/test_renderer.py`) written and passing.
 - [x] Unit tests for input_handler.py (`tests/test_input_handler.py`) written and passing.
+- [ ] Unit tests for game.py (`tests/test_game.py`) written but currently failing due to issues in `game.py` implementation.
 
 ## In Progress
-- [ ] `game.py` with main loop and state management.
-- [ ] Unit tests for `game.py`.
+- [ ] Fixing `game.py` to pass unit tests.
+- [ ] Ensuring all tests pass with `python -m unittest`.
 
 ## Next Steps
-- Implement `game.py` with main loop and state management.
-- Write unit tests for `game.py`.
-- Create a main entry point (e.g., `main.py` or `__main__.py`).
-- Test and refine the entire game.
+- Fix `game.py` to satisfy the existing test_game.py (see `run.md` for specific issues).
+- Ensure all tests pass.
+- Create a main entry point (e.g., `main.py` or `__main__.py`) to run the game.
+- Test and refine the entire game manually.
+
+## Notes
+- The `game.py` implementation has the following issues that need to be addressed:
+  - Import statements should be relative within the package.
+  - The `Game` class lacks a `direction` attribute; it should be initialized from the snake's direction and kept in sync.
+  - The `restart` method does not reset `direction` to the new snake's direction.
+  - There is a formatting/syntax error in the food growth block (comment and code on same line).
+- Pay attention to proper cleanup of `InputHandler` (curses) on exit to avoid terminal corruption.
+- The tests mock `time.sleep`; ensure the loop uses `time.sleep` with the correct interval from config.

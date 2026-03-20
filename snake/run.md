@@ -1,42 +1,47 @@
-# Task: Implement game.py
+# Task: Fix game.py to pass unit tests
 
 ## Objective
-Implement the main game loop and state management in `snake/src/game.py`.
+Correct the implementation of `snake/src/game.py` so that all unit tests in `snake/tests/test_game.py` pass.
 
-## Requirements
-- Create a `Game` class that holds:
-  - `snake`: instance of `Snake`
-  - `food`: instance of `Food`
-  - `direction`: current movement direction (initially from config or snake's direction)
-  - `paused`: boolean
-  - `game_over`: boolean
-  - `config`: reference to configuration (from `config.py`)
-- The main game loop should:
-  1. Process input from `InputHandler` (non-blocking) and update direction accordingly. Handle special keys: space to toggle pause, 'r' to restart.
-  2. If not paused and not game over, move the snake (with growth if food eaten).
-  3. Check for collisions: self-collision ends the game (set `game_over`).
-  4. If snake head collides with food, grow the snake and spawn new food (using `Food.spawn` with occupied positions from snake's body).
-  5. Render the current state using `Renderer.render`.
-  6. Sleep to maintain the game speed (2 moves per second from config).
-- On game over, the game should wait for 'r' to restart. Restarting should reset the snake and food, and clear game_over and paused states.
-- The game should run until interrupted (e.g., Ctrl+C).
+## Background
+The `game.py` module has been implemented but contains several issues that cause the unit tests to fail. The tests are already written and cover the required behavior. Your task is to fix the code to satisfy these tests.
 
-## Implementation Notes
-- Use the existing modules: `snake`, `food`, `renderer`, `input_handler`, `config`.
-- The `InputHandler` should be instantiated once and its `get_key` method called each loop. Remember to call `cleanup` on exit.
-- The `Renderer` should clear the screen each frame using ANSI codes as implemented.
-- Ensure the game speed is controlled by `TICKS_PER_SECOND` or similar from config.
-- Handle direction changes safely: prevent reversing direction (e.g., if moving right, cannot go left immediately).
-- The `game.py` file should be placed in `snake/src/`.
-- After implementation, write comprehensive unit tests for `game.py` in `snake/tests/test_game.py`. Use mocking for input and time where necessary.
-- Follow the Python code style: keep functions short, modular, avoid comments, use descriptive names.
+## Issues to Address
+1. **Import statements**: The current imports are absolute (`import snake`, `import food`, etc.). They should be relative imports within the package to correctly reference modules in the same package. Change to:
+   ```python
+   from . import snake, food, renderer, input_handler, config
+   ```
+   or import specific classes as needed.
 
-## Verification
-- All existing unit tests must continue to pass.
-- The game should be playable in a Linux terminal with ANSI support.
-- Test pause, restart, and game over conditions manually.
-- Unit tests for `game.py` should cover the game loop logic, state transitions, and handling of input.
+2. **Missing `direction` attribute**: The `Game` class must have a `direction` attribute that mirrors the snake's current direction. In `__init__`, add:
+   ```python
+   self.direction = self.snake.direction
+   ```
+   Ensure this attribute stays in sync when the snake's direction changes (e.g., in the input handling loop, you may update `self.direction` when you call `self.snake.set_direction`).
+
+3. **`restart` method does not reset `direction`**: After restarting, `self.direction` should be set to the new snake's direction. Add:
+   ```python
+   self.direction = self.snake.direction
+   ```
+   at the end of `restart`.
+
+4. **Growth logic formatting**: There is a syntax error in the growth block: the line after `self.snake.body.append(old_tail)` has a comment and code on the same line. Ensure it is two separate lines:
+   ```python
+   self.snake.body.append(old_tail)
+   self.food.spawn(self.snake.get_body())
+   ```
+
+5. **Potential import of `renderer` and `input_handler`**: Ensure these are also imported relatively.
+
+6. **Ensure proper cleanup**: The `run` method already uses try/finally to call `self.input_handler.cleanup()`. That's good.
+
+## Additional Notes
+- The tests mock `time.sleep` and `input_handler.get_key`, so your implementation should use `time.sleep` with the interval from `config.TICKS_PER_SECOND` and call `self.input_handler.get_key()` each loop.
+- The `Game` class should have `__init__`, `run`, and `restart` methods as expected by the tests.
+- The `run` loop should handle input, movement, collision, food consumption, rendering, and sleeping as described in the specification.
+- The `restart` method should reset the snake and food to initial states, and clear `paused` and `game_over`.
+- After fixes, run `python -m unittest` to verify all tests pass.
 
 ## References
-- See `snake/technical_specification.md` for full details.
-- See `snake/progress.md` for project status.
+- See `snake/technical_specification.md` for full requirements.
+- See `snake/progress.md` for current status.
