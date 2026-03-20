@@ -10,10 +10,10 @@ from config import KEY_MAPPING, ACTION_PAUSE, ACTION_RESTART
 import curses
 
 class TestInputHandler(unittest.TestCase):
-    @patch('snake.src.input_handler.curses.initscr')
-    @patch('snake.src.input_handler.curses.endwin')
-    @patch('snake.src.input_handler.curses.noecho')
-    @patch('snake.src.input_handler.curses.cbreak')
+    @patch('input_handler.curses.initscr')
+    @patch('input_handler.curses.endwin')
+    @patch('input_handler.curses.noecho')
+    @patch('input_handler.curses.cbreak')
     def test_input_handler_instantiation(self, mock_cbreak, mock_noecho, mock_endwin, mock_initscr):
         mock_stdscr = MagicMock()
         mock_initscr.return_value = mock_stdscr
@@ -25,10 +25,10 @@ class TestInputHandler(unittest.TestCase):
         mock_stdscr.keypad.assert_called_once_with(True)
         mock_stdscr.nodelay.assert_called_once_with(True)
 
-    @patch('snake.src.input_handler.curses.initscr')
-    @patch('snake.src.input_handler.curses.endwin')
-    @patch('snake.src.input_handler.curses.noecho')
-    @patch('snake.src.input_handler.curses.cbreak')
+    @patch('input_handler.curses.initscr')
+    @patch('input_handler.curses.endwin')
+    @patch('input_handler.curses.noecho')
+    @patch('input_handler.curses.cbreak')
     def test_get_key_with_mapped_key(self, mock_cbreak, mock_noecho, mock_endwin, mock_initscr):
         mock_stdscr = MagicMock()
         mock_initscr.return_value = mock_stdscr
@@ -42,10 +42,10 @@ class TestInputHandler(unittest.TestCase):
         result = handler.get_key()
         self.assertEqual(result, (0, -1))
 
-    @patch('snake.src.input_handler.curses.initscr')
-    @patch('snake.src.input_handler.curses.endwin')
-    @patch('snake.src.input_handler.curses.noecho')
-    @patch('snake.src.input_handler.curses.cbreak')
+    @patch('input_handler.curses.initscr')
+    @patch('input_handler.curses.endwin')
+    @patch('input_handler.curses.noecho')
+    @patch('input_handler.curses.cbreak')
     def test_get_key_special_actions(self, mock_cbreak, mock_noecho, mock_endwin, mock_initscr):
         mock_stdscr = MagicMock()
         mock_initscr.return_value = mock_stdscr
@@ -59,10 +59,10 @@ class TestInputHandler(unittest.TestCase):
         result = handler.get_key()
         self.assertEqual(result, ACTION_RESTART)
 
-    @patch('snake.src.input_handler.curses.initscr')
-    @patch('snake.src.input_handler.curses.endwin')
-    @patch('snake.src.input_handler.curses.noecho')
-    @patch('snake.src.input_handler.curses.cbreak')
+    @patch('input_handler.curses.initscr')
+    @patch('input_handler.curses.endwin')
+    @patch('input_handler.curses.noecho')
+    @patch('input_handler.curses.cbreak')
     def test_get_key_with_unmapped_key(self, mock_cbreak, mock_noecho, mock_endwin, mock_initscr):
         mock_stdscr = MagicMock()
         mock_initscr.return_value = mock_stdscr
@@ -75,10 +75,10 @@ class TestInputHandler(unittest.TestCase):
         result = handler.get_key()
         self.assertIsNone(result)
 
-    @patch('snake.src.input_handler.curses.initscr')
-    @patch('snake.src.input_handler.curses.endwin')
-    @patch('snake.src.input_handler.curses.noecho')
-    @patch('snake.src.input_handler.curses.cbreak')
+    @patch('input_handler.curses.initscr')
+    @patch('input_handler.curses.endwin')
+    @patch('input_handler.curses.noecho')
+    @patch('input_handler.curses.cbreak')
     def test_get_key_no_key(self, mock_cbreak, mock_noecho, mock_endwin, mock_initscr):
         mock_stdscr = MagicMock()
         mock_initscr.return_value = mock_stdscr
@@ -87,10 +87,10 @@ class TestInputHandler(unittest.TestCase):
         result = handler.get_key()
         self.assertIsNone(result)
 
-    @patch('snake.src.input_handler.curses.initscr')
-    @patch('snake.src.input_handler.curses.endwin')
-    @patch('snake.src.input_handler.curses.noecho')
-    @patch('snake.src.input_handler.curses.cbreak')
+    @patch('input_handler.curses.initscr')
+    @patch('input_handler.curses.endwin')
+    @patch('input_handler.curses.noecho')
+    @patch('input_handler.curses.cbreak')
     def test_cleanup(self, mock_cbreak, mock_noecho, mock_endwin, mock_initscr):
         mock_stdscr = MagicMock()
         mock_initscr.return_value = mock_stdscr
