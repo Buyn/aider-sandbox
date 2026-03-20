@@ -4,6 +4,9 @@ from snake.src.game import Game
 from snake.src import config
 from snake.src import snake
 from snake.src import food
+from snake.src import renderer
+from snake.src import input_handler
+
 class TestGame(unittest.TestCase):
     def setUp(self):
         self.game = Game()
@@ -51,7 +54,8 @@ class TestGame(unittest.TestCase):
         ]
         self.game.input_handler.get_key = MagicMock(side_effect=input_sequence)
 
-        # Mock renderer to avoid actual rendering        self.game.renderer.render = MagicMock()
+        # Mock renderer to avoid actual rendering
+        self.game.renderer.render = MagicMock()
 
         # Initial snake heading right at center
         center_x = config.GRID_WIDTH // 2
@@ -80,7 +84,8 @@ class TestGame(unittest.TestCase):
         self.game.input_handler.get_key.side_effect = [KeyboardInterrupt]
         self.game.renderer.render = MagicMock()
 
-        # Place food directly ahead of snake        center_x = config.GRID_WIDTH // 2
+        # Place food directly ahead of snake
+        center_x = config.GRID_WIDTH // 2
         center_y = config.GRID_HEIGHT // 2
         self.game.snake.body = [(center_x, center_y), (center_x-1, center_y), (center_x-2, center_y)]
         self.game.snake.direction = config.DIRECTION_RIGHT
@@ -125,7 +130,8 @@ class TestGame(unittest.TestCase):
         self.game.food.position = food_position
         self.game.run()
 
-        # Snake should have moved to (0,10) and eaten food, so grown        self.assertEqual(self.game.snake.get_head(), (0, 10))
+        # Snake should have moved to (0,10) and eaten food, so grown
+        self.assertEqual(self.game.snake.get_head(), (0, 10))
         self.assertEqual(self.game.snake.get_length(), 4)
         # Food should have respawned
         self.assertNotEqual(self.game.food.position, food_position)

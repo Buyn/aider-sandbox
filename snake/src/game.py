@@ -20,9 +20,11 @@ class Game:
                 key = self.input_handler.get_key()
                 if key == 'r':
                     self.restart()
-                    continue                if key == ' ':
+                    continue
+                if key == ' ':
                     self.paused = not self.paused
-                    continue                if key in self.config.KEY_MAPPING and not self.paused:
+                    continue
+                if key in self.config.KEY_MAPPING and not self.paused:
                     new_direction = self.config.KEY_MAPPING[key]
                     self.snake.set_direction(new_direction)
                     self.direction = new_direction
@@ -40,7 +42,8 @@ class Game:
                     self.snake,
                     self.food,
                     self.config.GRID_WIDTH,
-                    self.config.GRID_HEIGHT                )
+                    self.config.GRID_HEIGHT
+                )
                 time.sleep(1.0 / self.config.TICKS_PER_SECOND)
         except KeyboardInterrupt:
             pass
