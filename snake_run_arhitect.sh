@@ -13,9 +13,11 @@ snake/progress.md. But the file snake/run.md will be the main file for him; he w
 something.
   Use testing to make sure that all implemented features work. Change and edit the file snake/progress.md to mark what has already been implemented. Or make a note to yourself of what is important to pay attention to in future sessions file snake/progress.md. Your task as a reviewer is to make sure that the progress in the snake/progress.md file is marked and verified and meets the standards and requirements." \
     --notifications\
-    --weak-model openrouter/mistralai/mistral-small-3.1-24b-instruct:free \
+    --weak-model openrouter/nvidia/nemotron-nano-9b-v2:free \
     --exit 
+
     # --weak-model groq/llama-3.1-8b-instant \
+    # --weak-model openrouter/mistralai/mistral-small-3.1-24b-instruct:free \
     # --notifications-command "" \
 # python -m unittest discover -s snake/tests 2>&1 | tee snake/last_unittest_run.log
 # Show system popup message (in GNOME/KDE/any notifyd)

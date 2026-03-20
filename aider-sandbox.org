@@ -1025,7 +1025,7 @@ python -m unittest
 ** установаить в имакс аидер.ел на постояннку
 ** установаить в имакс страй ! на постояннку
 * progects
-** сделать первый проект snak
+** сделать первый проект snakе
 *** files
 **** md
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/python_code_style.md")
@@ -1089,9 +1089,10 @@ something.
 
     
 **** role promts
-*** 
+** змейка на pygame
 ** emacsZZT
 ** SofuYn site
+на кложуре
 ** TS site
 ** My site
 ** game of life battel
