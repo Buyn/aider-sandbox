@@ -1,0 +1,6 @@
+But these patch the global `curses` module, not the one used by `InputHandler`. Since `InputHandler` imports `curses` directly, the patches need to target `snake.src.input_handler.curses`.
+
+## Implementation Plan
+
+### 1. Update test patch targets
+In `tests/test_input_handler.py`, change all patch decorators from:

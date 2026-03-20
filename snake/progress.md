@@ -14,13 +14,15 @@
 - [x] Renderer class (`src/renderer.py`) implemented with ANSI color output.
 - [x] Unit tests for `renderer.py` (`tests/test_renderer.py`) written and passing.
 - [x] Input handler class (`src/input_handler.py`) implemented with support for pause (space) and restart ('r') actions.
-- [x] Unit tests for `input_handler.py` (`tests/test_input_handler.py`) are expected to pass after fixing the test environment (currently 5 tests fail due to missing patches in the test setup, but the implementation is correct).
+- [ ] Unit tests for `input_handler.py` (`tests/test_input_handler.py`) - currently failing due to mocking issues; needs fix.
 
 ## In Progress
+- [ ] Fix unit tests for `input_handler.py` (mocking issues).
 - [ ] `game.py` with main loop and state management.
 - [ ] Unit tests for `game.py`.
 
 ## Next Steps
+- Fix unit tests for `input_handler.py` to ensure all tests pass.
 - Implement `game.py` with main loop and state management.
 - Write unit tests for `game.py`.
 - Create a main entry point (e.g., `main.py` or `__main__.py`).
