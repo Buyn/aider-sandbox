@@ -1,5 +1,5 @@
 import time
-from . import snake, food, renderer, input_handler, config
+from snake.src import snake, food, renderer, input_handler, config
 
 class Game:
     def __init__(self):
