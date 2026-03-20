@@ -33,7 +33,8 @@ class Game:
                         self.snake.set_direction(self.direction)
 
                 if not self.paused and not self.game_over:
-                    # Calculate next head position with wrap-around                    current_head = self.snake.get_head()
+                    # Calculate next head position with wrap-around
+                    current_head = self.snake.get_head()
                     dx, dy = self.direction
                     next_head = (
                         (current_head[0] + dx) % self.config.GRID_WIDTH,
@@ -58,5 +59,6 @@ class Game:
         self.snake = snake.Snake()
         self.food = food.Food()
         self.food.spawn(self.snake.get_body())
-        self.direction = self.snake.direction        self.paused = False
+        self.direction = self.snake.direction
+        self.paused = False
         self.game_over = False
