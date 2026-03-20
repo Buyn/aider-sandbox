@@ -6,7 +6,7 @@ from unittest.mock import patch, MagicMock
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 
 from input_handler import InputHandler
-from config import KEY_MAPPING
+from config import KEY_MAPPING, ACTION_PAUSE, ACTION_RESTART
 import curses
 
 class TestInputHandler(unittest.TestCase):
@@ -27,7 +27,9 @@ class TestInputHandler(unittest.TestCase):
 
     @patch('curses.initscr')
     @patch('curses.endwin')
-    def test_get_key_with_mapped_key(self, mock_endwin, mock_initscr):
+    @patch('curses.noecho')
+    @patch('curses.cbreak')
+    def test_get_key_with_mapped_key(self, mock_cbreak, mock_noecho, mock_endwin, mock_initscr):
         mock_stdscr = MagicMock()
         mock_initscr.return_value = mock_stdscr
         handler = InputHandler()
@@ -42,22 +44,26 @@ class TestInputHandler(unittest.TestCase):
 
     @patch('curses.initscr')
     @patch('curses.endwin')
-    def test_get_key_special_actions(self, mock_endwin, mock_initscr):
+    @patch('curses.noecho')
+    @patch('curses.cbreak')
+    def test_get_key_special_actions(self, mock_cbreak, mock_noecho, mock_endwin, mock_initscr):
         mock_stdscr = MagicMock()
         mock_initscr.return_value = mock_stdscr
         handler = InputHandler()
         # Test space (pause)
         mock_stdscr.getch.return_value = ord(' ')
         result = handler.get_key()
-        self.assertEqual(result, 'pause')
+        self.assertEqual(result, ACTION_PAUSE)
         # Test 'r' (restart)
         mock_stdscr.getch.return_value = ord('r')
         result = handler.get_key()
-        self.assertEqual(result, 'restart')
+        self.assertEqual(result, ACTION_RESTART)
 
     @patch('curses.initscr')
     @patch('curses.endwin')
-    def test_get_key_with_unmapped_key(self, mock_endwin, mock_initscr):
+    @patch('curses.noecho')
+    @patch('curses.cbreak')
+    def test_get_key_with_unmapped_key(self, mock_cbreak, mock_noecho, mock_endwin, mock_initscr):
         mock_stdscr = MagicMock()
         mock_initscr.return_value = mock_stdscr
         handler = InputHandler()
@@ -71,7 +77,9 @@ class TestInputHandler(unittest.TestCase):
 
     @patch('curses.initscr')
     @patch('curses.endwin')
-    def test_get_key_no_key(self, mock_endwin, mock_initscr):
+    @patch('curses.noecho')
+    @patch('curses.cbreak')
+    def test_get_key_no_key(self, mock_cbreak, mock_noecho, mock_endwin, mock_initscr):
         mock_stdscr = MagicMock()
         mock_initscr.return_value = mock_stdscr
         handler = InputHandler()
@@ -81,7 +89,9 @@ class TestInputHandler(unittest.TestCase):
 
     @patch('curses.initscr')
     @patch('curses.endwin')
-    def test_cleanup(self, mock_endwin, mock_initscr):
+    @patch('curses.noecho')
+    @patch('curses.cbreak')
+    def test_cleanup(self, mock_cbreak, mock_noecho, mock_endwin, mock_initscr):
         mock_stdscr = MagicMock()
         mock_initscr.return_value = mock_stdscr
         handler = InputHandler()
