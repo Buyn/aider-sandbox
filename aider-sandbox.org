@@ -994,6 +994,27 @@ aider --config /path/to/your/config.yml
 ну либо можно сделать разные конфиги для разных задачь агента или ситуаций.
 ** сделать простенький ральф луп
 ** рсширять ральф луп
+** подцикл тест-) coder 3 раз
+если за 3 раза он не смог исправить ошибку передать архитектору
+пусть может сможет посоветовать что пошло не так.
+повторить цикл
+но это может не работать поскольку ИИ похоже сам делает ошибки специально чтоб потом их исправить когда будет готова имплеметация.
+ему новерно можно заменить такое поведение. Но если он современем будет способен его обходить и действительно имплиментить.
+поскольку это лишает инструмента контроля.
+возможное услови
+не остовлять после себя проваливаюшиея тесты если тест ждёт инплиментации отмечать его как скип. и делать указание в записях что заскипленые тесты почему и после чего нужно убрать скип.
+когда имплементация реализована.
+особенн если учитывать что если это не делать то они патчами убирают ошибки
+и в даный момент это работа скидывается на архитектора и вместо ревизии он првит код
+во
+
+** способ обнаружения завершения работы
+найти способ как понять что длянейшие циклы не нужны
+и задача решена в соответсвтии со специкацией
+пока оценочное определение архитектора сколько циклов нужно
+и так и врошать
+второй путь архитектор либо возврашет тул либо как там это реализовано. что  задача закончена.
+и нужно передать её
 ** подключить к моему активному проекту
 *** например сделать бранч
 и поигратся с проекстом
@@ -1035,7 +1056,13 @@ python -m unittest
 **** sh
 ***** run_coder.sh
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_coder.sh")
-
+****** CANCELED Arhiv
+******* 
+    --message "You are a programmer, file snake/run.md describes the task facing you for this session.
+  If something is not clear, you can refer to the file snake/technical_specification.md with a description of the general
+project specification. But the file snake/run.md is for you the Main source of truth, everything that is stated in other files and contradicts snake/run.md can be ignored.
+  Use testing to make sure that all implemented features work. That mean, in the process, write tests for the features being implemented. change and edit the file snake/progress.md to mark what has already been implemented. Or make a note to yourself of what is important to pay attention to in future sessions in file snake/progress.md." \
+******* 
 aider --model openrouter/stepfun/step-3.5-flash:free \
     --read snake/technical_specification.md \
     --read snake/run.md \
@@ -1064,7 +1091,13 @@ python -m unittest discover -s snake/tests 2>&1 | tee -a snake/last_unittest_run
 python -m unittest discover -s snake/tests
 ***** run_arhitect.sh
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_arhitect.sh")
-
+****** CANCELED arhiv
+******* arhitect
+  #   --message " You are a code reviewer and a project architect. Your task is to formulate a task for the programmer. And tracking the progress of the project. You don't write code. The programmer is experienced enough to figure out how to write it correctly. Your job is to check that the programmer has done everything correctly and check the feature as implemented. And give the programmer the right task.
+  # Based on the file snake/technical_specification.md, highlight the next action step. This could be the implementation of a feature or the correction of a discovered bug or non-compliance with the specification file. change the file snake/technical_specification.md based on the implemented features so that it remains relevant to the state of the project.
+  # Based on this, create a task for the programmer in the file snake/run.md. Where the most logical action/feature that you consider logical to implement next should be stated. This should be the simplest next action/feature written in accordance with all requirements and specifications, don’t tell him what code to write, describe the documentation requirements and your wishes and vision, but leave the choice of a specific implementation to the programmer. snake/run.md file will be used by the programmer. Your task is to set a specific task for the program that it will have to implement. Keep in mind that the programmer will have access to both snake/technical_specification.md and snake/progress.md. But the file snake/run.md will be the main file for him; he will only use the rest if he doesn’t understand something. Do not make changes to the code or tests yourself; do not send the code for modification to the program. The programmer himself must decide the specific implementation of the code. Instead of making changes or specifying the code in the snake/run.md file, use tips that will help the programer write code that you consider correct.
+  # View the code made by the programmer, it is working, reliable and meets the requirements of the documentation and your vision of the project. if not, ask the programmer to change it in accordance with specific requirements. writing this in snake/run.md. Don't ask for new features until you're completely happy with the existing code. Only then move on to the next feature. Review to make sure that all implemented features work. Change and edit the file snake/progress.md to mark what has already been implemented and reviewed. Or make a note to yourself or programer of what is important to pay attention to in future sessions in file snake/progress.md. Your task as a reviewer is to make sure that the progress in the snake/progress.md file is marked and verified and meets the standards and requirements." \
+******* 
 run_arhitect.sh
 aider --model openrouter/stepfun/step-3.5-flash:free \
     --read snake/last_unittest_run.log \
@@ -1089,6 +1122,8 @@ something.
 
     
 **** role promts
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/arhitect_role.md")
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/coder_role.md")
 ** змейка на pygame
 ** emacsZZT
 ** SofuYn site
