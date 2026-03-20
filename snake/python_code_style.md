@@ -1,6 +1,7 @@
 # python style
 ## python code style
 - keep files short. try to make everything as modular as possible.
+- avoid comments in the code; instead, try to let the names speak for themselves.
 
 ## python test style
 - use for testing framework "unittest"
