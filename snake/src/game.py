@@ -15,7 +15,9 @@ class Game:
         self.renderer = renderer.Renderer()
         self.input_handler = input_handler.InputHandler()
         self.paused = False
-        self.game_over = False    def run(self):
+        self.game_over = False
+
+    def run(self):
         try:
             while True:
                 key = self.input_handler.get_key()
@@ -35,15 +37,15 @@ class Game:
                 if not self.paused and not self.game_over:
                     # Save current tail for potential growth
                     old_tail = self.snake.get_body()[-1]
-                    # Move snake without growing                    if not self.snake.move(grow=False):
+                    # Move snake without growing
+                    if not self.snake.move(grow=False):
                         self.game_over = True
                     else:
                         # Check if snake ate food
                         if self.snake.get_head() == self.food.get_position():
                             # Grow by adding the old tail back
                             self.snake.body.append(old_tail)
-                            # Spawn new food
-                            self.food.spawn(self.snake.get_body())
+                            # Spawn new food                            self.food.spawn(self.snake.get_body())
 
                 self.renderer.render(
                     self.snake,
@@ -62,4 +64,4 @@ class Game:
         self.food = food.Food()
         self.food.spawn(self.snake.get_body())
         self.paused = False
-        self.game_over = False
+        self.game_over = False```
