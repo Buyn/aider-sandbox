@@ -1,79 +1,17 @@
-# Next Action: Fix Unit Tests for Input Handler
+# Task: Fix Input Handler Unit Tests
 
-## Objective
-Fix the failing unit tests in `tests/test_input_handler.py` by correcting the mock patch targets. The tests currently fail with `_curses.error: must call initscr() first` because the patches are applied to the wrong module. The `InputHandler` class uses the `curses` module imported at the top of `src/input_handler.py`, so the tests must patch `curses` functions in that module's namespace.
+## Description
+The unit tests for `src/input_handler.py` are failing due to incorrect mock patch targets. The `InputHandler` class uses the `curses` module imported within `src/input_handler.py`, but the tests are patching the top-level `curses` module. This causes a `_curses.error: must call initscr() first` because the actual `curses.initscr()` is called without being patched.
 
-## Problem Description
-The test methods use decorators like:
+## Required Changes
+In `tests/test_input_handler.py`, update all `@patch` decorators to target the `curses` module as it is imported in `src/input_handler.py`:
 
-## Implementation Plan                                                                       
-                                                                                             
-                                                                                             
-                                                                                             
-### 1. Update test patch targets                                                             
-                                                                                             
-In `tests/test_input_handler.py`, change all patch decorators from:                          
-                                                                                             
+- Change `@patch('curses.initscr')` to `@patch('snake.src.input_handler.curses.initscr')`
+- Change `@patch('curses.endwin')` to `@patch('snake.src.input_handler.curses.endwin')`
+- Change `@patch('curses.noecho')` to `@patch('snake.src.input_handler.curses.noecho')`
+- Change `@patch('curses.cbreak')` to `@patch('snake.src.input_handler.curses.cbreak')`
 
-@patch('curses.initscr')                                                                     
+Apply these changes to every test method in the `TestInputHandler` class that uses these patches.
 
-@patch('curses.endwin')                                                                      
-
-@patch('curses.noecho')                                                                      
-
-@patch('curses.cbreak')                                                                      
-
-                                                                                             
-to:                                                                                          
-                                                                                             
-
-@patch('snake.src.input_handler.curses.initscr')                                             
-
-@patch('snake.src.input_handler.curses.endwin')                                              
-
-@patch('snake.src.input_handler.curses.noecho')                                              
-
-@patch('snake.src.input_handler.curses.cbreak')                                              
-
-                                                                                             
-                                                                                             
-                                                                                             
-Ensure this change is applied to all test methods that use these patches (all tests in       
-`TestInputHandler`).                                                                         
-                                                                                             
-                                                                                             
-                                                                                             
-### 2. Run tests                                                                             
-                                                                                             
-Execute the test suite: `python -m unittest` or `python -m unittest                          
-tests.test_input_handler`.                                                                   
-                                                                                             
-Verify that all 5 previously failing tests now pass, and no new failures are introduced.     
-                                                                                             
-                                                                                             
-                                                                                             
-### 3. Confirm full test suite passes                                                        
-                                                                                             
-Run all tests: `python -m unittest` from the project root.                                   
-                                                                                             
-All tests should pass.                                                                       
-                                                                                             
-                                                                                             
-                                                                                             
-## Success Criteria                                                                          
-                                                                                             
-- All tests in `tests/test_input_handler.py` pass.                                           
-                                                                                             
-- The overall test suite has no failures.                                                    
-                                                                                             
-                                                                                             
-                                                                                             
-## Notes                                                                                     
-                                                                                             
-- The `InputHandler` implementation is already correct; only the test mocking needs          
-adjustment.                                                                                  
-                                                                                             
-- After fixing these tests, the project will have a green test suite, allowing safe          
-implementation of `game.py`.                                                                 
-                                                                                             
-
+## Verification
+After making the changes, run the test suite:
