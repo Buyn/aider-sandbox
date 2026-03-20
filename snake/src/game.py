@@ -1,10 +1,11 @@
-from . import snake, food, renderer, input_handler, config
+from. import snake, food, renderer, input_handler, config
 import time
 
 
 class Game:
     def __init__(self):
-        self.config = config        self.snake = snake.Snake()
+        self.config = config
+        self.snake = snake.Snake()
         self.food = food.Food()
         self.food.spawn(self.snake.get_body())
         self.renderer = renderer.Renderer()
