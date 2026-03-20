@@ -1,4 +1,23 @@
-............E................
+......EEEEE
+======================================================================
+ERROR: test_food (unittest.loader._FailedTest.test_food)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_food
+Traceback (most recent call last):
+  File "/usr/lib/python3.14/unittest/loader.py", line 426, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.14/unittest/loader.py", line 367, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/home/buyn/Dev/aider-sandbox/snake/tests/test_food.py", line 8, in <module>
+    from food import Food
+  File "/home/buyn/Dev/aider-sandbox/snake/src/food.py", line 2, in <module>
+    from snake.src.config import GRID_WIDTH, GRID_HEIGHT
+  File "/home/buyn/Dev/aider-sandbox/snake/src/snake.py", line 1, in <module>
+    from snake.src.config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
+ModuleNotFoundError: No module named 'snake.src'; 'snake' is not a package
+
+
 ======================================================================
 ERROR: test_game (unittest.loader._FailedTest.test_game)
 ----------------------------------------------------------------------
@@ -11,10 +30,68 @@ Traceback (most recent call last):
     ~~~~~~~~~~^^^^^^
   File "/home/buyn/Dev/aider-sandbox/snake/tests/test_game.py", line 3, in <module>
     from snake.src.game import Game
+  File "/home/buyn/Dev/aider-sandbox/snake/src/snake.py", line 1, in <module>
+    from snake.src.config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
+ModuleNotFoundError: No module named 'snake.src'; 'snake' is not a package
+
+
+======================================================================
+ERROR: test_input_handler (unittest.loader._FailedTest.test_input_handler)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_input_handler
+Traceback (most recent call last):
+  File "/usr/lib/python3.14/unittest/loader.py", line 426, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.14/unittest/loader.py", line 367, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/home/buyn/Dev/aider-sandbox/snake/tests/test_input_handler.py", line 8, in <module>
+    from input_handler import InputHandler
+  File "/home/buyn/Dev/aider-sandbox/snake/src/input_handler.py", line 2, in <module>
+    from snake.src.config import KEY_MAPPING
+  File "/home/buyn/Dev/aider-sandbox/snake/src/snake.py", line 1, in <module>
+    from snake.src.config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
+ModuleNotFoundError: No module named 'snake.src'; 'snake' is not a package
+
+
+======================================================================
+ERROR: test_renderer (unittest.loader._FailedTest.test_renderer)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_renderer
+Traceback (most recent call last):
+  File "/usr/lib/python3.14/unittest/loader.py", line 426, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.14/unittest/loader.py", line 367, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/home/buyn/Dev/aider-sandbox/snake/tests/test_renderer.py", line 10, in <module>
+    from renderer import Renderer
+  File "/home/buyn/Dev/aider-sandbox/snake/src/renderer.py", line 1, in <module>
+    from snake.src.config import GRID_WIDTH, GRID_HEIGHT, COLOR_SNAKE_BODY, COLOR_SNAKE_HEAD, COLOR_FOOD, CHAR_SNAKE_BODY, CHAR_SNAKE_HEAD, CHAR_FOOD
+  File "/home/buyn/Dev/aider-sandbox/snake/src/snake.py", line 1, in <module>
+    from snake.src.config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
+ModuleNotFoundError: No module named 'snake.src'; 'snake' is not a package
+
+
+======================================================================
+ERROR: test_snake (unittest.loader._FailedTest.test_snake)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_snake
+Traceback (most recent call last):
+  File "/usr/lib/python3.14/unittest/loader.py", line 426, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.14/unittest/loader.py", line 367, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/home/buyn/Dev/aider-sandbox/snake/tests/test_snake.py", line 7, in <module>
+    from snake import Snake
+  File "/home/buyn/Dev/aider-sandbox/snake/src/snake.py", line 1, in <module>
+    from snake.src.config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
 ModuleNotFoundError: No module named 'snake.src'; 'snake' is not a package
 
 
 ----------------------------------------------------------------------
-Ran 29 tests in 0.026s
+Ran 11 tests in 0.001s
 
-FAILED (errors=1)
+FAILED (errors=5)
+Coder session is Done
