@@ -4,16 +4,14 @@
 A console-based Snake game for Linux using ANSI characters and colors. The game will be implemented in Python with a modular architecture.
 
 ### 1.1 Current Implementation Status
-The following modules have been implemented and have unit tests:
+The following modules have been implemented, reviewed, and have passing unit tests:
 - `config.py`: Configuration settings.
 - `snake.py`: Snake class with movement, growth, wrap-around, and collision detection.
 - `food.py`: Food class with random spawning.
 - `renderer.py`: Renderer class with ANSI output.
 - `input_handler.py`: Input handling with curses, supporting directional keys, pause (space), and restart ('r').
 
-All module implementations have been reviewed and meet the functional and non-functional requirements. The only remaining issue is the failing unit tests for `input_handler.py` due to incorrect mocking of the curses module in the test suite. The implementation is correct; the tests need to be fixed to properly patch the curses functions used by `InputHandler`. The immediate next step is to fix these tests to ensure a green test suite before proceeding to implement `game.py`.
-
-The next module to implement is `game.py` with main loop and state management.
+All module implementations meet the functional and non-functional requirements. All unit tests are passing. The immediate next step is to implement `game.py` with main loop and state management.
 
 ## 2. Requirements
 
@@ -97,7 +95,7 @@ The main loop will:
 - Linux environment
 - Recommended: `curses` (built-in) for input and terminal control.
 - Alternatively: `readchar` (pip install readchar) for simpler key reading.
-- testig framework
+- testing framework
 
 ## 5. Platform
 - Linux only. The code may use terminal-specific features (e.g., `curses` with ncurses) that are not portable to Windows without adjustments.
