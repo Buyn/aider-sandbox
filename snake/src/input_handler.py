@@ -1,5 +1,5 @@
 import curses
-from snake.src.config import KEY_MAPPING
+from .config import KEY_MAPPING
 
 class InputHandler:
     def __init__(self):

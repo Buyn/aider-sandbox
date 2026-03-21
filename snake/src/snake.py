@@ -1,4 +1,4 @@
-from snake.src.config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
+from .config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
 
 class Snake:
     def __init__(self, body=None, direction=None):

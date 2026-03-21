@@ -10,8 +10,10 @@ All unit tests should now pass. Next: create main entry point and manual testing
 - [x] Renderer class (`src/renderer.py`) implemented with ANSI color output.
 - [x] Input handler class (`src/input_handler.py`) implemented with support for pause (space) and restart ('r') actions.
 - [x] Game class (`src/game.py`) implemented with main loop and state management.
-- [x] Refactored all module imports to use relative imports within the package for consistency and to resolve test import issues.
+- [x] Refactored all module imports in `src/` to use relative imports for consistency and test compatibility.
 - [x] Added top-level `renderer.py` shim to support `from renderer import Renderer` test import.
+- [x] Added top-level `food.py` shim to support `from food import Food` test import.
+- [x] Added top-level `input_handler.py` shim to support `from input_handler import InputHandler` test import.
 - [x] Updated `snake/__init__.py` to expose `Snake` class for `from snake import Snake` imports.
 
 ## Completed (tests)
@@ -32,8 +34,8 @@ All unit tests should now pass. Next: create main entry point and manual testing
 
 ## Notes
 - All source modules in `src/` now use relative imports to ensure compatibility within the package.
-- A top-level `renderer.py` shim was created to satisfy tests that import `Renderer` directly.
-- The `snake` package's `__init__.py` now re-exports the `Snake` class to support `from snake import Snake`.
+- Top-level shims (`renderer.py`, `food.py`, `input_handler.py`) were created to satisfy tests that import these modules directly.
+- The `snake` package's `__init__.py` re-exports the `Snake` class to support `from snake import Snake`.
 - The `game.py` implementation already addressed the issues listed in `run.md` (direction synchronization, restart, growth logic).
 - Proper cleanup of `InputHandler` (curses) is handled in a try/finally block.
 - The game loop uses `time.sleep` with the interval from `config.TICKS_PER_SECOND`.
