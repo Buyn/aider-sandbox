@@ -8,7 +8,7 @@
 - game.py: Reviewed after fixes; implementation appears correct but requires validation via unit tests. **Status: Pending test validation.**
 
 ## Issues to address
-- **Test suite discovery**: Tests are not being discovered. The `last_unittest_run.log` shows "NO TESTS RAN". Need to verify test file location, naming, and package structure. Ensure `snake/tests/` exists and contains `test_*.py` files, and that both `snake/src/` and `snake/tests/` are valid Python packages (have `__init__.py`). Also ensure tests import modules correctly (may need to adjust PYTHONPATH or use absolute imports like `from snake.src.snake import Snake`).
+- **Test suite discovery**: Tests are not being discovered. The `last_unittest_run.log` shows "NO TESTS RAN". No test file in location `snake/tests/`.
 - **InputHandler non-blocking**: Modify `InputHandler.__init__` to call `self.stdscr.nodelay(True)` to make `get_key` non-blocking.
 - **Test validation**: Once discovery is fixed and InputHandler is non-blocking, run the tests and fix any failures, particularly in `game.py` (direction handling, growth logic, state management) to meet the specification.
 - **Key mapping refactor**: After all tests pass, refactor `game.py`'s `_key_to_direction` method to use `config.KEY_MAPPING` instead of hardcoded mappings. Note: `config.KEY_MAPPING` may need to use integer key codes (e.g., `ord('k')`) to match `getch` return values.
