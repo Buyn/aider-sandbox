@@ -12,10 +12,8 @@ Traceback (most recent call last):
   File "/home/buyn/Dev/aider-sandbox/snake/tests/test_food.py", line 8, in <module>
     from food import Food
   File "/home/buyn/Dev/aider-sandbox/snake/src/food.py", line 2, in <module>
-    from snake.src.config import GRID_WIDTH, GRID_HEIGHT
-  File "/home/buyn/Dev/aider-sandbox/snake/src/snake.py", line 1, in <module>
-    from snake.src.config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
-ModuleNotFoundError: No module named 'snake.src'; 'snake' is not a package
+    from .config import GRID_WIDTH, GRID_HEIGHT
+ImportError: attempted relative import with no known parent package
 
 
 ======================================================================
@@ -31,8 +29,8 @@ Traceback (most recent call last):
   File "/home/buyn/Dev/aider-sandbox/snake/tests/test_game.py", line 3, in <module>
     from snake.src.game import Game
   File "/home/buyn/Dev/aider-sandbox/snake/src/snake.py", line 1, in <module>
-    from snake.src.config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
-ModuleNotFoundError: No module named 'snake.src'; 'snake' is not a package
+    from .config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
+ImportError: attempted relative import with no known parent package
 
 
 ======================================================================
@@ -48,10 +46,8 @@ Traceback (most recent call last):
   File "/home/buyn/Dev/aider-sandbox/snake/tests/test_input_handler.py", line 8, in <module>
     from input_handler import InputHandler
   File "/home/buyn/Dev/aider-sandbox/snake/src/input_handler.py", line 2, in <module>
-    from snake.src.config import KEY_MAPPING
-  File "/home/buyn/Dev/aider-sandbox/snake/src/snake.py", line 1, in <module>
-    from snake.src.config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
-ModuleNotFoundError: No module named 'snake.src'; 'snake' is not a package
+    from .config import KEY_MAPPING
+ImportError: attempted relative import with no known parent package
 
 
 ======================================================================
@@ -67,10 +63,8 @@ Traceback (most recent call last):
   File "/home/buyn/Dev/aider-sandbox/snake/tests/test_renderer.py", line 10, in <module>
     from renderer import Renderer
   File "/home/buyn/Dev/aider-sandbox/snake/src/renderer.py", line 1, in <module>
-    from snake.src.config import GRID_WIDTH, GRID_HEIGHT, COLOR_SNAKE_BODY, COLOR_SNAKE_HEAD, COLOR_FOOD, CHAR_SNAKE_BODY, CHAR_SNAKE_HEAD, CHAR_FOOD
-  File "/home/buyn/Dev/aider-sandbox/snake/src/snake.py", line 1, in <module>
-    from snake.src.config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
-ModuleNotFoundError: No module named 'snake.src'; 'snake' is not a package
+    from .config import GRID_WIDTH, GRID_HEIGHT, COLOR_SNAKE_BODY, COLOR_SNAKE_HEAD, COLOR_FOOD, CHAR_SNAKE_BODY, CHAR_SNAKE_HEAD, CHAR_FOOD
+ImportError: attempted relative import with no known parent package
 
 
 ======================================================================
@@ -86,12 +80,11 @@ Traceback (most recent call last):
   File "/home/buyn/Dev/aider-sandbox/snake/tests/test_snake.py", line 7, in <module>
     from snake import Snake
   File "/home/buyn/Dev/aider-sandbox/snake/src/snake.py", line 1, in <module>
-    from snake.src.config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
-ModuleNotFoundError: No module named 'snake.src'; 'snake' is not a package
+    from .config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
+ImportError: attempted relative import with no known parent package
 
 
 ----------------------------------------------------------------------
 Ran 11 tests in 0.001s
 
 FAILED (errors=5)
-Coder session is Done
