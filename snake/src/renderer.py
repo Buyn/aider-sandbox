@@ -1,5 +1,4 @@
-from . import config
-import sys
+import config
 
 class Renderer:
     def render(self, snake, food, grid_width, grid_height):
@@ -15,5 +14,4 @@ class Renderer:
                     print(f"{config.COLOR_FOOD}{config.CHAR_FOOD}\033[0m", end='')
                 else:
                     print(' ', end='')
-            print()  # newline after each row
-        sys.stdout.flush()
+            print()  # New line after each row

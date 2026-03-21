@@ -1,35 +1,43 @@
-from .config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
+import config
 
 class Snake:
     def __init__(self, body=None, direction=None):
         if body is None:
-            center_x = GRID_WIDTH // 2
-            center_y = GRID_HEIGHT // 2
+            center_x = config.GRID_WIDTH // 2
+            center_y = config.GRID_HEIGHT // 2
             self.body = [(center_x, center_y), (center_x-1, center_y), (center_x-2, center_y)]
         else:
             self.body = body
         if direction is None:
-            self.direction = DIRECTION_RIGHT
+            self.direction = config.DIRECTION_RIGHT
         else:
             self.direction = direction
 
     def move(self, grow=False):
-        head_x, head_y = self.body[0]
-        dx, dy = self.direction
-        new_head = (head_x + dx, head_y + dy)
-        new_head = (new_head[0] % GRID_WIDTH, new_head[1] % GRID_HEIGHT)
-        if grow:
-            if new_head in self.body:
-                return False
+        head_x, head_y = self.get_head()
+        if self.direction == config.DIRECTION_UP:
+            new_head = (head_x, (head_y - 1) % config.GRID_HEIGHT)
+        elif self.direction == config.DIRECTION_DOWN:
+            new_head = (head_x, (head_y + 1) % config.GRID_HEIGHT)
+        elif self.direction == config.DIRECTION_LEFT:
+            new_head = ((head_x - 1) % config.GRID_WIDTH, head_y)
+        elif self.direction == config.DIRECTION_RIGHT:
+            new_head = ((head_x + 1) % config.GRID_WIDTH, head_y)
         else:
-            if new_head in self.body[:-1]:
-                return False
-        self.body.insert(0, new_head)
+            raise ValueError(f"Unknown direction: {self.direction}")
+
+        new_body = [new_head] + self.body
         if not grow:
-            self.body.pop()
-        return True
+            new_body.pop()
+        self.body = new_body
 
     def set_direction(self, direction):
+        # Prevent 180-degree turns
+        if (self.direction == config.DIRECTION_UP and direction == config.DIRECTION_DOWN) or \
+           (self.direction == config.DIRECTION_DOWN and direction == config.DIRECTION_UP) or \
+           (self.direction == config.DIRECTION_LEFT and direction == config.DIRECTION_RIGHT) or \
+           (self.direction == config.DIRECTION_RIGHT and direction == config.DIRECTION_LEFT):
+            return
         self.direction = direction
 
     def get_head(self):

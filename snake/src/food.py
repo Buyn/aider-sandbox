@@ -1,17 +1,20 @@
-from . import config
+import config
 import random
 
 class Food:
     def __init__(self, position=None):
-        self.position = position
+        if position is None:
+            self.position = self.spawn([])
+        else:
+            self.position = position
 
     def spawn(self, occupied_positions):
-        all_positions = {(x, y) for x in range(config.GRID_WIDTH) for y in range(config.GRID_HEIGHT)}
-        occupied_set = set(occupied_positions)
-        free_positions = all_positions - occupied_set
-        if not free_positions:
-            raise ValueError("No free positions available for food spawn")
-        self.position = random.choice(list(free_positions))
+        while True:
+            x = random.randint(0, config.GRID_WIDTH - 1)
+            y = random.randint(0, config.GRID_HEIGHT - 1)
+            if (x, y) not in occupied_positions:
+                self.position = (x, y)
+                break
 
     def get_position(self):
         return self.position
