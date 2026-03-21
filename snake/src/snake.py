@@ -27,14 +27,14 @@ class Snake:
         self.body.insert(0, new_head)
         if not grow:
             self.body.pop()
-        return True    def set_direction(self, direction):
+        return True
+
+    def set_direction(self, direction):
         self.direction = direction
 
     def get_head(self):
         return self.body[0]
 
     def get_body(self):
-        return self.body
-
-    def get_length(self):
+        return self.body    def get_length(self):
         return len(self.body)
