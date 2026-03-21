@@ -13,8 +13,8 @@ echo "" >> snake/run.md
 echo "## Referenced code quoting" >> snake/run.md
 echo "" >> snake/run.md
 
-# aider --model openrouter/nvidia/nemotron-3-super-120b-a12b:free \
-aider --model openrouter/stepfun/step-3.5-flash:free \
+# aider --model openrouter/stepfun/step-3.5-flash:free \
+aider --model openrouter/nvidia/nemotron-3-super-120b-a12b:free \
     --weak-model openrouter/nvidia/nemotron-nano-9b-v2:free \
     --read snake/last_unittest_run.log \
     --read snake/technical_specification.md \

@@ -6,9 +6,8 @@ python -m unittest discover -s snake/tests 2>&1 | tee snake/last_unittest_run.lo
 # aider --model openrouter/z-ai/glm-4.5-air:free \
 # aider --model openrouter/qwen/qwen3-coder:free \
 # working
-# aider --model openrouter/stepfun/step-3.5-flash:free \
 # aider --model openrouter/nvidia/nemotron-3-super-120b-a12b:free \
-aider --model openrouter/nvidia/nemotron-3-super-120b-a12b:free \
+aider --model openrouter/stepfun/step-3.5-flash:free \
     --weak-model openrouter/nvidia/nemotron-nano-9b-v2:free \
     --read snake/technical_specification.md \
     --read snake/run.md \

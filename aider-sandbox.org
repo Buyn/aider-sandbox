@@ -4,18 +4,20 @@
 тоесть нормальный аидер
 ** подключить гемение
 *** добвыить ключ в энвор фаил
-
 *** отметить название модели
 
 export GEMINI_API_KEY=<key> # Mac/Linux
 setx   GEMINI_API_KEY <key> # Windows, restart shell after setx
 
 aider --model gemini/gemini-1.5-pro-latest
-** обнулять run
+** переделать под относительный путь
+*** тесть все мд файлы 
+лежат в папках под проектов
+** DONE обнулять run
 при каждом запуске архитектора
 - похоже таки резет наиболее важная фича подомного процесса
-** локальная модель для технических задь
-*** пусть она парсит или решает
+** локальная модель для технических задчь
+*** пусть она парсит или решает стартовые файлы
 список файлов начальный для запуска
 если она сломаеется и составить списко файлов не сможет
 то запускать уже сразу нормально хотя
@@ -28,12 +30,12 @@ aider --model gemini/gemini-1.5-pro-latest
 на основе обмена коментариями
 - это кстате наиболее простое решение чтоб она прочла их взаимо рекомендации
   и этот список сразу сформировала.
-** сделать фаил спецификации только чтение
+** DONE сделать фаил спецификации только чтение
 ненужно чтоб были сюрпизы
 вместо это дать архитектору свой личный фаил для рецензирования кода.
 
 ## Completed and reviewed (implementations)
-** указывать в спецификации
+** DONE указывать в спецификации
 структуру папок
 
 ### 3.7 Project folder structure
@@ -141,6 +143,33 @@ changes to fix the import structure and get all tests passing.
 нужно только понять как выкинуть от туда орг фаил и мд.
 остальное он будет ревюрить выборочно наиболее подозрительные файл в первую очерндь. с отмечание последнего ревюрирования в файле ревю. и то что довно не ревювирелось очём он знает с момента послднего ревью.
 - спросить ИИ есть ли команда исключить файлы и диф
+** FIXME ошибка создания файлов
+*** 
+Background                                                                              
+
+The test suite currently reports one error:                                             
+
+                                                                                        
+ERROR: test_game (unittest.loader._FailedTest.test_game)                                
+----------------------------------------------------------------------                  
+ImportError: Failed to import test module: test_game                                    
+Traceback (most recent call last):                                                      
+  File "/usr/lib/python3.14/unittest/loader.py", line 426, in _find_test_path           
+    module = self._get_module_from_name(name)                                           
+  File "/usr/lib/python3.14/unittest/loader.py", line 367, in _get_module_from_name     
+    __import__(name)                                                                    
+    ~~~~~~~~~~^^^^^^                                                                    
+  File "/home/buyn/Dev/aider-sandbox/snake/tests/test_game.py", line 3, in <module>     
+    from snake.src.game import Game                                                     
+ModuleNotFoundError: No module named 'snake.src'; 'snake' is not a package              
+                                                                                        
+
+This prevents the test_game.py tests from running and blocks the project from having a  
+fully passing test suite.                                                               
+*** хм любое обнаружение кода
+интерпритируется как создание файла
+и исчется куда код вставить
+тоесть наши охибки от необходимости делать мд файлы
 ** сменить роли
 сделать отдельный раздел с перечнем файлов и как сними работать
 - и что в каждом файле находится
@@ -2141,7 +2170,7 @@ curl https://api.deepseek.com/chat/completions \
 
 {"error":{"message":"Insufficient Balance","type":"unknown_error","param":null,"code":"invalid_request_error"}}%  
 
-** arhitect shell run
+** DONE arhitect shell run
 *** sh
 arhitect_run.sh
 aider --model openrouter/stepfun/step-3.5-flash:free \
@@ -2223,7 +2252,7 @@ something.
 ** едит команд
 посмотреть как она работает
 и как можно заюзать вместе имаксом
-** arhitect
+** DONE arhitect
 /arhitect
 довай добавим во все тесты testing framework unittest
 и сделаем чтоб все тестовые файлы заканчивались 
@@ -3188,8 +3217,8 @@ something.
     --yes-always \
 
     --notifications-command "" \
-
-    
+***** ralfloop_run.sh
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_ralfloop.sh")
 **** role promts
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/arhitect_role.md")
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/coder_role.md")
@@ -3215,13 +3244,15 @@ aider --editor
   --vim                 Use VI editing mode in the terminal (default: False) [env var:
                         AIDER_VIM]
 *** run
-aider --model gemeni/stepfun/step-3.5-flash:free \
+# aider --model gemini/gemini-flash-latest \
+aider --model gemini/gemini-flash-lite-latest \
     --weak-model openrouter/nvidia/nemotron-nano-9b-v2:free \
     --notifications \
-    --multiline \
     --editor "ef" \
     --vim \        
     --exit 
+
+    --multiline \
 *** AI
 /architect
 

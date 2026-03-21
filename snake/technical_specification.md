@@ -94,6 +94,7 @@ The main loop will:
   - `paused`: boolean
   - `game_over`: boolean
   - `config`: reference to configuration
+
 ### 3.7 Project folder structure
 - all project files are contained in the snake\ folder
 - all source files are contained in the snake\src folder or its subfolders

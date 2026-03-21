@@ -1,21 +1,4 @@
-............E................
-======================================================================
-ERROR: test_game (unittest.loader._FailedTest.test_game)
-----------------------------------------------------------------------
-ImportError: Failed to import test module: test_game
-Traceback (most recent call last):
-  File "/usr/lib/python3.14/unittest/loader.py", line 426, in _find_test_path
-    module = self._get_module_from_name(name)
-  File "/usr/lib/python3.14/unittest/loader.py", line 367, in _get_module_from_name
-    __import__(name)
-    ~~~~~~~~~~^^^^^^
-  File "/home/buyn/Dev/aider-sandbox/snake/tests/test_game.py", line 3, in <module>
-    from snake.src.game import Game
-ModuleNotFoundError: No module named 'snake.src'; 'snake' is not a package
+.........
 
 
-----------------------------------------------------------------------
-Ran 29 tests in 0.026s
 
-FAILED (errors=1)
-Coder session is Done
