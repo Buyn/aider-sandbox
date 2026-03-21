@@ -19,7 +19,7 @@ class Game:
 
     def run(self):
         try:
-            while not self.game_over:
+            while True:
                 start_time = time.time()
                 key = self.input_handler.get_key()
                 if key is not None:
@@ -88,7 +88,7 @@ class Game:
         else:
             self.snake.move(grow=False)
 
-        # Check for self-collision
+        # Check for self-collision (exclude head itself)
         if self.snake.get_head() in self.snake.get_body()[1:]:
             self.game_over = True
 
