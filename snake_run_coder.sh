@@ -33,4 +33,3 @@ notify-send "aider Coder session ended" "Coder session is Done"
 echo "Coder session is Done" >> snake/last_unittest_run.log
 python -m unittest discover -s snake/tests
 echo "Coder session is Done"
-
