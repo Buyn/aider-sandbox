@@ -1,1 +1,1 @@
-from .src.snake import Snake
+
