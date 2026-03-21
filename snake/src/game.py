@@ -37,44 +37,21 @@ class Game:
         if key == ord(' '):
             self.paused = not self.paused
         elif key == ord('r'):
-            self.restart()
+            if self.game_over:
+                self.restart()
         else:
-            direction = self._key_to_direction(key)
-            if direction:
-                self.snake.set_direction(direction)
-                self.direction = self.snake.direction
+            if not self.paused and not self.game_over:
+                direction = self._key_to_direction(key)
+                if direction:
+                    self.snake.set_direction(direction)
+                    self.direction = self.snake.direction
 
     def _key_to_direction(self, key):
-        # Arrow keys
-        if key == curses.KEY_UP:
-            return config.DIRECTION_UP
-        elif key == curses.KEY_DOWN:
-            return config.DIRECTION_DOWN
-        elif key == curses.KEY_LEFT:
-            return config.DIRECTION_LEFT
-        elif key == curses.KEY_RIGHT:
-            return config.DIRECTION_RIGHT
-        # Vim keys
-        elif key == ord('k'):
-            return config.DIRECTION_UP
-        elif key == ord('j'):
-            return config.DIRECTION_DOWN
-        elif key == ord('h'):
-            return config.DIRECTION_LEFT
-        elif key == ord('l'):
-            return config.DIRECTION_RIGHT
-        # ESDF keys
-        elif key == ord('e'):
-            return config.DIRECTION_UP
-        elif key == ord('d'):
-            return config.DIRECTION_RIGHT
-        elif key == ord('s'):
-            return config.DIRECTION_DOWN
-        elif key == ord('f'):
-            return config.DIRECTION_LEFT
-        return None
+        return config.KEY_MAPPING.get(key)
 
     def _update_game(self):
+        if self.paused or self.game_over:
+            return
         head_x, head_y = self.snake.get_head()
         dx, dy = self.snake.direction
         next_head = (
