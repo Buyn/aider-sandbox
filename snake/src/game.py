@@ -1,14 +1,16 @@
+from . import config
+from .snake import Snakefrom .food import Food
+from .renderer import Renderer
+from .input_handler import InputHandler
 import time
-import snake, food, renderer, input_handler, config
 
 class Game:
     def __init__(self):
-        self.config = config
-        self.snake = snake.Snake()
-        self.food = food.Food()
+        self.config = config        self.snake = Snake()
+        self.food = Food()
         self.food.spawn(self.snake.get_body())
-        self.renderer = renderer.Renderer()
-        self.input_handler = input_handler.InputHandler()
+        self.renderer = Renderer()
+        self.input_handler = InputHandler()
         self.paused = False
         self.game_over = False
         self.direction = self.snake.direction
@@ -24,8 +26,7 @@ class Game:
                 elif not self.paused and not self.game_over:
                     if key in (config.DIRECTION_UP, config.DIRECTION_DOWN, config.DIRECTION_LEFT, config.DIRECTION_RIGHT):
                         new_direction = key
-                        # Prevent reversing direction
-                        if (self.direction[0] * -1, self.direction[1] * -1) != new_direction:
+                        # Prevent reversing direction                        if (self.direction[0] * -1, self.direction[1] * -1) != new_direction:
                             self.snake.set_direction(new_direction)
                             self.direction = new_direction
 
@@ -46,8 +47,8 @@ class Game:
             self.input_handler.cleanup()
 
     def restart(self):
-        self.snake = snake.Snake()
-        self.food = food.Food()
+        self.snake = Snake()
+        self.food = Food()
         self.food.spawn(self.snake.get_body())
         self.paused = False
         self.game_over = False

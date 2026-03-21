@@ -1,4 +1,4 @@
-from config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
+from .config import GRID_WIDTH, GRID_HEIGHT, DIRECTION_UP, DIRECTION_DOWN, DIRECTION_LEFT, DIRECTION_RIGHT
 
 class Snake:
     def __init__(self, body=None, direction=None):
@@ -27,9 +27,7 @@ class Snake:
         self.body.insert(0, new_head)
         if not grow:
             self.body.pop()
-        return True
-
-    def set_direction(self, direction):
+        return True    def set_direction(self, direction):
         self.direction = direction
 
     def get_head(self):
