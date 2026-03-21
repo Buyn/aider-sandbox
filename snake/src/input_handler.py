@@ -1,6 +1,5 @@
-import configimport curses
-
-class InputHandler:
+import config
+import cursesclass InputHandler:
     def __init__(self):
         self.stdscr = curses.initscr()
         curses.noecho()

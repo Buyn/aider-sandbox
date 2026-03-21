@@ -3,10 +3,11 @@ from snake.src.snake import Snake
 from snake.src.food import Food
 from snake.src.renderer import Renderer
 from snake.src.input_handler import InputHandler
-import configclass Game:
+import config
+
+class Game:
     def __init__(self):
-        self.config = config
-        self.snake = Snake()
+        self.config = config        self.snake = Snake()
         self.food = Food()
         self.food.spawn(self.snake.get_body())
         self.renderer = Renderer()
@@ -43,13 +44,15 @@ import configclass Game:
     def _key_to_direction(self, key):
         # Arrow keys
         if key == curses.KEY_UP:
-            return config.DIRECTION_UP        elif key == curses.KEY_DOWN:
+            return config.DIRECTION_UP
+        elif key == curses.KEY_DOWN:
             return config.DIRECTION_DOWN
         elif key == curses.KEY_LEFT:
             return config.DIRECTION_LEFT
         elif key == curses.KEY_RIGHT:
             return config.DIRECTION_RIGHT
-        # Vim keys        elif key == ord('h'):
+        # Vim keys
+        elif key == ord('h'):
             return config.DIRECTION_LEFT
         elif key == ord('j'):
             return config.DIRECTION_DOWN
@@ -57,15 +60,14 @@ import configclass Game:
             return config.DIRECTION_UP
         elif key == ord('l'):
             return config.DIRECTION_RIGHT
-        # ESDF keys
-        elif key == ord('e'):
+        # ESDF keys        elif key == ord('e'):
             return config.DIRECTION_UP
         elif key == ord('d'):
             return config.DIRECTION_RIGHT
         elif key == ord('s'):
             return config.DIRECTION_DOWN
         elif key == ord('f'):
-            return config.DIRECTION.LEFT
+            return config.DIRECTION_LEFT
         return None
 
     def _update_game(self):
