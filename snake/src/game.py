@@ -1,6 +1,7 @@
 import time
 import curses
-from .snake import Snakefrom .food import Food
+from .snake import Snake
+from .food import Food
 from .renderer import Renderer
 from .input_handler import InputHandler
 from . import config
@@ -44,7 +45,8 @@ class Game:
                 self.direction = self.snake.direction
 
     def _key_to_direction(self, key):
-        # Arrow keys        if key == curses.KEY_UP:
+        # Arrow keys
+        if key == curses.KEY_UP:
             return config.DIRECTION_UP
         elif key == curses.KEY_DOWN:
             return config.DIRECTION_DOWN
@@ -53,17 +55,18 @@ class Game:
         elif key == curses.KEY_RIGHT:
             return config.DIRECTION_RIGHT
         # Vim keys
-        elif key == ord('h'):
-            return config.DIRECTION_LEFT
-        elif key == ord('j'):
-            return config.DIRECTION_DOWN
         elif key == ord('k'):
             return config.DIRECTION_UP
+        elif key == ord('j'):
+            return config.DIRECTION_DOWN
+        elif key == ord('h'):
+            return config.DIRECTION_LEFT
         elif key == ord('l'):
             return config.DIRECTION_RIGHT
         # ESDF keys
         elif key == ord('e'):
-            return config.DIRECTION_UP        elif key == ord('d'):
+            return config.DIRECTION_UP
+        elif key == ord('d'):
             return config.DIRECTION_RIGHT
         elif key == ord('s'):
             return config.DIRECTION_DOWN
@@ -101,8 +104,6 @@ class Game:
         self.snake = Snake()
         self.food = Food()
         self.food.spawn(self.snake.get_body())
-        self.renderer = Renderer()
-        self.input_handler = InputHandler()
         self.paused = False
         self.game_over = False
         self.direction = self.snake.direction
