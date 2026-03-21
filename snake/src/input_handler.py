@@ -1,5 +1,5 @@
 import curses
-from .config import KEY_MAPPING
+from config import KEY_MAPPING
 
 class InputHandler:
     def __init__(self):

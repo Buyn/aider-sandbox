@@ -1,5 +1,5 @@
 import random
-from .config import GRID_WIDTH, GRID_HEIGHT
+from config import GRID_WIDTH, GRID_HEIGHT
 
 class Food:
     def __init__(self, position=None):
