@@ -3,6 +3,9 @@
 
 bash loger.sh
 
+notify-send "aider Architect session Started" "Architect session is Started"
+echo "Architect session is Started"
+
 echo "# Task:" > snake/run.md
 echo "## Objective" >> snake/run.md
 echo "" >> snake/run.md

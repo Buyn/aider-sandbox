@@ -1,14 +1,15 @@
 import unittest
 import sys
 import os
+from unittest.mock import patch, MagicMock
+
 # Add the project root (snake) to the Python path to ensure 'src' is importable
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-from ..src.game import Game
-from .. import config as real_config
-from unittest.mock import patch, MagicMock
+from src.game import Game
+import src.config as config # Renamed from real_config for consistency with absolute imports
 
 class TestGame(unittest.TestCase):
     def setUp(self):
@@ -35,7 +36,7 @@ class TestGame(unittest.TestCase):
         self.mock_snake.get_head.return_value = (0,0)
         self.mock_food.get_position.return_value = (5,5)
         # Ensure snake has a direction attribute for _key_to_direction
-        self.mock_snake.direction = real_config.DIRECTION_RIGHT
+        self.mock_snake.direction = config.DIRECTION_RIGHT
 
     def tearDown(self):
         self.patcher_snake.stop()
@@ -75,7 +76,7 @@ class TestGame(unittest.TestCase):
     def test_handle_key_direction_when_normal(self):
         game = Game()
         game._handle_key(ord('k'))  # 'k' should map to UP
-        self.mock_snake.set_direction.assert_called_once_with(real_config.DIRECTION_UP)
+        self.mock_snake.set_direction.assert_called_once_with(config.DIRECTION_UP)
 
     def test_handle_key_direction_when_paused(self):
         game = Game()
@@ -123,7 +124,7 @@ class TestGame(unittest.TestCase):
         game.paused = False
         game.game_over = False
         # Set up so that next head will be on food
-        self.mock_snake.direction = real_config.DIRECTION_RIGHT
+        self.mock_snake.direction = config.DIRECTION_RIGHT
         self.mock_snake.get_head.return_value = (2,3)
         self.mock_snake.get_body.return_value = [(1,3)]
         self.mock_food.get_position.return_value = (3,3)

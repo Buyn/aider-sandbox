@@ -1,3 +1,6 @@
+
+notify-send "aider Coder session Started" "Coder session is Started"
+echo "Coder session is Started"
 python -m unittest discover -s snake/tests 2>&1 | tee snake/last_unittest_run.log
 # crash
 # aider --model openrouter/arcee-ai/trinity-large-preview:free \
@@ -7,7 +10,11 @@ python -m unittest discover -s snake/tests 2>&1 | tee snake/last_unittest_run.lo
 # aider --model openrouter/qwen/qwen3-coder:free \
 # working
 # aider --model openrouter/nvidia/nemotron-3-super-120b-a12b:free \
-aider --model openrouter/stepfun/step-3.5-flash:free \
+# aider --model openrouter/stepfun/step-3.5-flash:free \
+
+# aider --model gemini/gemini-flash-lite-latest \
+
+aider --model openrouter/meta-llama/llama-3.3-70b-instruct:free \
     --weak-model openrouter/nvidia/nemotron-nano-9b-v2:free \
     --read snake/technical_specification.md \
     --read snake/run.md \
@@ -32,3 +39,4 @@ notify-send "aider Coder session ended" "Coder session is Done"
 echo "Coder session is Done" >> snake/last_unittest_run.log
 python -m unittest discover -s snake/tests
 echo "Coder session is Done"
+

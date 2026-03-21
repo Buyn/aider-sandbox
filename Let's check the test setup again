@@ -1,4 +1,0 @@
-        self.DIR_UP = (-1, 0)    # Changes X by -1
-        self.DIR_DOWN = (1, 0)   # Changes X by +1
-        self.DIR_LEFT = (0, -1)  # Changes Y by -1
-        self.DIR_RIGHT = (0, 1)  # Changes Y by +1
