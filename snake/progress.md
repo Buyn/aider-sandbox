@@ -9,10 +9,11 @@ Fixing failing unit tests. The test suite has a syntax error in test_snake.py an
 - The test suite is discoverable via `python -m unittest` from the snake directory.
 
 ## Next Steps
-1. Fix the syntax error in snake/tests/test_snake.py by removing invalid comment lines and ensuring proper Python syntax with imports and class definition.
+1. Fix the syntax error in snake/tests/test_snake.py by removing invalid comment lines (//) or converting them to Python comments (#), ensuring proper Python syntax with imports and class definition.
 2. Adjust the failing tests in snake/tests/test_game.py (test_update_game_when_not_paused_and_not_over, test_update_game_food_eaten, test_update_game_self_collision) to correctly account for the initial food.spawn call during Game initialization. This may involve resetting the mock after Game object creation or updating expected call counts.
 3. Re-run the full test suite and ensure all tests pass.
 
 ## Notes
 - The source code implementation is considered correct; the test failures are due to test logic, not source code bugs.
 - Ensure that after fixes, all tests pass and the game behaves according to the specification.
+- No changes to source files should be necessary.
