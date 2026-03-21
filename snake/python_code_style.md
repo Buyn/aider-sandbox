@@ -2,10 +2,7 @@
 ## python code style
 - keep files short. try to make everything as modular as possible.
 - avoid comments in the code; instead, try to let the names speak for themselves.
-- указывая фаил для редактирования указывай полный путь а не только имя (example "wrong - input_handler.py" "Right - snake/src/input_handler.py")
-
-
-
+- specifying the file to edit, indicating the full path and not just the file name (example "wrong - input_handler.py" "Right - snake/src/input_handler.py")
 
 ## python test style
 - use for testing framework "unittest"

@@ -1,5 +1,19 @@
 # python -m unittest discover -s snake/tests 2>&1 | tee snake/last_unittest_run.log
 # стоит держать за коменченым тогда можно написать баг прямо в лог и он сразу поподёт на стол архитектору
+
+echo "# Task:" > snake/run.md
+echo "## Objective" >> snake/run.md
+echo "" >> snake/run.md
+echo "## Background" >> snake/run.md
+echo "" >> snake/run.md
+echo "## Issues to Address" >> snake/run.md
+echo "" >> snake/run.md
+echo "## Additional Notes" >> snake/run.md
+echo "" >> snake/run.md
+echo "## Referenced code quoting" >> snake/run.md
+echo "" >> snake/run.md
+
+# aider --model openrouter/nvidia/nemotron-3-super-120b-a12b:free \
 aider --model openrouter/stepfun/step-3.5-flash:free \
     --weak-model openrouter/nvidia/nemotron-nano-9b-v2:free \
     --read snake/last_unittest_run.log \
