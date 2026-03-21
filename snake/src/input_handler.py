@@ -1,5 +1,7 @@
 import config
-import cursesclass InputHandler:
+import curses
+
+class InputHandler:
     def __init__(self):
         self.stdscr = curses.initscr()
         curses.noecho()
@@ -10,9 +12,7 @@ import cursesclass InputHandler:
         key = self.stdscr.getch()
         if key == -1:
             return None
-        return key
-
-    def cleanup(self):
+        return key    def cleanup(self):
         curses.nocbreak()
         self.stdscr.keypad(False)
         curses.echo()
