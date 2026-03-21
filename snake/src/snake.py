@@ -1,4 +1,4 @@
-import config
+from . import config
 
 class Snake:
     def __init__(self, body=None, direction=None):

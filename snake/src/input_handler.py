@@ -1,4 +1,4 @@
-import config
+from . import config
 import curses
 
 class InputHandler:
@@ -7,12 +7,15 @@ class InputHandler:
         curses.noecho()
         curses.cbreak()
         self.stdscr.keypad(True)
+        self.stdscr.nodelay(True)  # Make getch non-blocking
 
     def get_key(self):
         key = self.stdscr.getch()
         if key == -1:
             return None
-        return key    def cleanup(self):
+        return key
+
+    def cleanup(self):
         curses.nocbreak()
         self.stdscr.keypad(False)
         curses.echo()

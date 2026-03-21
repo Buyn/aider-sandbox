@@ -38,16 +38,16 @@ KEY_MAPPING = {
     curses.KEY_LEFT: DIRECTION_LEFT,
     curses.KEY_RIGHT: DIRECTION_RIGHT,
     # Vim keys
-    'k': DIRECTION_UP,
-    'j': DIRECTION_DOWN,
-    'h': DIRECTION_LEFT,
-    'l': DIRECTION_RIGHT,
+    ord('k'): DIRECTION_UP,
+    ord('j'): DIRECTION_DOWN,
+    ord('h'): DIRECTION_LEFT,
+    ord('l'): DIRECTION_RIGHT,
     # ESDF keys
-    'e': DIRECTION_UP,
-    's': DIRECTION_DOWN,
-    'd': DIRECTION_RIGHT,
-    'f': DIRECTION_LEFT,
+    ord('e'): DIRECTION_UP,
+    ord('d'): DIRECTION_RIGHT,
+    ord('s'): DIRECTION_DOWN,
+    ord('f'): DIRECTION_LEFT,
     # Special actions
-    ' ': ACTION_PAUSE,
-    'r': ACTION_RESTART,
+    ord(' '): ACTION_PAUSE,
+    ord('r'): ACTION_RESTART,
 }

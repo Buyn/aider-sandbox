@@ -1,4 +1,4 @@
-import config
+from . import config
 
 class Renderer:
     def render(self, snake, food, grid_width, grid_height):
