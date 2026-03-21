@@ -17,9 +17,10 @@ echo "" >> snake/run.md
 aider --model openrouter/stepfun/step-3.5-flash:free \
     --weak-model openrouter/nvidia/nemotron-nano-9b-v2:free \
     --read snake/last_unittest_run.log \
-    --file snake/technical_specification.md \
+    --read snake/technical_specification.md \
+    --read snake/python_code_style.md \
     --file snake/run.md \
-    --file snake/python_code_style.md \
+    --file snake/review_and_comments.md \
     --file "snake/progress.md" \
     --message-file snake/arhitect_role.md \
     --notifications \

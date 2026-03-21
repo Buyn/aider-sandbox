@@ -14,6 +14,33 @@ aider --model gemini/gemini-1.5-pro-latest
 ** обнулять run
 при каждом запуске архитектора
 - похоже таки резет наиболее важная фича подомного процесса
+** локальная модель для технических задь
+*** пусть она парсит или решает
+список файлов начальный для запуска
+если она сломаеется и составить списко файлов не сможет
+то запускать уже сразу нормально хотя
+понять сломалась ли она или нет достаточно просто
+кстате как локальную можно гонять грок
+сказать что она делжна и неможт просматривать файлы
+её задача исходит из обших факторов
+прийти к минимально ужному списку файлов для запуска
+тоесть на основе последних гитов
+на основе обмена коментариями
+- это кстате наиболее простое решение чтоб она прочла их взаимо рекомендации
+  и этот список сразу сформировала.
+** сделать фаил спецификации только чтение
+ненужно чтоб были сюрпизы
+вместо это дать архитектору свой личный фаил для рецензирования кода.
+
+## Completed and reviewed (implementations)
+** указывать в спецификации
+структуру папок
+
+### 3.7 Project folder structure
+- all project files are contained in the snake\ folder
+- all source files are contained in the snake\src folder or its subfolders
+- all test files are contained in the snake\tests folder or its subfolders
+
 ** сделать простенький ральф луп
 *** doc
 [[*### 💥 Ключевая идея][### 💥 Ключевая идея]]
@@ -3090,6 +3117,7 @@ model. During your chat you can switch models with the in-chat
 **** md
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/python_code_style.md")
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/progress.md")
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/review_and_comments.md")
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/run.md")
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/technical_specification.md")
 **** feedback
