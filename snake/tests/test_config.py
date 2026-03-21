@@ -1,4 +1,11 @@
 import unittest
+import sys
+import os
+# Add the project root (snake) to the Python path to ensure 'src' is importable
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
 from src import config
 import curses
 
