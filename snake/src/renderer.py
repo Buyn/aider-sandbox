@@ -1,5 +1,7 @@
 from . import config
-import sysclass Renderer:
+import sys
+
+class Renderer:
     def render(self, snake, food, grid_width, grid_height):
         # Clear screen and move cursor to home
         print("\033[2J\033[H", end='')
