@@ -6,8 +6,8 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-from src.game import Game
-from src import config as real_config
+from ..src.game import Game
+from .. import config as real_config
 from unittest.mock import patch, MagicMock
 
 class TestGame(unittest.TestCase):

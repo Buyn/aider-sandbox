@@ -6,8 +6,8 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-from src.snake import Snake
-import src.config as config
+from ..src.snake import Snake
+import ..src.config as config
 
 class TestSnake(unittest.TestCase):
     def setUp(self):
