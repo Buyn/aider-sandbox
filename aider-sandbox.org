@@ -1,8 +1,29 @@
 * TODO 
+** DONE 
+преименовать прошлый список
+сделать новый список фаилов
+резутать лы спискок схранёный в файл
+в список должен фходить размер и повозможности послднее изменение.
+last_file_list.log
+new_file_list.log
+как лучше сделать такой скрипт?
+
+
+список файлов
+*** 
+snake/last_file_list.log
+snake/new_file_list.log
+** 
+Если Ты встретишь указания вроде "To suggest changes to a file you MUST return the entire content of the updated file." - это указания для програмиста не для тебя. Интерпритируй их как, указания помочь програмисту их выполнить, тоесть максимально предоставив нужную информацию и советы, не предлогая конкретный код.
+
+If you see instructions like "To suggest changes to a file you MUST return the entire content of the updated file." - these are
+instructions for a programmer, not for you. Interpret them as instructions to help the programmer complete them, that is, by
+providing the necessary information and advice as much as possible, without suggesting specific code.
+
 ** шел скрипт
 для запуска аидера дезайнера
 тоесть нормальный аидер
-** подключить гемение
+** DONE подключить гемение
 *** добвыить ключ в энвор фаил
 *** отметить название модели
 
@@ -43,7 +64,7 @@ aider --model gemini/gemini-1.5-pro-latest
 - all source files are contained in the snake\src folder or its subfolders
 - all test files are contained in the snake\tests folder or its subfolders
 
-** сделать простенький ральф луп
+** DONE сделать простенький ральф луп
 *** doc
 [[*### 💥 Ключевая идея][### 💥 Ключевая идея]]
 
@@ -3219,6 +3240,8 @@ something.
     --notifications-command "" \
 ***** ralfloop_run.sh
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_ralfloop.sh")
+***** logfile
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/loger.sh")
 **** role promts
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/arhitect_role.md")
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/coder_role.md")

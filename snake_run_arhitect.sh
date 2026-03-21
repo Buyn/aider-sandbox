@@ -1,6 +1,8 @@
 # python -m unittest discover -s snake/tests 2>&1 | tee snake/last_unittest_run.log
 # стоит держать за коменченым тогда можно написать баг прямо в лог и он сразу поподёт на стол архитектору
 
+bash loger.sh
+
 echo "# Task:" > snake/run.md
 echo "## Objective" >> snake/run.md
 echo "" >> snake/run.md
@@ -19,6 +21,8 @@ aider --model openrouter/stepfun/step-3.5-flash:free \
     --read snake/last_unittest_run.log \
     --read snake/technical_specification.md \
     --read snake/python_code_style.md \
+    --read snake/last_file_list.log \
+    --read snake/new_file_list.log \
     --file snake/run.md \
     --file snake/review_and_comments.md \
     --file "snake/progress.md" \

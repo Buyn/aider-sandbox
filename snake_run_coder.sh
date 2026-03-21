@@ -12,7 +12,6 @@ aider --model openrouter/stepfun/step-3.5-flash:free \
     --read snake/technical_specification.md \
     --read snake/run.md \
     --read snake/python_code_style.md \
-    --read snake/review_and_comments.md \
     --read snake/last_unittest_run.log \
     --file "snake/progress.md" \
     --message-file snake/coder_role.md \
@@ -26,6 +25,7 @@ aider --model openrouter/stepfun/step-3.5-flash:free \
     # --weak-model groq/llama-3.1-8b-instant \
     # --yes-always \
     # --notifications-command "" \
+    # --read snake/review_and_comments.md \
 
 python -m unittest discover -s snake/tests 2>&1 | tee snake/last_unittest_run.log
 notify-send "aider Coder session ended" "Coder session is Done"
