@@ -1,19 +1,20 @@
 import time
-from snake.src.snake import Snake
-from snake.src.food import Food
-from snake.src.renderer import Renderer
-from snake.src.input_handler import InputHandler
-import config
+import curses
+from .snake import Snakefrom .food import Food
+from .renderer import Renderer
+from .input_handler import InputHandler
+from . import config
 
 class Game:
     def __init__(self):
-        self.config = config        self.snake = Snake()
+        self.snake = Snake()
         self.food = Food()
         self.food.spawn(self.snake.get_body())
         self.renderer = Renderer()
         self.input_handler = InputHandler()
         self.paused = False
         self.game_over = False
+        self.direction = self.snake.direction
 
     def run(self):
         try:
@@ -26,7 +27,7 @@ class Game:
                     self._update_game()
                 self._render()
                 elapsed = time.time() - start_time
-                sleep_time = max(0, (1.0 / self.config.TICKS_PER_SECOND) - elapsed)
+                sleep_time = max(0, (1.0 / config.TICKS_PER_SECOND) - elapsed)
                 time.sleep(sleep_time)
         finally:
             self.input_handler.cleanup()
@@ -40,10 +41,10 @@ class Game:
             direction = self._key_to_direction(key)
             if direction:
                 self.snake.set_direction(direction)
+                self.direction = self.snake.direction
 
     def _key_to_direction(self, key):
-        # Arrow keys
-        if key == curses.KEY_UP:
+        # Arrow keys        if key == curses.KEY_UP:
             return config.DIRECTION_UP
         elif key == curses.KEY_DOWN:
             return config.DIRECTION_DOWN
@@ -60,9 +61,9 @@ class Game:
             return config.DIRECTION_UP
         elif key == ord('l'):
             return config.DIRECTION_RIGHT
-        # ESDF keys        elif key == ord('e'):
-            return config.DIRECTION_UP
-        elif key == ord('d'):
+        # ESDF keys
+        elif key == ord('e'):
+            return config.DIRECTION_UP        elif key == ord('d'):
             return config.DIRECTION_RIGHT
         elif key == ord('s'):
             return config.DIRECTION_DOWN
@@ -71,10 +72,19 @@ class Game:
         return None
 
     def _update_game(self):
-        self.snake.move(grow=False)
-        if self.snake.get_head() == self.food.get_position():
+        head_x, head_y = self.snake.get_head()
+        dx, dy = self.snake.direction
+        next_head = (
+            (head_x + dx) % config.GRID_WIDTH,
+            (head_y + dy) % config.GRID_HEIGHT
+        )
+
+        if next_head == self.food.get_position():
             self.snake.move(grow=True)
             self.food.spawn(self.snake.get_body())
+        else:
+            self.snake.move(grow=False)
+
         # Check for self-collision
         if self.snake.get_head() in self.snake.get_body()[1:]:
             self.game_over = True
@@ -83,13 +93,16 @@ class Game:
         self.renderer.render(
             self.snake,
             self.food,
-            self.config.GRID_WIDTH,
-            self.config.GRID_HEIGHT
+            config.GRID_WIDTH,
+            config.GRID_HEIGHT
         )
 
     def restart(self):
         self.snake = Snake()
         self.food = Food()
         self.food.spawn(self.snake.get_body())
+        self.renderer = Renderer()
+        self.input_handler = InputHandler()
         self.paused = False
         self.game_over = False
+        self.direction = self.snake.direction
