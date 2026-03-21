@@ -1,0 +1,9 @@
+        self.DIR_UP = (-1, 0)
+        self.DIR_DOWN = (1, 0)
+        self.DIR_LEFT = (0, -1)
+        self.DIR_RIGHT = (0, 1)
+        
+        config.DIRECTION_UP = self.DIR_UP
+        config.DIRECTION_DOWN = self.DIR_DOWN
+        config.DIRECTION_LEFT = self.DIR_LEFT
+        config.DIRECTION_RIGHT = self.DIR_RIGHT

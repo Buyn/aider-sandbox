@@ -48,3 +48,7 @@ class Snake:
 
     def get_length(self):
         return len(self.body)
+
+    def check_self_collision(self):
+        head = self.get_head()
+        return head in self.body[1:]
