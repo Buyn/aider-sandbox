@@ -15,6 +15,7 @@ class Food:
             if (x, y) not in occupied_positions:
                 self.position = (x, y)
                 break
+        return self.position
 
     def get_position(self):
         return self.position
