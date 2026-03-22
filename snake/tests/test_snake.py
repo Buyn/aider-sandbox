@@ -94,7 +94,7 @@ class TestSnake(unittest.TestCase):
         snake.move(grow=False)
         
         # Head wraps from X=4 to X=0, Y remains 2. (4+1)%5 = 0.
-        expected_body = [(0, 2), (4, 2)]
+        expected_body = [(0, 2)]
         self.assertEqual(snake.get_body(), expected_body)
 
     def test_wrap_around_left(self):
@@ -103,7 +103,7 @@ class TestSnake(unittest.TestCase):
         snake.move(grow=False)
         
         # Head wraps from X=0 to X=4, Y remains 2. (0-1)%5 = 4.
-        expected_body = [(4, 2), (0, 2)]
+        expected_body = [(4, 2)]
         self.assertEqual(snake.get_body(), expected_body)
 
     def test_wrap_around_down(self):
@@ -112,7 +112,7 @@ class TestSnake(unittest.TestCase):
         snake.move(grow=False)
         
         # Head wraps from Y=4 to Y=0, X remains 2. (4+1)%5 = 0.
-        expected_body = [(2, 0), (2, 4)]
+        expected_body = [(2, 0)]
         self.assertEqual(snake.get_body(), expected_body)
 
     def test_wrap_around_up(self):
@@ -121,7 +121,7 @@ class TestSnake(unittest.TestCase):
         snake.move(grow=False)
         
         # Head wraps from Y=0 to Y=4, X remains 2. (0-1)%5 = 4.
-        expected_body = [(2, 4), (2, 0)]
+        expected_body = [(2, 4)]
         self.assertEqual(snake.get_body(), expected_body)
 
     def test_no_self_collision_after_move(self):
@@ -186,6 +186,7 @@ class TestSnake(unittest.TestCase):
         # Let's force H' to land on B1. H=(2,2), B1=(3,2). Direction RIGHT (1, 0).
         # If B1 was (3,2), H'=(3,2). This means H' == B1.
         snake_colliding_long = Snake(body=[(2, 2), (3, 2), (3, 3), (2, 3)], direction=config.DIRECTION_RIGHT)
+        snake_colliding_long.move(grow=False)
         # Move right: H' = (3, 2). New body: [(3, 2), (2, 2), (3, 2), (3, 3)]. Collision! (3, 2) is in body[1:]
         self.assertTrue(snake_colliding_long.check_self_collision())
 

@@ -107,6 +107,7 @@ class TestGame(unittest.TestCase):
 
     def test_update_game_when_not_paused_and_not_over(self):
         game = Game()
+        self.mock_food.spawn.reset_mock()  # Reset after init call
         game.paused = False
         game.game_over = False
         # No food eaten
@@ -121,6 +122,7 @@ class TestGame(unittest.TestCase):
 
     def test_update_game_food_eaten(self):
         game = Game()
+        self.mock_food.spawn.reset_mock()  # Reset after init call
         game.paused = False
         game.game_over = False
         # Set up so that next head will be on food
@@ -136,6 +138,7 @@ class TestGame(unittest.TestCase):
 
     def test_update_game_self_collision(self):
         game = Game()
+        self.mock_food.spawn.reset_mock()  # Reset after init call
         game.paused = False
         game.game_over = False
         self.mock_snake.get_head.return_value = (1,1)
