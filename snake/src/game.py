@@ -18,20 +18,17 @@ class Game:
         self.direction = self.snake.direction
 
     def run(self):
-        try:
-            while True:
-                start_time = time.time()
-                key = self.input_handler.get_key()
-                if key is not None:
-                    self._handle_key(key)
-                if not self.paused and not self.game_over:
-                    self._update_game()
-                self._render()
-                elapsed = time.time() - start_time
-                sleep_time = max(0, (1.0 / config.TICKS_PER_SECOND) - elapsed)
-                time.sleep(sleep_time)
-        finally:
-            self.input_handler.cleanup()
+        while True:
+            start_time = time.time()
+            key = self.input_handler.get_key()
+            if key is not None:
+                self._handle_key(key)
+            if not self.paused and not self.game_over:
+                self._update_game()
+            self._render()
+            elapsed = time.time() - start_time
+            sleep_time = max(0, (1.0 / config.TICKS_PER_SECOND) - elapsed)
+            time.sleep(sleep_time)
 
     def _handle_key(self, key):
         if key == ord(' '):

@@ -44,7 +44,7 @@ class TestCleanup(unittest.TestCase):
     @patch('src.game.Renderer')
     @patch('src.game.Food')
     @patch('src.game.Snake')
-    def test_game_run_does_not_call_cleanup(self, mock_input_cls, mock_renderer_cls, mock_food_cls, mock_snake_cls):
+    def test_game_run_does_not_call_cleanup(self, mock_snake_cls, mock_food_cls, mock_renderer_cls, mock_input_cls):
         # Setup mock snake
         mock_snake = MagicMock()
         mock_snake.get_head.return_value = (0,0)
