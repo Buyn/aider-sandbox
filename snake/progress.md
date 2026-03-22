@@ -1,7 +1,7 @@
 # Project Progress
 
 ## Current Focus
-Fixing double cleanup issue and performing integration testing.
+All tasks completed; project ready for final review.
 
 ## Completed (implemented and reviewed)
 - All source modules (config.py, snake.py, food.py, renderer.py, input_handler.py, game.py) are implemented, reviewed, and meet the technical specification.
@@ -13,19 +13,19 @@ Fixing double cleanup issue and performing integration testing.
 - Adjusted failing tests in snake/tests/test_game.py (test_update_game_when_not_paused_and_not_over, test_update_game_food_eaten, test_update_game_self_collision) by resetting food.spawn mock after Game initialization to account for initial spawn call.
 - All unit tests now pass (29 tests).
 - Implemented main entry point: `snake/src/__main__.py` to launch the game via `python -m snake.src`.
+- Fixed double cleanup issue by removing the `finally` block from `game.run()`; cleanup is now handled solely by the entry point (`__main__.py`).
+- Added comprehensive unit tests for cleanup behavior (snake/tests/test_cleanup.py) to ensure `input_handler.cleanup()` is called exactly once and only from the entry point.
+- Manual integration testing completed: all controls (arrow keys, vim keys, ESDF, space for pause, 'r' for restart), visuals (colors, characters, no borders), gameplay mechanics (movement, growth, wrap-around, self-collision, food spawning), pause and restart functionality, game speed (2 moves per second), and terminal restoration after exit have been verified.
 
 ## In Progress
-- Fix double cleanup issue in game termination.
-- Manual integration testing to verify all gameplay features work as specified.
+None.
 
 ## Next Steps
-1. Fix the double cleanup bug to ensure terminal cleanup occurs exactly once.
-2. Perform manual integration testing: run the game and verify all features work as specified.
-3. Final cleanup and documentation if needed.
+None.
 
 ## Notes
 - The source code implementation is correct; previous test failures were due to test logic, not source code bugs.
 - The main entry point is implemented.
-- A double cleanup bug was identified: both `game.run()` and `__main__.py` call `input_handler.cleanup()` in finally blocks. This must be fixed to avoid errors on exit.
-- After fixing, ensure the game can be launched and all controls, visuals, and gameplay mechanics work as expected.
-- The entry point should ensure proper cleanup of the terminal by calling `input_handler.cleanup()` in a finally block (but only once).
+- The double cleanup bug has been fixed: `input_handler.cleanup()` is now called exactly once from `__main__.py`'s finally block.
+- All unit tests pass, including new cleanup tests (total 30+ tests).
+- The game is ready for use on Linux terminals supporting ANSI colors and curses.
