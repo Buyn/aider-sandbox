@@ -12,16 +12,17 @@ Implementing the main entry point and performing integration testing.
 - Fixed test_no_self_collision_after_move in test_snake.py by ensuring the snake is moved before checking for self‑collision.
 - Adjusted failing tests in snake/tests/test_game.py (test_update_game_when_not_paused_and_not_over, test_update_game_food_eaten, test_update_game_self_collision) by resetting food.spawn mock after Game initialization to account for initial spawn call.
 - All unit tests now pass (29 tests).
+- Implemented main entry point: `snake/src/__main__.py` to launch the game via `python -m snake.src`.
 
 ## In Progress
-- None (awaiting main entry point implementation).
+- Manual integration testing to verify all gameplay features work as specified.
 
 ## Next Steps
-1. Implement main entry point (main.py or __main__.py) in the src directory.
-2. Perform manual integration testing: run the game and verify all features work as specified.
-3. Final cleanup and documentation if needed.
+1. Perform manual integration testing: run the game and verify all features work as specified.
+2. Final cleanup and documentation if needed.
 
 ## Notes
 - The source code implementation is correct; previous test failures were due to test logic, not source code bugs.
 - The main entry point is the only missing component from the technical specification.
 - After implementing the entry point, ensure the game can be launched and all controls, visuals, and gameplay mechanics work as expected.
+- The entry point ensures proper cleanup of the terminal by calling `input_handler.cleanup()` in a finally block.
