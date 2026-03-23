@@ -100,6 +100,9 @@ The main loop will:
 - all source files are contained in the snake\src folder or its subfolders
 - all test files are contained in the snake\tests folder or its subfolders
 
+### 3.8 Method for run final app
+By command "python -m snake.src"
+
 ## 4. Dependencies
 - Python 3.x
 - Linux environment
