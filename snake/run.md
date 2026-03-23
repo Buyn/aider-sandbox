@@ -34,7 +34,7 @@ The project is nearly complete. All core functionality is implemented and tested
    - Perform manual integration testing: run the game with walls enabled and disabled, verify the border appears correctly and does not affect gameplay.
 
 5. **Documentation**:
-   - Update `README.md` to describe the new wall display feature and configuration options.
+   - Update `snake/README.md` to describe the new wall display feature and configuration options.
    - Ensure `config.py` has clear comments for the new constants.
 
 ## Implementation Notes
@@ -63,7 +63,7 @@ After implementation:
 - Modified `config.py` with new constants.
 - Modified `renderer.py` with wall drawing logic.
 - (Optional) New or updated tests for renderer.
-- Updated `README.md` with feature description.
+- Updated `snake/README.md` with feature description.
 - Updated `progress.md` and `review_and_comments.md` as appropriate (the programmer should not edit these; the reviewer will update them after verification).
 
 ## Notes

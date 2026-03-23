@@ -24,7 +24,7 @@ Implement optional wall display feature (border of '#' symbols around the grid).
 - Ensure walls are purely visual and do not affect game logic.
 - Add unit tests for wall rendering (if needed) and update existing tests if renderer interface changes.
 - Perform integration testing to verify wall appearance and behavior.
-- Update documentation (README.md) to describe the new feature and configuration options.
+- Update documentation (snake/README.md) to describe the new feature and configuration options.
 - Mark project as complete.
 
 ## Notes

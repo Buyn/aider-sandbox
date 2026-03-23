@@ -91,23 +91,24 @@ SYSTEM
 для откатки
 можно как срабую если не указано
 возможно оно будет сому откарыватся к глобальной дефалтной
-** TODO сделать роль редактора спецификации
+** DONE сделать роль редактора спецификации
 *** обзор
 получает только специвикацию можно прогрес и ревью
 вносит пожелания пользоветеля
 может задовать наводяшии вопросы
 *** запуск
 aider --model openrouter/stepfun/step-3.5-flash:free \
-    --weak-model nvidia_nim/meta/llama3-8b-instruct \
+    --weak-model mistral/open-mistral-7b \
     --file snake/technical_specification.md \
     --file snake/review_and_comments.md \
     --file "snake/progress.md" \
     --load snake/diziner_role.md \
-    --verbose \
     --notifications \
     --no-auto-lint \
     --no-auto-test \
 
+    # --verbose \
+    # --weak-model nvidia_nim/meta/llama3-8b-instruct \
 /ask ❓
 
   --load LOAD_FILE      Load and execute /commands from a file on launch [env var:
@@ -151,13 +152,11 @@ You are the Application Design Architect. Your task is not to write code, but to
 3 Default state: wall display enabled by default                                       
 4 Wall appearance: wall color configurable (e.g., via config.py), symbol be configurable    
 5 Scope: walls drawn on all four sides of the grid 
+** сделать меню
 
-** роль анализатора приложения
-он создаёт фаил спецификации в автоматическом режиме.
-он создаёт фаил перд запуском если его нет. создовая нужную структуру.
-и заполняет на основе анализа кода что есть.
-можно ему дать ревью и прогрес но помойму это лишее.
-
+** выход из приложения по q
+добавить в управлени
+выход из приложения по "q" или "ESC"
 ** сделать роль баг репортера
 *** обзор
 тоесть запускать только в прогресом с документацией
@@ -166,18 +165,30 @@ You are the Application Design Architect. Your task is not to write code, but to
 может задовать наводяшии вопросы
 
 *** запуск
+#!/usr/bin/env bash
+
 aider --model openrouter/stepfun/step-3.5-flash:free \
-    --weak-model nvidia_nim/meta/llama3-8b-instruct \
-    --read snake/technical_specification.md \
+    --weak-model mistral/open-mistral-7b \
+    --file snake/technical_specification.md \
     --file snake/review_and_comments.md \
     --file "snake/progress.md" \
+    --load snake/bugreporter_role.md \
     --notifications \
     --no-auto-lint \
     --no-auto-test \
+    --architect \
+    --verbose \
 
-    # --message-file snake/arhitect_role.md \
+    # --weak-model nvidia_nim/meta/llama3-8b-instruct \
 
 *** текст
+
+
+** роль анализатора приложения
+он создаёт фаил спецификации в автоматическом режиме.
+он создаёт фаил перд запуском если его нет. создовая нужную структуру.
+и заполняет на основе анализа кода что есть.
+можно ему дать ревью и прогрес но помойму это лишее.
 
 ** arhetkt
 добавить коментарий
@@ -1405,8 +1416,12 @@ something.
     --notifications-command "" \
 ***** ralfloop_run.sh
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_ralfloop.sh")
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_diziner.sh")
 ***** logfile
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/loger.sh")
+***** run app
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/run_snake.sh")
+python -m snake.src
 **** role promts
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/arhitect_role.md")
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/coder_role.md")
