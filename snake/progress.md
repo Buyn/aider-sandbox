@@ -1,7 +1,7 @@
 # Project Progress
 
 ## Current Focus
-Implement optional wall display feature (border of '#' symbols around the grid).
+Implement optional wall display feature (border of '#' symbols around the grid). The detailed implementation task is documented in snake/run.md.
 
 ## Completed (implemented and reviewed)
 - All source modules (config.py, snake.py, food.py, renderer.py, input_handler.py, game.py) are implemented, reviewed, and meet the technical specification.
@@ -33,4 +33,4 @@ Implement optional wall display feature (border of '#' symbols around the grid).
 - The double cleanup bug has been fixed: `input_handler.cleanup()` is now called exactly once from `__main__.py`'s finally block.
 - All unit tests pass (39 tests, 1 skipped).
 - The game is ready for use on Linux terminals supporting ANSI colors and curses.
-- New feature: optional wall display (enabled by default, configurable). Walls are visual only; gameplay unchanged.
+- **Pending feature**: optional wall display (enabled by default, configurable). Walls are visual only; gameplay unchanged.
