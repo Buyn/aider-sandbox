@@ -1,7 +1,7 @@
 # Project Progress
 
 ## Current Focus
-Implement optional wall display feature (border of '#' symbols around the grid). The detailed implementation task is documented in snake/run.md.
+Implement optional wall display feature (border of '#' symbols around the grid) and add exit functionality (q/ESC keys). The detailed implementation task for wall display is documented in snake/run.md.
 
 ## Completed (implemented and reviewed)
 - All source modules (config.py, snake.py, food.py, renderer.py, input_handler.py, game.py) are implemented, reviewed, and meet the technical specification.
@@ -19,6 +19,7 @@ Implement optional wall display feature (border of '#' symbols around the grid).
 - Added comprehensive unit tests for the Food class (test_food.py), increasing test coverage to 39 tests (1 skipped).
 
 ## Next Steps
+- Add exit functionality: implement handling of 'q' and ESC keys to exit the game gracefully.
 - Add configuration options in `config.py` for wall display (enable/disable, symbol, color).
 - Update `renderer.py` to draw walls around the grid when enabled.
 - Ensure walls are purely visual and do not affect game logic.
@@ -33,4 +34,4 @@ Implement optional wall display feature (border of '#' symbols around the grid).
 - The double cleanup bug has been fixed: `input_handler.cleanup()` is now called exactly once from `__main__.py`'s finally block.
 - All unit tests pass (39 tests, 1 skipped).
 - The game is ready for use on Linux terminals supporting ANSI colors and curses.
-- **Pending feature**: optional wall display (enabled by default, configurable). Walls are visual only; gameplay unchanged.
+- **Pending features**: optional wall display (enabled by default, configurable) and exit functionality (q/ESC keys).

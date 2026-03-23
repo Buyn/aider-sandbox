@@ -30,7 +30,7 @@ The next step is to fix `game.py` to satisfy the existing unit tests and meet th
 - Controls: arrow keys, vim keys (h, j, k, l), and ESDF for direction.
 - Pause functionality: space bar toggles pause.
 - After game over, pressing 'r' restarts the game.
-- No scoring system (no points displayed).
+- Exit functionality: pressing 'q' or ESC exits the game.
 - **Optional wall display**: A border of walls can be drawn around the playable grid. The walls are purely visual and do not affect gameplay (snake still wraps). The wall display is enabled by default but can be disabled via configuration. The wall symbol and color are configurable.
 
 ### 2.2 Non-Functional Requirements
@@ -73,7 +73,7 @@ All configurable parameters will be stored in `config.py` as constants or a conf
 
 ### 3.3 Game Loop
 The main loop will:
-1. Process input (non-blocking) and update direction accordingly.
+1. Process input (non-blocking). If an exit key ('q' or ESC) is detected, break the loop. Otherwise, update direction based on directional keys, handle pause (space), and restart ('r') as appropriate.
 2. If not paused, update snake position based on current direction.
 3. Check for collisions (self-collision) and food consumption.
 4. If food eaten, grow snake and spawn new food.
@@ -85,6 +85,7 @@ The main loop will:
 - Support both arrow keys and the specified character keys (h, j, k, l, e, s, d, f).
 - Map keys to directions: up, down, left, right.
 - Also handle space (pause) and 'r' (restart).
+- Additionally, handle 'q' and ESC keys to exit the game gracefully.
 
 ### 3.5 Rendering
 - Use ANSI escape codes to clear the screen and position the cursor.

@@ -25,15 +25,17 @@ The reported issue with up/down controls causing chaotic movement and coordinate
 - All core source files meet the technical specification and have been reviewed.
 - The test suite passes (39 tests, 1 skipped).
 - Manual integration testing completed: all controls (arrow keys, vim keys, ESDF, space for pause, 'r' for restart), visuals (colors, characters, no borders), gameplay mechanics (movement, growth, wrap-around, self-collision, food spawning), pause and restart functionality, game speed (2 moves per second), and terminal restoration after exit have been verified.
-- The project is **not yet complete**: the optional wall display feature from the specification remains to be implemented.
+- The project is **not yet complete**: the optional wall display feature from the specification remains to be implemented, and a new exit functionality (q/ESC) has been requested.
 - The implementation task for the wall display feature has been defined in snake/run.md. The next review will focus on the changes to config.py and renderer.py to ensure they meet the specification.
 
-## Pending task
-- Implement optional wall display (border of '#' symbols around the grid) as specified in technical_specification.md section 2.1 and 3.5. This is the only remaining feature.
+## Pending tasks
+- Implement optional wall display (border of '#' symbols around the grid) as specified in technical_specification.md section 2.1 and 3.5.
+- Add exit functionality: implement handling of 'q' and ESC keys to exit the game gracefully.
 
 ## Gaps and future considerations (after wall display)
 - Optional features from the specification (high score tracking, difficulty adjustment, multiple food types, sound effects) are not implemented but are not required.
 - **New feature added**: Optional wall display (enabled by default, configurable). Walls are visual only; gameplay unchanged.
+- Exit functionality: 'q' and ESC keys to quit the game.
 
 ## Notes for future sessions
 - Re-review of any file is only necessary if changes are made.
