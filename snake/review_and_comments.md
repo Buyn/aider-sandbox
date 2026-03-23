@@ -29,7 +29,9 @@ The reported issue with up/down controls causing chaotic movement and coordinate
 
 ## Gaps and future considerations
 - Optional features from the specification (high score tracking, difficulty adjustment, multiple food types, sound effects) are not implemented but are not required.
+- **New feature added**: Optional wall display (border of '#' symbols around the grid). This is a visual feature only; gameplay remains unchanged. The feature is enabled by default and configurable via `config.py` (wall symbol, color, and enable/disable).
 
 ## Notes for future sessions
 - Re-review of any file is only necessary if changes are made.
 - All unit tests are in place and passing; no further test additions required.
+- When implementing wall display, ensure the renderer draws the border outside the playable grid cells and does not affect game logic (snake movement, food spawning, collision detection).

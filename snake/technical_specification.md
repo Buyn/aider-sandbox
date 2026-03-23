@@ -31,6 +31,7 @@ The next step is to fix `game.py` to satisfy the existing unit tests and meet th
 - Pause functionality: space bar toggles pause.
 - After game over, pressing 'r' restarts the game.
 - No scoring system (no points displayed).
+- **Optional wall display**: A border of walls can be drawn around the playable grid. The walls are purely visual and do not affect gameplay (snake still wraps). The wall display is enabled by default but can be disabled via configuration. The wall symbol and color are configurable.
 
 ### 2.2 Non-Functional Requirements
 - Platform: Linux only.
@@ -40,7 +41,8 @@ The next step is to fix `game.py` to satisfy the existing unit tests and meet th
   - Snake body: '█' (full block)
   - Snake head: 'O'
   - Food: '●'
-  - No borders around the game area.
+  - Walls: '#' (configurable)
+  - No borders around the game area (unless wall display is enabled).
 - The game should run in a terminal that supports ANSI colors and cursor control.
 
 ## 3. Technical Design
@@ -61,8 +63,12 @@ All configurable parameters will be stored in `config.py` as constants or a conf
 - `GRID_WIDTH = 50`
 - `GRID_HEIGHT = 50`
 - `TICKS_PER_SECOND = 2` (or `MOVE_INTERVAL = 0.5` seconds)
-- Colors (ANSI escape codes) for snake body, snake head, food, and background.
+- Colors (ANSI escape codes) for snake body, snake head, food, background, and walls.
 - Key mappings: a dictionary mapping keys to directions (e.g., `KEY_UP = 'k'` or `'KEY_UP'` from curses).
+- Wall display options:
+  - `WALLS_ENABLED = True` (default: enabled)
+  - `WALL_SYMBOL = '#'`
+  - `WALL_COLOR = <ANSI color code>`
 - Any other tunable parameters.
 
 ### 3.3 Game Loop
@@ -84,7 +90,8 @@ The main loop will:
 - Use ANSI escape codes to clear the screen and position the cursor.
 - Draw each cell of the snake and food using the appropriate character and color.
 - The entire grid is redrawn each frame (or use incremental updates if performance requires, but for 50x50 it's fine).
-- No borders; just the snake and food on a blank background.
+- If wall display is enabled, draw a border of wall symbols around the playable grid (outside the grid cells). The walls do not occupy grid cells and do not interfere with snake movement or food spawning.
+- No borders; just the snake and food on a blank background (unless walls are enabled).
 
 ### 3.6 Game State
 - The `Game` class will hold:

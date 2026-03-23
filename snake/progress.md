@@ -1,7 +1,7 @@
 # Project Progress
 
 ## Current Focus
-Final verification and delivery preparation.
+Implement optional wall display feature (border of '#' symbols around the grid).
 
 ## Completed (implemented and reviewed)
 - All source modules (config.py, snake.py, food.py, renderer.py, input_handler.py, game.py) are implemented, reviewed, and meet the technical specification.
@@ -19,8 +19,12 @@ Final verification and delivery preparation.
 - Added comprehensive unit tests for the Food class (test_food.py), increasing test coverage to 39 tests (1 skipped).
 
 ## Next Steps
-- Perform final integration test to ensure all features work together seamlessly.
-- Prepare project documentation for delivery (e.g., README, installation instructions if missing).
+- Add configuration options in `config.py` for wall display (enable/disable, symbol, color).
+- Update `renderer.py` to draw walls around the grid when enabled.
+- Ensure walls are purely visual and do not affect game logic.
+- Add unit tests for wall rendering (if needed) and update existing tests if renderer interface changes.
+- Perform integration testing to verify wall appearance and behavior.
+- Update documentation (README.md) to describe the new feature and configuration options.
 - Mark project as complete.
 
 ## Notes
@@ -29,3 +33,4 @@ Final verification and delivery preparation.
 - The double cleanup bug has been fixed: `input_handler.cleanup()` is now called exactly once from `__main__.py`'s finally block.
 - All unit tests pass (39 tests, 1 skipped).
 - The game is ready for use on Linux terminals supporting ANSI colors and curses.
+- New feature: optional wall display (enabled by default, configurable). Walls are visual only; gameplay unchanged.
