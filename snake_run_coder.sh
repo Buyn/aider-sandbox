@@ -17,7 +17,7 @@ echo "Coder session is Starting" >> snake/last_unittest_run.log
 # aider --model gemini/gemini-flash-lite-latest \
 
 aider --model openrouter/stepfun/step-3.5-flash:free \
-    --weak-model nvidia_nim/meta/llama3-8b-instruct \
+    --weak-model mistral/open-mistral-7b \
     --read snake/technical_specification.md \
     --read snake/run.md \
     --read snake/python_code_style.md \
@@ -30,6 +30,8 @@ aider --model openrouter/stepfun/step-3.5-flash:free \
     --auto-test \
     --exit 
 
+    # --verbose
+    # --weak-model nvidia_nim/meta/llama3-8b-instruct \
     # --weak-model openrouter/nvidia/nemotron-nano-9b-v2:free \
     # --weak-model openrouter/mistralai/mistral-small-3.1-24b-instruct:free \
     # --weak-model groq/llama-3.1-8b-instant \

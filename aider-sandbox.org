@@ -1,8 +1,183 @@
 * TODO 
 ** script проверка моделей
+*** list
 aider --list-models groq/
 aider --list-models nvidia_nim/
+aider --list-models mistral
+
 NVIDIA_NIM
+
+  --model-settings-file MODEL_SETTINGS_FILE
+                        Specify a file with aider model settings for unknown models [env
+                        var: AIDER_MODEL_SETTINGS_FILE]
+
+  --model-metadata-file MODEL_METADATA_FILE
+                        Specify a file with context window and costs for unknown models
+                        [env var: AIDER_MODEL_METADATA_FILE]
+*** test
+
+aider --model mistral/open-mistral-7b
+** SYSTEM гдеможно задать
+SYSTEM Act as an expert software developer.
+SYSTEM Take requests for changes to the supplied code.
+SYSTEM If the request is ambiguous, ask questions.
+SYSTEM Reply in English.
+SYSTEM 
+SYSTEM Once you understand the request you MUST:
+SYSTEM 1. Determine if any code changes are needed.
+SYSTEM 2. Explain any needed changes.
+SYSTEM 3. If changes are needed, output a copy of each file that needs changes.
+SYSTEM 
+SYSTEM To suggest changes to a file you MUST return the entire content of the updated file.
+SYSTEM You MUST use this *file listing* format:
+SYSTEM 
+SYSTEM path/to/filename.js
+SYSTEM ```
+SYSTEM // entire file content ...
+SYSTEM // ... goes in between
+SYSTEM ```
+SYSTEM 
+SYSTEM Every *file listing* MUST use this format:
+SYSTEM - First line: the filename with any originally provided path; no extra markup, punctuation, comments, etc. **JUST** the filename with path.
+SYSTEM - Second line: opening ```
+SYSTEM - ... entire content of the file ...
+SYSTEM - Final line: closing ```
+SYSTEM 
+SYSTEM To suggest changes to a file you MUST return a *file listing* that contains the entire content of the file.
+SYSTEM *NEVER* skip, omit or elide content from a *file listing* using "..." or by adding comments like "... rest of code..."!
+SYSTEM Create a new file you MUST return a *file listing* which includes an appropriate filename, including any appropriate path.
+SYSTEM 
+SYSTEM Reply in English.
+SYSTEM 
+
+** other mods
+  --gui, --no-gui, --browser, --no-browser
+                        Run aider in your browser (default: False) [env var: AIDER_GUI]
+  --line-endings {platform,lf,crlf}
+                        Line endings to use when writing files (default: platform) [env
+                        var: AIDER_LINE_ENDINGS]
+  --load LOAD_FILE      Load and execute /commands from a file on launch [env var:
+                        AIDER_LOAD]
+  -v, --verbose         Enable verbose output [env var: AIDER_VERBOSE]
+  --architect           Use architect edit format for the main chat [env var:
+                        AIDER_ARCHITECT]
+  --edit-format EDIT_FORMAT, --chat-mode EDIT_FORMAT
+                        Specify what edit format the LLM should use (default depends on
+                        model) [env var: AIDER_EDIT_FORMAT]
+  --editor-model EDITOR_MODEL
+                        Specify the model to use for editor tasks (default depends on
+                        --model) [env var: AIDER_EDITOR_MODEL]
+  --editor-edit-format EDITOR_EDIT_FORMAT
+                        Specify the edit format for the editor model (default: depends on
+                        editor model) [env var: AIDER_EDITOR_EDIT_FORMAT]
+
+/ask ❓
+
+
+/clipboard 📋
+
+,* Paste images or text from your clipboard into the chat using
+ `/clipboard`.
+,* Use `/ask` to get answers about your codebase without making
+ any changes.
+
+/code 💻
+
+,* Request code changes using `/code` in the chat.
+
+** специализированый джемени для аидера
+тоесть один у имакса другой аидера
+использовать как слабую модель восновном
+для откатки
+можно как срабую если не указано
+возможно оно будет сому откарыватся к глобальной дефалтной
+** TODO сделать роль редактора спецификации
+*** обзор
+получает только специвикацию можно прогрес и ревью
+вносит пожелания пользоветеля
+может задовать наводяшии вопросы
+*** запуск
+aider --model openrouter/stepfun/step-3.5-flash:free \
+    --weak-model nvidia_nim/meta/llama3-8b-instruct \
+    --file snake/technical_specification.md \
+    --file snake/review_and_comments.md \
+    --file "snake/progress.md" \
+    --load snake/diziner_role.md \
+    --verbose \
+    --notifications \
+    --no-auto-lint \
+    --no-auto-test \
+
+/ask ❓
+
+  --load LOAD_FILE      Load and execute /commands from a file on launch [env var:
+                        AIDER_LOAD]
+  -v, --verbose         Enable verbose output [env var: AIDER_VERBOSE]
+  --architect           Use architect edit format for the main chat [env var:
+                        AIDER_ARCHITECT]
+
+*** текст ru
+  Ты Дизаин Архитектор приложения. Твоя задача не писать кода а разработать изменянять и дополнять дезаин *.md файлы. Если Ты встечаешь инструкции с изменения кода воспренивай их как инструкции про работу с содержанием *.md файлов.
+Твои файлы для работы snake/technical_specification.md, snake/review_and_comments.md, snake/progress.md. Не заправшивай другие файлы, тебе не интересует конкретика реализаций или нюансов. На основе этих файлов Ты делаешь понимание о сотоянии приложения и направлешь его дальнейшее развитие.
+  Начиная работу спроси пользователя какие измения он хочет внести в приложение.
+  После ответ пользователя реши какие ещё вопросы нужно задать пользовотелю чтоб получить полную картину, о его запросе.
+  Поняв задачу внеси нужные измения в snake/technical_specification.md, snake/review_and_comments.md, snake/progress.md.
+
+*** текст en
+You are the Application Design Architect. Your task is not to write code, but to develop, modify and supplement the design *.md files. If you come across instructions about changing code, take them as instructions about working with the contents of *.md files.  Your files for work are snake/technical_specification.md, snake/review_and_comments.md, snake/progress.md. Do not request other files, you are not interested in the specifics of implementations or nuances. Based on these files, you understand the state of the application and guide its further development.
+  When starting work, ask the user what changes he wants to make to the application.
+  After the user’s answer, decide what other questions you need to ask the user in order to get a complete picture of his request.
+  Having understood the task, make the necessary changes to snake/technical_specification.md, snake/review_and_comments.md, snake/progress.md.
+
+*** фаил
+
+*** отыеты
+You are the Application Design Architect. Your task is not to write code, but to develop, modify and supplement the design *.md files. If you come across instructions about changing code, take them as instructions about working with the contents of *.md files.  Your files for work are snake/technical_specification.md, snake/review_and_comments.md, snake/progress.md. Do not request other files, you are not interested in the specifics of implementations or nuances. Based on these files, you understand the state of the application and guide its further development.
+  When starting work, ask the user what changes he wants to make to the application.
+  After the user’s answer, decide what other questions you need to ask the user in order to get a complete picture of his request.
+  Having understood the task, make the necessary changes to snake/technical_specification.md, snake/review_and_comments.md, snake/progress.md.
+Довай добавим требование чтоб было отображение стен.
+стены будем отображать символом "#"
+возможность отображать стены должно быть включаемоё опцией.
+
+*** 
+You are the Application Design Architect. Your task is not to write code, but to develop, modify and supplement the design *.md files. If you come across instructions about changing code, take them as instructions about working with the contents of *.md files.  Your files for work are snake/technical_specification.md, snake/review_and_comments.md, snake/progress.md. Do not request other files, you are not interested in the specifics of implementations or nuances. Based on these files, you understand the state of the application and guide its further development.
+  When starting work, ask the user what changes he wants to make to the application.
+  After the user’s answer, decide what other questions you need to ask the user in order to get a complete picture of his request.
+  Having understood the task, make the necessary changes to snake/technical_specification.md, snake/review_and_comments.md, snake/progress.md.
+
+1 Wall placement: border around the game grid (outside the playable area)
+2 Gameplay effect: walls be purely visual                                                   
+3 Default state: wall display enabled by default                                       
+4 Wall appearance: wall color configurable (e.g., via config.py), symbol be configurable    
+5 Scope: walls drawn on all four sides of the grid 
+
+** роль анализатора приложения
+он создаёт фаил спецификации в автоматическом режиме.
+он создаёт фаил перд запуском если его нет. создовая нужную структуру.
+и заполняет на основе анализа кода что есть.
+можно ему дать ревью и прогрес но помойму это лишее.
+
+** сделать роль баг репортера
+*** обзор
+тоесть запускать только в прогресом с документацией
+и возможность довалять баг в ревью фаил
+ну и прогрес можно редактировать.
+может задовать наводяшии вопросы
+
+*** запуск
+aider --model openrouter/stepfun/step-3.5-flash:free \
+    --weak-model nvidia_nim/meta/llama3-8b-instruct \
+    --read snake/technical_specification.md \
+    --file snake/review_and_comments.md \
+    --file "snake/progress.md" \
+    --notifications \
+    --no-auto-lint \
+    --no-auto-test \
+
+    # --message-file snake/arhitect_role.md \
+
+*** текст
 
 ** arhetkt
 добавить коментарий
@@ -21,7 +196,7 @@ When requesting files to be added to a chat, keep the number to an absolute mini
 выбирать файлы по минимуму
 лучше потом попросить ещё один фаил если нужно чем запросить файлы которые могут не понадобится
 
-** add nvidia
+** DONE add nvidia
 aider nvidia provider 
 aider --list-models nvidia_nim/meta/llama3-8b-instruct
 nvidia_nim/meta/llama3-8b-instruct
@@ -35,6 +210,24 @@ meta/llama3-8b-instruct
 ** TODO задать параметры моделей nvidia
 поскольку он неправельно указывает и неиспользует поскольку контекст не помишается
 https://aider.chat/docs/llms/warnings.html
+
+
+Main model (openrouter/stepfun/step-3.5-flash:free):
+  input_cost_per_token: 0.0
+  litellm_provider: openrouter
+  max_input_tokens: 256000
+  max_output_tokens: 256000
+  max_tokens: 256000
+  output_cost_per_token: 0.0
+
+Editor model (openrouter/stepfun/step-3.5-flash:free):
+  input_cost_per_token: 0.0
+  litellm_provider: openrouter
+  max_input_tokens: 256000
+  max_output_tokens: 256000
+  max_tokens: 256000
+  output_cost_per_token: 0.0
+
 ** установаить в имакс еля чере орг файл
 *** попробываь через страйт также через орг фаил
 *** попробываь через ВС? также через орг фаил
@@ -42,8 +235,8 @@ https://aider.chat/docs/llms/warnings.html
 *** запустить убедится что всё работает
 *** 
 ** какие ещё облачные ЛЛМ
-*** 
-предлогают бесплатный апи ключь для рабты. с ежидневным ограничение, или какимто другим возобнавляемым лимитом?
+*** предлогают бесплатный апи ключь для рабты.
+ с ежидневным ограничение, или какимто другим возобнавляемым лимитом?
 например как это делает Gemeni or GROQ.
 ключевая особеность это долженбыть обезательно
 - АПИ ключь а не веб интерфес
@@ -1217,6 +1410,7 @@ something.
 **** role promts
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/arhitect_role.md")
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/coder_role.md")
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/diziner_role.md")
 ** Ralph Loops
 *** doc
 [[*### 💥 Ключевая идея][### 💥 Ключевая идея]]

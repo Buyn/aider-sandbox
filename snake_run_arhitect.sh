@@ -20,7 +20,7 @@ echo "" >> snake/run.md
 
 # aider --model openrouter/nvidia/nemotron-3-super-120b-a12b:free \
 aider --model openrouter/stepfun/step-3.5-flash:free \
-    --weak-model nvidia_nim/meta/llama3-8b-instruct \
+    --weak-model mistral/open-mistral-7b \
     --read snake/last_unittest_run.log \
     --read snake/technical_specification.md \
     --read snake/python_code_style.md \
@@ -35,6 +35,7 @@ aider --model openrouter/stepfun/step-3.5-flash:free \
     --no-auto-test \
     --exit 
 
+    # --verbose
     # --weak-model groq/llama-3.1-8b-instant \
     # --weak-model nvidia_nim/meta/llama3-8b-instruct \
     # --weak-model openrouter/nvidia/nemotron-nano-9b-v2:free \
