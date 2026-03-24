@@ -1,7 +1,7 @@
 # Project Progress
 
 ## Current Focus
-Implementing optional wall display feature (enabled by default, configurable). This is the final feature required to complete the project.
+Final integration testing and review of wall display feature.
 
 ## Completed (implemented and reviewed)
 - All source modules (config.py, snake.py, food.py, renderer.py, input_handler.py, game.py) are implemented and reviewed.
@@ -20,23 +20,11 @@ Implementing optional wall display feature (enabled by default, configurable). T
 - Added comprehensive unit tests for the Food class (test_food.py), increasing test coverage.
 - Added comprehensive unit tests for exit functionality in test_game.py (test_handle_key_exit_q, test_handle_key_exit_esc, test_run_exits_on_q, test_run_exits_on_esc, etc.).
 - The main entry point is implemented.
+- Implemented optional wall display feature: added configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR) to config.py, updated renderer.py to draw a visual border around the grid when enabled, and updated README.md with documentation. Walls are purely visual and do not affect gameplay.
 
 ## In Progress
-- Wall display implementation:
-  - Add configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR) to config.py
-  - Update renderer.py to draw walls around the grid when enabled
-  - Ensure walls are purely visual and do not affect game logic
-  - Verify all existing tests still pass
-  - Update documentation (README.md)
-
-## Next Steps (after wall display)
 - Final integration testing with walls enabled/disabled
 - Final review of renderer.py and config.py
-- Mark project as complete
 
-## Notes
-- All unit tests are in place and passing; no further test additions required (except possibly for renderer if we add wall tests).
-- When implementing wall display, ensure the renderer draws the border outside the playable grid cells and does not affect game logic (snake movement, food spawning, collision detection).
-- The wall display should be enabled by default and configurable via config.py.
-- After wall display implementation, re-review renderer.py and config.py to ensure they meet the specification.
-- The project will be complete after wall display is implemented, tested, and documented.
+## Next Steps
+- Mark project as complete

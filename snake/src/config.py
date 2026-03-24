@@ -17,6 +17,11 @@ CHAR_SNAKE_BODY = '█'
 CHAR_SNAKE_HEAD = 'O'
 CHAR_FOOD = '●'
 
+# Wall display configuration
+WALLS_ENABLED = True
+WALL_SYMBOL = '#'
+WALL_COLOR = '\033[93m'  # Bright yellow
+
 # Direction vectors
 DIRECTION_UP = (0, -1)
 DIRECTION_DOWN = (0, 1)
