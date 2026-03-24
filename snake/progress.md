@@ -22,8 +22,8 @@ Bug fix: Wall display rendering issue and documentation update.
 - The main entry point is implemented.
 
 ## In Progress
-- Bug fix: Wall display rendering issue (renderer.py).
-- Documentation: Update README.md to document wall display configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR), explaining they are optional and purely visual, and listing default values.
+- Bug fix: Wall display rendering issue (renderer.py). **Task assigned via snake/run.md.**
+- Documentation: Update README.md to document wall display configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR), explaining they are optional and purely visual, and listing default values. (Pending after bug fix)
 
 ## Next Steps
 - Fix wall display rendering bug in renderer.py.

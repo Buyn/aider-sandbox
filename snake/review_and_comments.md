@@ -2,7 +2,6 @@
 
 ## Files reviewed (all passing unit tests)
 - config.py: Reviewed, meets specification. Extended with wall display configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR). Re-reviewed for wall display compliance.
-- renderer.py: Reviewed, meets specification. Implemented wall display drawing. Re-reviewed for wall display compliance.
 - snake.py: Reviewed, meets specification. No changes expected.
 - food.py: Reviewed, meets specification. No changes expected.
 - input_handler.py: Reviewed, meets specification. No changes expected.
@@ -13,7 +12,10 @@
 - test_config.py: Reviewed, meets specification. No changes expected.
 - test_cleanup.py: Reviewed, meets specification. No changes expected.
 - test_game.py: Reviewed, meets specification; covers game logic including exit functionality. All tests pass.
-- test_renderer.py: New test file for Renderer class, including wall display tests. Reviewed, meets specification. All tests pass.
+- test_renderer.py: Reviewed, meets specification. All tests pass.
+
+## Files requiring re-review
+- renderer.py: **Needs re-review** after wall display rendering bug fix. Current implementation has alignment issue with side walls.
 
 ## Stable files (no changes expected)
 The following files are considered stable and are not expected to require modifications:
@@ -42,7 +44,7 @@ The following files are considered stable and are not expected to require modifi
 - The main entry point is implemented.
 
 ## Open issues
-- Wall display rendering bug: The walls are displayed incorrectly. Specifically, after the top wall, on the next line there is an indentation equal to the first wall, causing side walls to be shifted. Example: top line: ###...###, next line: (spaces)# ... #. This needs to be fixed in renderer.py.
+- Wall display rendering bug: The walls are displayed incorrectly. Specifically, after the top wall, on the next line there is an indentation equal to the first wall, causing side walls to be shifted. This needs to be fixed in renderer.py. **Status: In progress** (assigned to programmer via snake/run.md).
 
 ## Current status
 - All source modules are implemented and reviewed, but the wall display feature has a rendering bug and does not yet meet the technical specification.
@@ -56,4 +58,5 @@ The following files are considered stable and are not expected to require modifi
 ## Notes for future sessions
 - No further features planned. Only bug fixes and final verification.
 - The wall display rendering bug must be fixed.
+- After the bug fix, re-review renderer.py to ensure the implementation matches the specification and tests pass.
 - If any issues arise during final verification, address them in a new task.
