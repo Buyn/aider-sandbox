@@ -52,6 +52,14 @@ The following files are considered stable and are not expected to require modifi
 - Manual integration testing verified: controls, visuals, gameplay mechanics, pause, restart, exit — but wall display (enabled/disabled) has a rendering bug.
 - The project is **not complete** until the wall display bug is fixed and documentation is updated.
 
+## Recent review
+- Re-verified the project state against file timestamps and test logs.
+- Confirmed that `renderer.py` (1527 bytes, modified 2026-03-24 15:13:02) has not changed since the last review; the wall display alignment bug persists.
+- All other source files remain stable and meet specification.
+- The test suite passes (49 tests, 1 skipped), but the visual bug is not captured by unit tests.
+- The open issue (wall display rendering) remains assigned to the programmer via `snake/run.md`.
+- No new issues identified.
+
 ## Pending documentation
 - README.md: Add section describing wall display configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR), explaining they are optional and purely visual, and listing default values.
 
@@ -60,3 +68,6 @@ The following files are considered stable and are not expected to require modifi
 - The wall display rendering bug must be fixed.
 - After the bug fix, re-review renderer.py to ensure the implementation matches the specification and tests pass.
 - If any issues arise during final verification, address them in a new task.
+
+## Last reviewed
+2026-03-24 (session review)
