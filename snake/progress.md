@@ -16,8 +16,8 @@ Implementing exit functionality (q/ESC keys). The optional wall display feature 
 - Implemented main entry point: `snake/src/__main__.py` to launch the game via `python -m snake.src`.
 - Fixed double cleanup bug by removing the `finally` block from `game.run()`; cleanup is now handled solely by the entry point (`__main__.py`).
 - Added comprehensive unit tests for cleanup behavior (snake/tests/test_cleanup.py) to ensure `input_handler.cleanup()` is called exactly once and only from the entry point.
-- Manual integration testing completed: all controls (arrow keys, vim keys, ESDF, space for pause, 'r' for restart), visuals (colors, characters, no borders), gameplay mechanics (movement, growth, wrap-around, self-collision, food spawning), pause and restart functionality, game speed (2 moves per second), and terminal restoration on game termination have been verified.
 - Added comprehensive unit tests for the Food class (test_food.py), increasing test coverage to 39 tests (1 skipped).
+- The main entry point is implemented.
 
 ## Next Steps
 - Add configuration options in `config.py` for wall display (enable/disable, symbol, color).
@@ -26,12 +26,8 @@ Implementing exit functionality (q/ESC keys). The optional wall display feature 
 - Add unit tests for wall rendering (if needed) and update existing tests if renderer interface changes.
 - Perform integration testing to verify wall appearance and behavior.
 - Update documentation (snake/README.md) to describe the new feature and configuration options.
-- Mark project as complete.
 
 ## Notes
-- The source code implementation is correct; previous test failures were due to test logic, not source code bugs.
-- The main entry point is implemented.
-- The double cleanup bug has been fixed: `input_handler.cleanup()` is now called exactly once from `__main__.py`'s finally block.
 - All unit tests pass (39 tests, 1 skipped).
 - The game is ready for use on Linux terminals supporting ANSI colors and curses.
 - **Pending features**: exit functionality (q/ESC keys) and optional wall display (enabled by default, configurable).
