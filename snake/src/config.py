@@ -1,6 +1,6 @@
 # Grid dimensions
 GRID_WIDTH = 50
-GRID_HEIGHT = 50
+GRID_HEIGHT = 25
 
 # Game speed: moves per second
 TICKS_PER_SECOND = 2
