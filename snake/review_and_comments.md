@@ -15,7 +15,7 @@
 - test_renderer.py: Reviewed, meets specification. All tests pass.
 
 ## Files requiring re-review
-- renderer.py: **Needs re-review** after wall display rendering bug fix. Current implementation has alignment issue with side walls.
+- renderer.py: **Needs re-review** after wall display rendering bug fix. Current implementation has alignment issue with side walls. The bug is currently being addressed.
 
 ## Stable files (no changes expected)
 The following files are considered stable and are not expected to require modifications:
@@ -40,17 +40,17 @@ The following files are considered stable and are not expected to require modifi
 - Added comprehensive unit tests for cleanup behavior (test_cleanup.py) to ensure `input_handler.cleanup()` is called exactly once and only from the entry point.
 - Added comprehensive unit tests for the Food class (test_food.py), increasing test coverage.
 - Added comprehensive unit tests for exit functionality in test_game.py (test_handle_key_exit_q, test_handle_key_exit_esc, test_run_exits_on_q, test_run_exits_on_esc, etc.).
-- Implemented optional wall display feature: added WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR to config.py; updated renderer.py to draw visual border; added test_renderer.py with wall rendering tests. README.md documentation is pending.
 - The main entry point is implemented.
 
 ## Open issues
-- Wall display rendering bug: The walls are displayed incorrectly. Specifically, after the top wall, on the next line there is an indentation equal to the first wall, causing side walls to be shifted. This needs to be fixed in renderer.py. 
+- Wall display rendering bug: The walls are displayed incorrectly. Specifically, after the top wall, on the next line there is an indentation equal to the first wall, causing side walls to be shifted. This needs to be fixed in renderer.py. The bug is currently being addressed.
 
 ## Current status
 - All source modules are implemented and reviewed, but the wall display feature has a rendering bug and does not yet meet the technical specification.
 - The test suite passes (49 tests, 1 skipped).
 - Manual integration testing verified: controls, visuals, gameplay mechanics, pause, restart, exit — but wall display (enabled/disabled) has a rendering bug.
 - The project is **not complete** until the wall display bug is fixed and documentation is updated.
+- The wall display bug is currently being addressed.
 
 ## Recent review
 - Re-verified the project state against file timestamps and test logs.
@@ -59,12 +59,6 @@ The following files are considered stable and are not expected to require modifi
 - The test suite passes (49 tests, 1 skipped), but the visual bug is not captured by unit tests.
 - The open issue (wall display rendering) remains assigned to the programmer via `snake/run.md`.
 - No new issues identified.
-
-## Notes for future sessions
-- No further features planned. Only bug fixes and final verification.
-- The wall display rendering bug must be fixed.
-- After the bug fix, re-review renderer.py to ensure the implementation matches the specification and tests pass.
-- If any issues arise during final verification, address them in a new task.
 
 ## Last reviewed
 2026-03-24 (session review)
