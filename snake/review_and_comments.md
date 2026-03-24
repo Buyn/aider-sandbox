@@ -26,14 +26,14 @@ The reported issue with up/down controls causing chaotic movement and coordinate
 - Control chaos report: investigated; no evidence of issue; tests and manual verification confirm correct behavior.
 
 ## Current status
-- All core source files meet the technical specification and have been reviewed.
+- All core source files are implemented and reviewed. The implemented features (movement, growth, wrap-around, self-collision, food spawning, pause, restart) meet the technical specification. Exit functionality is currently being implemented; wall display is pending.
 - The test suite passes (39 tests, 1 skipped).
 - Manual integration testing completed: all controls (arrow keys, vim keys, ESDF, space for pause, 'r' for restart), visuals (colors, characters, no borders), gameplay mechanics (movement, growth, wrap-around, self-collision, food spawning), pause and restart functionality, game speed (2 moves per second), and terminal restoration on game termination have been verified.
-- The project is **not yet complete**: exit functionality (q/ESC keys) is being implemented next; optional wall display remains pending.
+- The project is **not yet complete**: exit functionality (q/ESC keys) is currently being implemented; optional wall display remains pending.
 - The implementation task for exit functionality has been defined in snake/run.md. The next review will focus on changes to game.py, input_handler.py, __main__.py, and test_game.py to ensure they meet the specification.
 
 ## Pending tasks
-- Add exit functionality: implement handling of 'q' and ESC keys to exit the game gracefully.
+- Implement exit functionality (q/ESC keys) - in progress.
 - Add configuration options in `config.py` for wall display (enable/disable, symbol, color).
 - Update `renderer.py` to draw walls around the grid when enabled.
 - Ensure walls are purely visual and do not affect game logic.
@@ -52,3 +52,4 @@ The reported issue with up/down controls causing chaotic movement and coordinate
 - All unit tests are in place and passing; no further test additions required (except possibly for renderer if we add wall tests, and for game if we add exit tests).
 - When implementing wall display, ensure the renderer draws the border outside the playable grid cells and does not affect game logic (snake movement, food spawning, collision detection).
 - For exit functionality, ensure that the ESC key is properly detected across different terminals; using curses' built-in constants is recommended.
+- After exit functionality is implemented, re-review game.py, input_handler.py, __main__.py, and test_game.py to ensure they meet the specification and that all tests still pass.

@@ -1,10 +1,11 @@
 # Project Progress
 
 ## Current Focus
-Implement exit functionality (q/ESC keys) as the next immediate step. The optional wall display feature will be addressed after exit functionality is complete and reviewed.
+Implementing exit functionality (q/ESC keys). The optional wall display feature will be addressed after exit functionality is complete and reviewed.
 
 ## Completed (implemented and reviewed)
-- All source modules (config.py, snake.py, food.py, renderer.py, input_handler.py, game.py) are implemented, reviewed, and meet the technical specification.
+- All source modules (config.py, snake.py, food.py, renderer.py, input_handler.py, game.py) are implemented and reviewed.
+- The core gameplay features (movement, growth, wrap-around, self-collision, food spawning, pause, restart) meet the technical specification.
 - Test imports have been fixed to use absolute imports (src.module).
 - The test suite is discoverable via `python -m unittest` from the snake directory.
 - Fixed syntax error in snake/tests/test_snake.py by converting invalid comment lines to proper Python syntax and ensuring proper imports and class definition.
@@ -19,7 +20,6 @@ Implement exit functionality (q/ESC keys) as the next immediate step. The option
 - Added comprehensive unit tests for the Food class (test_food.py), increasing test coverage to 39 tests (1 skipped).
 
 ## Next Steps
-- Add exit functionality: implement handling of 'q' and ESC keys to exit the game gracefully.
 - Add configuration options in `config.py` for wall display (enable/disable, symbol, color).
 - Update `renderer.py` to draw walls around the grid when enabled.
 - Ensure walls are purely visual and do not affect game logic.
