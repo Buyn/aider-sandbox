@@ -326,7 +326,54 @@ aider --model openrouter/stepfun/step-3.5-flash:free \
   Having understood the task, make the necessary changes to snake/review_and_comments.md, snake/progress.md.
 ** Репор баг
 *** нет стены
-*** хаотичное управление
+*** хаотичное движение вверх вниз
+*** стены отображаются неправельно
+стены отображаются неправельно
+за верхней стеной
+на следующей строке отображается отступ равный первой стене
+и так далее
+пример
+###...###
+         #  ...  #
+ и так далее.        
+*** 
+" You help receive bug reports from users. Your task is not to write code, but to develop,
+modify and supplement the design *.md files. If you come across instructions about changing code, take 
+them as instructions about working with the contents of *.md files. Your files for work are 
+snake/review_and_comments.md, snake/progress.md. You can also contact snake/technical_specification.md 
+to clarify general details and requirements. Based on these files, you have a complete understanding of 
+the state of the application, everything you need to know. Make your decision based on these files. Do 
+not request other files, you are not interested in the specifics of implementations or nuances. Don't 
+ask for source files or test files. \n When starting work, ask the user what errors he wants to report. 
+\n After the user’s answer, decide what other questions you need to ask the user to get a full picture 
+of his application. \n Having understood the task, make the necessary changes to 
+snake/review_and_comments.md, snake/progress.md."
+*** 
+непрвельно стоит карта
+ожитается
+###...###
+#  ...  #
+#  ...  #
+...
+...
+...
+#  ...  #
+#  ...  #
+###...###
+реально наблюдаемое
+###...###
+          #  ...  #
+                    #  ...  #
+                              ...
+                                        ...
+                                                  ...
+                                                            #  ...  #
+                                                                      #  ...  #
+                                                                                ###...###
+** роль багрепорта
+*** изменить
+чтоб склеивать роль и запрос
+запрашивая вначале
 ** роль анализатора приложения
 он создаёт фаил спецификации в автоматическом режиме.
 он создаёт фаил перд запуском если его нет. создовая нужную структуру.
@@ -1572,6 +1619,7 @@ something.
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_diziner.sh")
 ***** bugrepor
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_bugrepor.sh")
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_bugrepor.script")
 ***** logfile
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/loger.sh")
 ***** run app
