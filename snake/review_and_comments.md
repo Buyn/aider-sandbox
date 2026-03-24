@@ -20,7 +20,6 @@ The following files are considered stable and are not expected to require modifi
 - config.py
 - snake.py
 - food.py
-- renderer.py
 - input_handler.py
 - game.py
 - __main__.py
@@ -42,15 +41,19 @@ The following files are considered stable and are not expected to require modifi
 - Implemented optional wall display feature: added WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR to config.py; updated renderer.py to draw visual border; added test_renderer.py with wall rendering tests. README.md documentation is pending.
 - The main entry point is implemented.
 
+## Open issues
+- Wall display rendering bug: The walls are displayed incorrectly. Specifically, after the top wall, on the next line there is an indentation equal to the first wall, causing side walls to be shifted. Example: top line: ###...###, next line: (spaces)# ... #. This needs to be fixed in renderer.py.
+
 ## Current status
-- All source modules are implemented and reviewed. All features meet the technical specification.
+- All source modules are implemented and reviewed, but the wall display feature has a rendering bug and does not yet meet the technical specification.
 - The test suite passes (49 tests, 1 skipped).
-- Manual integration testing verified: controls, visuals, gameplay mechanics, pause, restart, exit, and wall display (enabled/disabled).
-- The project is **complete** pending documentation update for wall display feature in README.md.
+- Manual integration testing verified: controls, visuals, gameplay mechanics, pause, restart, exit — but wall display (enabled/disabled) has a rendering bug.
+- The project is **not complete** until the wall display bug is fixed and documentation is updated.
 
 ## Pending documentation
 - README.md: Add section describing wall display configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR), explaining they are optional and purely visual, and listing default values.
 
 ## Notes for future sessions
-- No further features planned. Only final verification and potential bug fixes.
+- No further features planned. Only bug fixes and final verification.
+- The wall display rendering bug must be fixed.
 - If any issues arise during final verification, address them in a new task.
