@@ -1,7 +1,7 @@
 # Project Progress
 
 ## Current Focus
-Bug fix: Wall display rendering issue and documentation update.
+All tasks completed.
 
 ## Completed (implemented and reviewed)
 - All source modules (config.py, snake.py, food.py, renderer.py, input_handler.py, game.py) are implemented and reviewed.
@@ -20,15 +20,11 @@ Bug fix: Wall display rendering issue and documentation update.
 - Added comprehensive unit tests for the Food class (test_food.py), increasing test coverage.
 - Added comprehensive unit tests for exit functionality in test_game.py (test_handle_key_exit_q, test_handle_key_exit_esc, test_run_exits_on_q, test_run_exits_on_esc, etc.).
 - The main entry point is implemented.
-
-## In Progress
-- Bug fix: Wall display rendering issue (renderer.py). **Task assigned via snake/run.md.**
-- Documentation: Update README.md to document wall display configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR), explaining they are optional and purely visual, and listing default values. (Pending after bug fix)
+- Fixed wall display rendering issue in renderer.py to correctly handle wall symbols of any length, ensuring proper alignment of top and bottom borders with the grid rows.
+- Updated README.md to document wall display configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR), explaining they are optional and purely visual, and listing default values.
 
 ## Next Steps
-- Fix wall display rendering bug in renderer.py.
-- Complete documentation update for wall display.
-- Mark project as complete.
+- None.
 
 ## Last updated
 2026-03-24
