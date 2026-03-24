@@ -44,7 +44,7 @@ The following files are considered stable and are not expected to require modifi
 - The main entry point is implemented.
 
 ## Open issues
-- Wall display rendering bug: The walls are displayed incorrectly. Specifically, after the top wall, on the next line there is an indentation equal to the first wall, causing side walls to be shifted. This needs to be fixed in renderer.py. **Status: In progress** (assigned to programmer via snake/run.md).
+- Wall display rendering bug: The walls are displayed incorrectly. Specifically, after the top wall, on the next line there is an indentation equal to the first wall, causing side walls to be shifted. This needs to be fixed in renderer.py. 
 
 ## Current status
 - All source modules are implemented and reviewed, but the wall display feature has a rendering bug and does not yet meet the technical specification.
@@ -59,9 +59,6 @@ The following files are considered stable and are not expected to require modifi
 - The test suite passes (49 tests, 1 skipped), but the visual bug is not captured by unit tests.
 - The open issue (wall display rendering) remains assigned to the programmer via `snake/run.md`.
 - No new issues identified.
-
-## Pending documentation
-- README.md: Add section describing wall display configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR), explaining they are optional and purely visual, and listing default values.
 
 ## Notes for future sessions
 - No further features planned. Only bug fixes and final verification.
