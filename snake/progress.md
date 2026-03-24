@@ -1,7 +1,7 @@
 # Project Progress
 
 ## Current Focus
-Final integration testing and review of wall display feature.
+Project completion and final verification.
 
 ## Completed (implemented and reviewed)
 - All source modules (config.py, snake.py, food.py, renderer.py, input_handler.py, game.py) are implemented and reviewed.
@@ -20,11 +20,12 @@ Final integration testing and review of wall display feature.
 - Added comprehensive unit tests for the Food class (test_food.py), increasing test coverage.
 - Added comprehensive unit tests for exit functionality in test_game.py (test_handle_key_exit_q, test_handle_key_exit_esc, test_run_exits_on_q, test_run_exits_on_esc, etc.).
 - The main entry point is implemented.
-- Implemented optional wall display feature: added configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR) to config.py, updated renderer.py to draw a visual border around the grid when enabled, and updated README.md with documentation. Walls are purely visual and do not affect gameplay.
+- Implemented optional wall display feature: added configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR) to config.py, updated renderer.py to draw a visual border around the grid when enabled. Walls are purely visual and do not affect gameplay.
+- Wall display feature has been re-reviewed and verified: config.py and renderer.py comply with specification; test_renderer.py provides adequate coverage; all 49 tests pass; manual integration testing confirms correct visual appearance and unchanged gameplay.
 
 ## In Progress
-- Final integration testing with walls enabled/disabled
-- Final review of renderer.py and config.py
+- Documentation: Update README.md to document wall display configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR), explaining they are optional and purely visual, and listing default values.
 
 ## Next Steps
-- Mark project as complete
+- Complete documentation update for wall display.
+- Mark project as complete.
