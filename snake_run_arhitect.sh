@@ -33,7 +33,8 @@ aider --model openrouter/stepfun/step-3.5-flash:free \
     --notifications \
     --no-auto-lint \
     --no-auto-test \
-    --exit 
+    --exit \
+    --yes-always \
 
     # --verbose
     # --weak-model groq/llama-3.1-8b-instant \

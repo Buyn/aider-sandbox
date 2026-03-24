@@ -28,7 +28,8 @@ aider --model openrouter/stepfun/step-3.5-flash:free \
     --auto-lint \
     --test-cmd "python -m unittest discover -s snake/tests" \
     --auto-test \
-    --exit 
+    --exit \
+    --yes-always \
 
     # --verbose
     # --weak-model nvidia_nim/meta/llama3-8b-instruct \

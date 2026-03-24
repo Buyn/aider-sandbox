@@ -61,7 +61,7 @@ The project will be organized into the following modules:
 ### 3.2 Configuration
 All configurable parameters will be stored in `config.py` as constants or a configuration class/object. This includes:
 - `GRID_WIDTH = 50`
-- `GRID_HEIGHT = 50`
+- `GRID_HEIGHT = 25`
 - `TICKS_PER_SECOND = 2` (or `MOVE_INTERVAL = 0.5` seconds)
 - Colors (ANSI escape codes) for snake body, snake head, food, background, and walls.
 - Key mappings: a dictionary mapping keys to directions (e.g., `KEY_UP = 'k'` or `'KEY_UP'` from curses).

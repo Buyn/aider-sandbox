@@ -86,7 +86,7 @@ SYSTEM
 ,* Request code changes using `/code` in the chat.
 
 ** специализированый джемени для аидера
-тоесть один у имакса другой аидера
+то есть один у имакса другой аидера
 использовать как слабую модель восновном
 для откатки
 можно как срабую если не указано
@@ -153,11 +153,143 @@ You are the Application Design Architect. Your task is not to write code, but to
 4 Wall appearance: wall color configurable (e.g., via config.py), symbol be configurable    
 5 Scope: walls drawn on all four sides of the grid 
 ** сделать меню
+*** example
+set -euo pipefail
 
-** выход из приложения по q
+URL="${1:-}"
+
+if [[ -z "$URL" ]]; then
+  zenity --error --text="❌ Не передан URL"
+  notify-send "Ошибка" "Не передан URL"
+  exit 1
+fi
+
+# --- хранилище меню ---
+MENU_NAMES=()
+MENU_CMDS=()
+
+# --- регистрация пункта ---
+menu() {
+  MENU_NAMES+=("$1")
+  shift
+  MENU_CMDS+=("$*")
+}
+
+# --- описание меню ---
+menu "🌐 Открыть в браузере пикере" browserpicer.sh
+menu "🦊 Открыть в Firefox" firefox
+menu "⬇️ Скачать видео" ytb_dl_one
+menu "📺 Добавить в watch.m3u" add2watchm3u
+
+# --- размер окна ---
+rows=${#MENU_NAMES[@]}
+height=$((120 + rows * 60))
+
+# --- показать меню ---
+action=$(zenity --list \
+  --title="Что сделать с URL?" \
+  --text="URL:\n$URL" \
+  --column="Действие" \
+  --width=480 \
+  --height="$height" \
+  "${MENU_NAMES[@]}"
+)
+
+[[ -z "$action" ]] && exit 0
+
+# --- выполнить действие ---
+for i in "${!MENU_NAMES[@]}"; do
+  if [[ "${MENU_NAMES[$i]}" == "$action" ]]; then
+      ${MENU_CMDS[$i]} "$URL" &
+      break
+  fi
+done
+*** arhiv
+# --- выполнить действие ---
+for i in "${!MENU_NAMES[@]}"; do
+  if [[ "${MENU_NAMES[$i]}" == "$action" ]]; then
+      if [[ "${MENU_CMDS[$i]}" == "./activate.sh" ]]; then
+          ${MENU_CMDS[$i]} .
+      else
+          ${MENU_CMDS[$i]} 
+      fi
+      break
+  fi
+done
+
+# URL="${1:-}"
+
+# if [[ -z "$URL" ]]; then
+#   # Swapped zenity error for a better CLI experience
+#   echo "❌ Error: No URL provided." >&2
+#   notify-send "Ошибка" "Не передан URL"
+#   exit 1
+# fi
+*** 
+
+set -euo pipefail
+
+# --- хранилище меню ---
+MENU_NAMES=()
+MENU_CMDS=()
+
+# --- регистрация пункта ---
+menu() {
+  MENU_NAMES+=("$1")
+  shift
+  MENU_CMDS+=("$*")
+}
+
+# --- описание меню ---
+
+menu "🌐 snake_run_coder.sh" ./snake_run_coder.sh
+menu "🦊 snake_run_arhitect.sh" ./snake_run_arhitect.sh
+menu "⬇️ snake_run_ralfloop.sh" ./snake_run_ralfloop.sh
+menu "📺 snake_run_diziner.sh" ./snake_run_diziner.sh
+menu "📺 snake_run_bugrepor.sh" ./snake_run_bugrepor.sh
+menu "📺 loger.sh" ./loger.sh
+menu "📺 run_snake.sh" ./run_snake.sh
+menu "📺 activate.sh" ./activate.sh
+
+# --- fzf selection ---
+# Using fzf to display the menu interactively
+action=$(printf "%s\n" "${MENU_NAMES[@]}" | fzf \
+  --header="What do you want to do with this?" \
+  --height=50% \
+  --layout=reverse \
+  --border \
+)
+
+[[ -z "$action" ]] && exit 0
+
+# --- выполнить действие ---
+for i in "${!MENU_NAMES[@]}"; do
+  if [[ "${MENU_NAMES[$i]}" == "$action" ]]; then
+      if [[ "${MENU_CMDS[$i]}" == "./activate.sh" ]]; then
+          ${MENU_CMDS[$i]} . ./activate.sh
+      else
+          ${MENU_CMDS[$i]} 
+      fi
+      break
+  fi
+done
+** DONE выход из приложения по q
+Command '/ask " You are the Application Design Architect. Your task is not to write code, but
+to develop, modify and supplement the design *.md files. If you come across instructions 
+about changing code, take them as instructions about working with the contents of *.md files.
+Your files for work are snake/technical_specification.md, snake/review_and_comments.md, 
+snake/progress.md. Do not request other files, you are not interested in the specifics of 
+implementations or nuances. Based on these files, you understand the state of the application
+and guide its further development. \n When starting work, ask the user what changes he wants 
+to make to the application. \n After the user’s answer, decide what other questions you need 
+to ask the user in order to get a complete picture of his request. \n Having understood the 
+task, make the necessary changes to snake/technical_specification.md, 
+snake/review_and_comments.md, snake/progress.md. "' is only supported in interactive mode, 
+skipping.
+
 добавить в управлени
 выход из приложения по "q" или "ESC"
-** сделать роль баг репортера
+** DONE сделать роль баг репортера
 *** обзор
 тоесть запускать только в прогресом с документацией
 и возможность довалять баг в ревью фаил
@@ -181,9 +313,20 @@ aider --model openrouter/stepfun/step-3.5-flash:free \
 
     # --weak-model nvidia_nim/meta/llama3-8b-instruct \
 
-*** текст
+*** текст ru
+  Ты помогаешь принимать баг репорты от юзера. Твоя задача не писать кода а разработать изменянять и дополнять дезаин *.md файлы. Если Ты встечаешь инструкции с изменения кода воспренивай их как инструкции про работу с содержанием *.md файлов. Твои файлы для работы snake/review_and_comments.md, snake/progress.md. Так же Ты можешь обрашатся к snake/technical_specification.md для удочнения обших деталий и требований. На основе этих файлов Ты имешь полное понимание о сотоянии приложения, всё что Тебе положено знать. Принимай решение на основе этих файлов. Не заправшивай другие файлы, тебе не интересует конкретика реализаций или нюансов. Незапрашивай исходные файлы или тест. 
+  Начиная работу спроси пользователя какие ошиб он хочет за репортить.
+  После ответ пользователя реши какие ещё вопросы нужно задать пользовотелю чтоб получить полную картину, о его заявлении.
+  Поняв задачу внеси нужные измения в snake/review_and_comments.md, snake/progress.md.
 
-
+*** текст en
+  You help receive bug reports from users. Your task is not to write code, but to develop, modify and supplement the design *.md files. If you come across instructions about changing code, take them as instructions about working with the contents of *.md files. Your files for work are snake/review_and_comments.md, snake/progress.md. You can also contact snake/technical_specification.md to clarify general details and requirements. Based on these files, you have a complete understanding of the state of the application, everything you need to know. Make your decision based on these files. Do not request other files, you are not interested in the specifics of implementations or nuances. Don't ask for source files or test files.
+  When starting work, ask the user what errors he wants to report.
+  After the user’s answer, decide what other questions you need to ask the user to get a full picture of his application.
+  Having understood the task, make the necessary changes to snake/review_and_comments.md, snake/progress.md.
+** Репор баг
+*** нет стены
+*** хаотичное управление
 ** роль анализатора приложения
 он создаёт фаил спецификации в автоматическом режиме.
 он создаёт фаил перд запуском если его нет. создовая нужную структуру.
@@ -239,6 +382,12 @@ Editor model (openrouter/stepfun/step-3.5-flash:free):
   max_tokens: 256000
   output_cost_per_token: 0.0
 
+
+
+Model azure/gpt-4-turbo: Missing these environment variables:
+- AZURE_API_BASE
+- AZURE_API_VERSION
+- AZURE_API_KEY
 ** установаить в имакс еля чере орг файл
 *** попробываь через страйт также через орг фаил
 *** попробываь через ВС? также через орг фаил
@@ -1346,8 +1495,11 @@ python -m unittest
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/review_and_comments.md")
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/run.md")
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/technical_specification.md")
-**** feedback
-(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/last_unittest_run.log")
+**** role promts
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/arhitect_role.md")
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/coder_role.md")
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/diziner_role.md")
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/bugreporter_role.md")
 **** sh
 ***** run_coder.sh
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_coder.sh")
@@ -1416,16 +1568,20 @@ something.
     --notifications-command "" \
 ***** ralfloop_run.sh
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_ralfloop.sh")
+***** dezinener
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_diziner.sh")
+***** bugrepor
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake_run_bugrepor.sh")
 ***** logfile
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/loger.sh")
 ***** run app
 (find-file-other-frame "/home/buyn/Dev/aider-sandbox/run_snake.sh")
 python -m snake.src
-**** role promts
-(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/arhitect_role.md")
-(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/coder_role.md")
-(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/diziner_role.md")
+***** menu
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/menu.sh")
+./menu.sh
+**** feedback
+(find-file-other-frame "/home/buyn/Dev/aider-sandbox/snake/last_unittest_run.log")
 ** Ralph Loops
 *** doc
 [[*### 💥 Ключевая идея][### 💥 Ключевая идея]]

@@ -2,10 +2,10 @@
 
 aider --model openrouter/stepfun/step-3.5-flash:free \
     --weak-model mistral/open-mistral-7b \
-    --read snake/technical_specification.md \
+    --file snake/technical_specification.md \
     --file snake/review_and_comments.md \
     --file "snake/progress.md" \
-    --load snake/diziner_role.md \
+    --load snake/bugreporter_role.md \
     --notifications \
     --verbose \
     --no-auto-lint \
