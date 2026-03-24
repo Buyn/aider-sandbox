@@ -175,5 +175,45 @@ class TestGame(unittest.TestCase):
         self.assertEqual(self.mock_input_cls.call_count, 1)    # not recreated
         self.assertEqual(self.mock_food.spawn.call_count, 2)
 
+    def test_handle_key_exit_q(self):
+        game = Game()
+        game._handle_key(ord('q'))
+        self.assertTrue(game.exit_requested)
+
+    def test_handle_key_exit_esc(self):
+        game = Game()
+        game._handle_key(27)
+        self.assertTrue(game.exit_requested)
+
+    def test_handle_key_exit_when_paused(self):
+        game = Game()
+        game.paused = True
+        game._handle_key(ord('q'))
+        self.assertTrue(game.exit_requested)
+
+    def test_handle_key_exit_when_game_over(self):
+        game = Game()
+        game.game_over = True
+        game._handle_key(ord('q'))
+        self.assertTrue(game.exit_requested)
+
+    def test_run_exits_on_q(self):
+        game = Game()
+        game.input_handler.get_key.return_value = ord('q')
+        with patch('src.game.time.sleep') as mock_sleep:
+            game.run()
+            game.input_handler.get_key.assert_called_once()
+            mock_sleep.assert_called_once()
+            self.assertTrue(game.exit_requested)
+
+    def test_run_exits_on_esc(self):
+        game = Game()
+        game.input_handler.get_key.return_value = 27
+        with patch('src.game.time.sleep') as mock_sleep:
+            game.run()
+            game.input_handler.get_key.assert_called_once()
+            mock_sleep.assert_called_once()
+            self.assertTrue(game.exit_requested)
+
 if __name__ == '__main__':
     unittest.main()

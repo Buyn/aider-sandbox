@@ -16,6 +16,7 @@ class Game:
         self.paused = False
         self.game_over = False
         self.direction = self.snake.direction
+        self.exit_requested = False
 
     def run(self):
         while True:
@@ -29,8 +30,14 @@ class Game:
             elapsed = time.time() - start_time
             sleep_time = max(0, (1.0 / config.TICKS_PER_SECOND) - elapsed)
             time.sleep(sleep_time)
+            if self.exit_requested:
+                break
 
     def _handle_key(self, key):
+        # Exit functionality: 'q' or ESC
+        if key == ord('q') or key == 27 or key == getattr(curses, 'KEY_EXIT', None):
+            self.exit_requested = True
+            return
         if key == ord(' '):
             self.paused = not self.paused
         elif key == ord('r'):
@@ -81,3 +88,4 @@ class Game:
         self.paused = False
         self.game_over = False
         self.direction = self.snake.direction
+        self.exit_requested = False
