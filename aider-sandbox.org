@@ -4,6 +4,7 @@
 aider --list-models groq/
 aider --list-models nvidia_nim/
 aider --list-models mistral
+aider --list-models github
 
 NVIDIA_NIM
 
@@ -50,7 +51,7 @@ SYSTEM
 SYSTEM Reply in English.
 SYSTEM 
 
-** other mods
+** DONE other mods
   --gui, --no-gui, --browser, --no-browser
                         Run aider in your browser (default: False) [env var: AIDER_GUI]
   --line-endings {platform,lf,crlf}
@@ -85,7 +86,7 @@ SYSTEM
 
 ,* Request code changes using `/code` in the chat.
 
-** специализированый джемени для аидера
+** DONE специализированый джемени для аидера
 то есть один у имакса другой аидера
 использовать как слабую модель восновном
 для откатки

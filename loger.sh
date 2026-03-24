@@ -84,5 +84,6 @@ find "$SCAN_ROOT" -type f -print0 | while IFS= read -r -d $'\0' file; do
     echo "${FULL_PATH},${MOD_TIME},${SIZE}" >> "$NEW_LOG"
 
 done
+date >> $NEW_LOG
 
-echo "[ACID] Scan complete. Log written to $NEW_LOG. Did I pass the test, Master?"
+echo "[ACID] Scan complete. Log written to $NEW_LOG."
