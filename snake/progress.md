@@ -21,14 +21,18 @@ Implementing optional wall display feature (enabled by default, configurable). T
 - Added comprehensive unit tests for exit functionality in test_game.py (test_handle_key_exit_q, test_handle_key_exit_esc, test_run_exits_on_q, test_run_exits_on_esc, etc.).
 - The main entry point is implemented.
 
-## Next Steps
-- Add configuration options in `config.py` for wall display (enable/disable, symbol, color).
-- Update `renderer.py` to draw walls around the grid when enabled.
-- Ensure walls are purely visual and do not affect game logic.
-- Add unit tests for wall rendering (if needed) and update existing tests if renderer interface changes.
-- Perform integration testing to verify wall appearance and behavior.
-- Update documentation (snake/README.md) to describe the new feature and configuration options.
-- Mark project as complete.
+## In Progress
+- Wall display implementation:
+  - Add configuration options (WALLS_ENABLED, WALL_SYMBOL, WALL_COLOR) to config.py
+  - Update renderer.py to draw walls around the grid when enabled
+  - Ensure walls are purely visual and do not affect game logic
+  - Verify all existing tests still pass
+  - Update documentation (README.md)
+
+## Next Steps (after wall display)
+- Final integration testing with walls enabled/disabled
+- Final review of renderer.py and config.py
+- Mark project as complete
 
 ## Notes
 - All unit tests are in place and passing; no further test additions required (except possibly for renderer if we add wall tests).
